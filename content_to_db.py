@@ -9,6 +9,12 @@ from PIL import Image, UnidentifiedImageError
 conn = sqlite3.connect('tsh.db')
 cursor = conn.cursor()
 
+# delete redirect aliases
+try:
+    os.remove('redirect_aliases.json')
+except:
+    None
+        
 # Create the topics table
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS topics (
@@ -262,10 +268,29 @@ def process_article(md_file_path, parent_id):
         description = re.search(r'description: "(.*?)"', content)
         draft = re.search(r'draft: (.*?)\n', content)
         keywords = re.search(r'keywords: "(.*?)"', content)
+        aliases = re.search(r'aliases: "(.*?)"', content)
         date = re.search(r'date: (\d{4}-\d{2}-\d{2})', content)
         date_modified = re.search(r'date_modified: (\d{4}-\d{2}-\d{2})', content)
         weight = re.search(r'weight: (\d+)', content)
         author = re.search(r'author: "(.*?)"', content)
+
+        # Regular expression to find the aliases block
+        match = re.search(r"aliases:\s*\n((?:\s+-\s+[^\n]+\n)*)", content)
+
+        if match:
+            aliases_block = match.group(1)
+
+            # Extract individual aliases
+            aliases = re.findall(r"-\s+([^\n]+)", aliases_block)
+        else:
+            aliases = [] # Return an empty list if no aliases exist
+
+        import json
+        f = open('redirect_aliases.json','a')
+        for alias in aliases:
+            f.write(json.dumps({alias: {'url': '/topics/find/redirected/page/'+os.path.basename(md_file_path).replace('.md', '')}}))
+            f.write('\n')
+        f.close()
 
         # Extract article content
         match = re.search(r'---(.*?)---(.*)', content, re.DOTALL)

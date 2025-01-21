@@ -15,3 +15,13 @@ REDIRECTS = {
         "title": "the onboarding wiki page"
     }
 }
+
+f = open('redirect_aliases.json', 'r')
+import json
+empty_dic = {}
+
+iter_dic = f.readlines()
+for c in iter_dic:
+    obj = json.loads(c.replace('\n',''))
+    REDIRECTS.update(obj)
+f.close()
