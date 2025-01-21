@@ -72,7 +72,7 @@ def ExternalLinkList(listPages, fullDomain):
     externalLinksListRaw.clear()
     
     for url in listPages:
-        request = requests.get(url, headers=user_agent)
+        request = requests.get(url, headers=user_agent, allow_redirects=False)
         content = request.content
         soup = BeautifulSoup(content, 'html.parser')
         list_of_links = soup.find_all("a")
