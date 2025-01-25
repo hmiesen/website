@@ -111,7 +111,7 @@ Any issue that involves substantial changes to code should be peer reviewed by a
 {{% tip %}}
 The job of the peer reviewer **IS** to verify that:
 
-- The deliverable is clear, complete, and conforms to the standards from the deliverables section [here](write-good-issues.md)
+- The deliverable is clear, complete, and conforms to the standards from the deliverables section [here](https://tilburgsciencehub.com/topics/automation/version-control/start-git/write-good-issues/)
 - Files committed to the repository conform to our organizational and code style rules
 - Empirical and theoretical results are clear and appear correct
 

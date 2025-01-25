@@ -16,7 +16,7 @@ aliases:
 
 The main purpose of the `kableExtra` package is to simplify the process of creating tables with custom styles and formatting in R. In this building block, we will provide an example using some useful functions of `kableExtra` to improve the output of the `modelsummary` package and create a table in LaTeX format suitable for a publishable paper.
 
-The starting point is the final output of our [`modelsummary` building block](../../data-visualization/regression-results/model-summary.md), which is a replication of Table 1 of [Eiccholtz et al. (2010)](https://www.aeaweb.org/articles?id=10.1257/aer.100.5.2492). This table presents the results of a model investigating how green building certification impacts rental prices of commercial office buildings.
+The starting point is the final output of our [`modelsummary` building block](https://tilburgsciencehub.com/topics/visualization/data-visualization/regression-results/model-summary/), which is a replication of Table 1 of [Eiccholtz et al. (2010)](https://www.aeaweb.org/articles?id=10.1257/aer.100.5.2492). This table presents the results of a model investigating how green building certification impacts rental prices of commercial office buildings.
 
 The following `kableExtra` functions will be covered to get to a formatted table that can be inserted into a research paper or slide deck that is built using LaTeX:
 
@@ -51,7 +51,7 @@ load(url(data_url)) #data_rent is loaded now
 
 ## The `modelsummary` table
 
-- 'models' is a list which consists of five regression models (regression 1 to 5). For a detailed overview and understanding of these regressions, please refer to the [`modelsummary` building block](https://tilburgsciencehub.com/topics/analyze-data/regressions/model-summary/).
+- 'models' is a list which consists of five regression models (regression 1 to 5). For a detailed overview and understanding of these regressions, please refer to the [`modelsummary` building block](https://tilburgsciencehub.com/topics/visualization/data-visualization/regression-results/model-summary/).
 - `cm2` and `gm2` represent the variable names and statistics included in the regression table, respectively.
 
 {{% codeblock %}}

@@ -136,5 +136,5 @@ You can see the list of functionalities [here](https://docs.dask.org/en/stable/a
 
 ### See Also
 
-[Practical Example Using Dask](dask-in-action.md)
+[Practical Example Using Dask](https://tilburgsciencehub.com/topics/manage-manipulate/loading/large-datasets/dask-in-action/)
 ```

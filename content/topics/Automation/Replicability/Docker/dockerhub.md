@@ -32,9 +32,9 @@ Additionally, you will
 {{% tip %}}
 **New to Docker?**
 
-If you haven't installed docker on your computer yet, you can see how to do it on the building block on how to [set up Docker](docker.md).
+If you haven't installed docker on your computer yet, you can see how to do it on the building block on how to [set up Docker](https://tilburgsciencehub.com/topics/automation/replicability/docker/docker/).
 
-In case you are new to Docker we recommended you to review some of the basics of Docker before going ahead with this building block by visiting TSH's building block on [Docker for reproducible research](docker.md).
+In case you are new to Docker we recommended you to review some of the basics of Docker before going ahead with this building block by visiting TSH's building block on [Docker for reproducible research](https://tilburgsciencehub.com/topics/automation/replicability/docker/#docker-ezo).
 
 {{% /tip %}}
 
@@ -291,9 +291,9 @@ As a result, Docker will have created a new image that contains all the newly in
 
 ## Does your project involve computationally demanding tasks?
 
-If your project includes computationally demanding tasks visit our building block on how to [Import and run a Python environment on Google Cloud with Docker](google_cloud_docker.md). Designed in a complementary manner to this building block, you will learn how to import your recently containerized project and how to interact with it through Jupyter Notebook on a Google Cloud virtual machine, a process that features some key differences compared to the steps presented in this building block.
+If your project includes computationally demanding tasks visit our building block on how to [Import and run a Python environment on Google Cloud with Docker](https://tilburgsciencehub.com/topics/automation/replicability/docker/google_cloud_docker/). Designed in a complementary manner to this building block, you will learn how to import your recently containerized project and how to interact with it through Jupyter Notebook on a Google Cloud virtual machine, a process that features some key differences compared to the steps presented in this building block.
 
-In case you are new to these, we also invite you to check out our building block on [configuring high-performance Google Cloud virtual machines](../cloud-computing/config-VM-GCP.md), a great resource to work on projects that involve computationally demanding and memory-intensive tasks.
+In case you are new to these, we also invite you to check out our building block on [configuring high-performance Google Cloud virtual machines](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/config-VM-GCP/), a great resource to work on projects that involve computationally demanding and memory-intensive tasks.
 
 {{% summary %}}
 
@@ -309,5 +309,5 @@ In case you are new to these, we also invite you to check out our building block
 
 ## Additional Resources
 
-- Learn how to [Configure a VM in Google Cloud with GPUs](../../Replicability/cloud-computing/config-VM-GCP.md).
+- Learn how to [Configure a VM in Google Cloud with GPUs](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/config-VM-GCP/).
 - Explore [Docker Hub](https://hub.docker.com/search?q=) public content.

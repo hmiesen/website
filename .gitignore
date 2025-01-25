@@ -8,4 +8,5 @@ static/files
 public/
 .vscode
 search-index.json
+redirect_aliases.json
 .Rproj.user

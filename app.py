@@ -40,7 +40,7 @@ db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), db_filename))
 db_uri = f'sqlite:///{db_path}'  
 
 # Root URL
-base_url = 'https://flask.tilburgsciencehub.com'
+base_url = 'https://tilburgsciencehub.com'
 
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
@@ -74,7 +74,7 @@ assets.register('scss_all', scss_bundle)
 def inject_data():
     with app.app_context():
         # Execute function to load data
-        data_dict = build_data_dict(Topics, articles)
+        data_dict = build_data_dict(Contributors, blogs, Topics, articles)
         popular_pages = load_popular_pages(app)
         
     return dict(data_dict=data_dict, popular_pages=popular_pages)
@@ -147,7 +147,7 @@ def topics_list():
 @app.route('/topics/<first_level_topic_path>/')
 def topics_first_level(first_level_topic_path):
     
-    
+
     return render_template('first-level-topic.html', assets=assets, topic_path=first_level_topic_path)
 
 # Still needs metadata!
@@ -336,7 +336,7 @@ def sitemap():
 
 # Sitemap without redirects
 with app.app_context():
-    data_dict = build_data_dict(Topics, articles)
+    data_dict = build_data_dict(Contributors, blogs, Topics, articles)
     sitemap = generate_sitemap(app, data_dict, base_url=base_url)
 
 # Redirects

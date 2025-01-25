@@ -13,7 +13,7 @@ aliases:
 
 ## Overview
 
-This building block introduces the fundamentals of GitHub Actions and how to integrate it into your project. It complements our previous guide on [data management and directory structure](../../Workflows/Starting/principles-of-project-setup-and-workflow-management/directories.md), which we strongly recommend you to check out if you haven't already!
+This building block introduces the fundamentals of GitHub Actions and how to integrate it into your project. It complements our previous guide on [data management and directory structure](../../Workflows/Starting/principles-of-project-setup-and-workflow-management/directories/#), which we strongly recommend you to check out if you haven't already!
 
 As a result, you will:
 

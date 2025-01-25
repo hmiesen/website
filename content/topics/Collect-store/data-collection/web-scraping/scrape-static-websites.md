@@ -169,7 +169,7 @@ You can combine HTML tags and selectors like this:
 
 ### Task Scheduling
 
-See the building block on [task automation](../../../Automation/automation-tools/task-automation/task-scheduling.md) on how to schedule the execution of the web scraper (e.g., every day). Keep in mind that this only works with Python scripts, so if you're currently working in a Jupyter Notebook you need to transform it into a `.py` file first.
+See the building block on [task automation](https://tilburgsciencehub.com/topics/automation/automation-tools/task-automation/task-scheduling/) on how to schedule the execution of the web scraper (e.g., every day). Keep in mind that this only works with Python scripts, so if you're currently working in a Jupyter Notebook you need to transform it into a `.py` file first.
 
 ## See Also
 

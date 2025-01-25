@@ -17,25 +17,25 @@ We have mainly been busy creating new content in the field of causal inference a
 
 Causal inference has been the most important subject of our exploration. We have put together a comprehensive set of tools to guide you through this complex but captivating subject:
 
-- [Introduction to Instrumental Variables Estimation](../topics/Analyze/causal-inference/instrumental-variables/iv.md): We start with a thorough introduction to IV (Instrumental Variable) estimation, which is a fundamental concept in the field of causal inference.
+- [Introduction to Instrumental Variables Estimation](../topics/Analyze/causal-inference/instrumental-variables/iv/): We start with a thorough introduction to IV (Instrumental Variable) estimation, which is a fundamental concept in the field of causal inference.
 
-- [Doing Calculations with Regression Coefficients Using deltaMethod](../topics/Analyze/Regression/linear-regression/deltamethod.md): We show you how to handle regression coefficients with precision through the deltaMethod.
+- [Doing Calculations with Regression Coefficients Using deltaMethod](../topics/Analyze/Regression/linear-regression/deltamethod/): We show you how to handle regression coefficients with precision through the deltaMethod.
 
-- [Impact evaluation](../topics/Analyze/causal-inference/did/impact-evaluation.md): We take a closer look at impact evaluation through regressions, uncovering how interventions and policies can be rigorously analyzed to make informed decisions.
+- [Impact evaluation](../topics/Analyze/causal-inference/did/impact-evaluation/): We take a closer look at impact evaluation through regressions, uncovering how interventions and policies can be rigorously analyzed to make informed decisions.
 
-- [Synthetic Controls](../topics/Analyze/causal-inference/synthetic-control/synth-control.md): Discover the power of the Synthetic Control Method, which is an invaluable tool for causal inference in diverse research scenarios.
+- [Synthetic Controls](../topics/Analyze/causal-inference/synthetic-control/synth-control/): Discover the power of the Synthetic Control Method, which is an invaluable tool for causal inference in diverse research scenarios.
 
-- [Fixed-Effects Estimation in R with the fixest Package](../topics/Analyze/causal-inference/panel-data/fixest.md): Lastly, we dive into fixed-effects estimation using the `fixest`` package in R, which is particularly useful for panel data analyses (and, super super fast!).
+- [Fixed-Effects Estimation in R with the fixest Package](../topics/Analyze/causal-inference/panel-data/fixest/): Lastly, we dive into fixed-effects estimation using the `fixest`` package in R, which is particularly useful for panel data analyses (and, super super fast!).
 
 ### **Virtual Machines**
 
 Besides our focus on causal inference, we've also explored virtual machines (VMs). Think of them like a supercomputer that you can rent on-demand. We've created some building blocks related to virtual machines to help you set them up and run environments in the cloud.
 
-- [Configure a VM with GPUs in Google Cloud](../topics/Automation/Replicability/cloud-computing/config-VM-GCP.md): Learn how to use the computing power of GPUs on Google Cloud by setting up a customized VM to meet your research requirements.
+- [Configure a VM with GPUs in Google Cloud](../topics/Automation/Replicability/cloud-computing/config-VM-GCP/): Learn how to use the computing power of GPUs on Google Cloud by setting up a customized VM to meet your research requirements.
 
-- [Import and run a Python environment on Google cloud with Docker](../topics/Automation/Replicability/cloud-computing/google_cloud_docker.md): Explore the world of containerization and Docker to import and run Python environments on Google Cloud, enhancing the reproducibility and efficiency of your work.
+- [Import and run a Python environment on Google cloud with Docker](../topics/Automation/Replicability/cloud-computing/google_cloud_docker/): Explore the world of containerization and Docker to import and run Python environments on Google Cloud, enhancing the reproducibility and efficiency of your work.
 
-- [Export a Python environment with Docker and share it through Docker Hub](../topics/Automation/Replicability/Docker/dockerhub.md): Learn to export Python environments with Docker and streamline collaboration by sharing them on Docker Hub, ensuring easy access for fellow researchers.
+- [Export a Python environment with Docker and share it through Docker Hub](../topics/Automation/Replicability/Docker/dockerhub/): Learn to export Python environments with Docker and streamline collaboration by sharing them on Docker Hub, ensuring easy access for fellow researchers.
 
 ### **Enhancing Your Research Skills in Causal Inference and Virtual Machines**
 

@@ -26,7 +26,7 @@ To cite in LaTeX make sure you have a `.bib` file in the same folder as your`.te
 {{% tip %}}
 Be efficient, export your references to a `.bib` file straight from a reference management tool. This way, you avoid manually typing in the references or downloading them one by one from the journal.
 
-- Not familiar with reference management tools? Check our [building block](reference-list.md)
+- Not familiar with reference management tools? Check our [building block](https://tilburgsciencehub.com/topics/research-skills/writing/citations/reference-list/)
 
 {{% /tip %}}
 

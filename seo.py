@@ -63,9 +63,10 @@ def checkTooLongTitles(listPages, max_length=60):
     for url in listPages:
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
-        title = soup.find('title').text.strip()
-        if len(title) > max_length:
-            too_long_titles.append(url)
+        if soup.find('title') is not None:
+            title = soup.find('title').text.strip()
+            if len(title) > max_length:
+                too_long_titles.append(url)
     return too_long_titles
 
 # Functie om lege meta descriptions te controleren

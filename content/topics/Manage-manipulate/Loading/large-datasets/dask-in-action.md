@@ -14,7 +14,7 @@ aliases:
 
 ## Using Dask to Describe Data
 
-We learned how to [Handle Large Datasets in Python](../large-datasets/large-datasets-python.md) in a general way, but now let's dive deeper into it by implementing a practical example. To illustrate how to use Dask, we perform simple descriptive and analytics operations on a large dataset. We use a flight dataset, available at [Kaggle.com](https://www.kaggle.com/datasets/usdot/flight-delays), containing over 5M flight delays and cancellations from 2015. When loaded with `pandas`, the dataframe occupies more than 1.3GB of memory, which would make operations rather slow. Let's load the data with `dask`. For all operations we also provide the equivalent `pandas` code for comparison.
+We learned how to [Handle Large Datasets in Python](https://tilburgsciencehub.com/topics/manage-manipulate/loading/large-datasets/large-datasets-python/) in a general way, but now let's dive deeper into it by implementing a practical example. To illustrate how to use Dask, we perform simple descriptive and analytics operations on a large dataset. We use a flight dataset, available at [Kaggle.com](https://www.kaggle.com/datasets/usdot/flight-delays), containing over 5M flight delays and cancellations from 2015. When loaded with `pandas`, the dataframe occupies more than 1.3GB of memory, which would make operations rather slow. Let's load the data with `dask`. For all operations we also provide the equivalent `pandas` code for comparison.
 
 ### Loading the data
 
@@ -93,7 +93,7 @@ Instead, it gives this: `(Delayed('int-4b01ce40-f552-432c-b591-da8955b3ea9c'), 3
 This is because `dask` uses lazy evaluation - it delays the evaluation of an expression until its value is needed.
 We use `.compute()` to evaluate the expression.
 Why the delay? It's because to count the number of rows, `dask` needs to work through each partition and sum the number of the rows in each one.
-More information on lazy evaluation is available in our building block [Handle Large Datasets in Python](../large-datasets/large-datasets-python.md).
+More information on lazy evaluation is available in our building block [Handle Large Datasets in Python](https://tilburgsciencehub.com/topics/manage-manipulate/loading/large-datasets/large-datasets-python/).
 
 If we wanted the column names and shape via `pandas`:
 

@@ -92,7 +92,7 @@ At this stage, your changes are visible in your forked copy of the repository. T
 
 When contributing to Tilburg Science Hub, it is very useful to preview changes and see how they will look on the website.
 
-- First, install Hugo. If you don't have Hugo installed, follow the tutorial [Get Hugo](../../Share-your-work/content-creation/Hugo-website/get-hugo.md).
+- First, install Hugo. If you don't have Hugo installed, follow the tutorial [Get Hugo](https://tilburgsciencehub.com/topics/Collaborate-share/Share-your-work/content-creation/).
 
 - Navigate to the repository cloned on your local machine. You can do this in two ways: navigate to this repository first and then open the Command Prompt here, or open the Command Prompt first and type `cd` followed by the Path to this repository. (The example uses the first option.)
 

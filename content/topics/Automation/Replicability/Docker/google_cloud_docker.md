@@ -24,7 +24,7 @@ This building block is meant to be a step-by-step guide in order for you to lear
 {{% warning %}}
 **Good to know!**
 
-This building block complements our previous one on [how to export project environments with Docker](dockerhub.md). Thus, while the steps here presented are valid in a general sense, their details were designed to match the particularities of the containerization process described in that building block. We strongly recommend you to [visit it](dockerhub.md) to get a more comprehensive understanding of the present one's content and the containerization process.
+This building block complements our previous one on [how to export project environments with Docker](https://tilburgsciencehub.com/topics/automation/replicability/docker/dockerhub/). Thus, while the steps here presented are valid in a general sense, their details were designed to match the particularities of the containerization process described in that building block. We strongly recommend you to [visit it](https://tilburgsciencehub.com/topics/automation/replicability/docker/dockerhub/) to get a more comprehensive understanding of the present one's content and the containerization process.
 
 {{% /warning %}}
 
@@ -41,15 +41,15 @@ Alternatively, after Steps 2 and 3, you can jump straight to Step 5 and follow i
 
 ## Step 1: Install and Set up Docker in your Google cloud instance
 
-Google Cloud's virtual machines are configured to operate on Debian Linux by default. As a result, installing Docker on these machines follows the standard procedure for Linux-based systems. You can learn how to do so by visiting our building block on how to [set up Docker](docker.md), which covers the setup of Docker in Windows, MacOS, and Ubuntu Linux.
+Google Cloud's virtual machines are configured to operate on Debian Linux by default. As a result, installing Docker on these machines follows the standard procedure for Linux-based systems. You can learn how to do so by visiting our building block on how to [set up Docker](https://tilburgsciencehub.com/topics/automation/replicability/docker/install_docker/), which covers the setup of Docker in Windows, MacOS, and Ubuntu Linux.
 
 If you prefer to cut to the chase, we have condensed these instructions into two Docker installation scripts available below. These scripts work for Debian and Ubuntu Linux, which are among the most commonly used Linux distributions on Google Cloud's virtual machines.
 
 Feel free to either follow these scripts step-by-step or save them in a shell script format file (`.sh`) to then upload and execute them on your virtual machine. Either method will successfully install Docker on your VM and thus allow you to continue with the building block.
 
-{{% cta-primary-center "Script for installing Docker in Debian Linux" "https://raw.githubusercontent.com/tilburgsciencehub/website/master/content/topics/automate-and-execute-your-work/reproducible-work/install-docker-debian.sh" %}}
+{{% cta-primary-center "Script for installing Docker in Debian Linux" "https://raw.githubusercontent.com/tilburgsciencehub/website/master/content/topics/Automation/Replicability/cloud-computing/install-docker-debian.sh" %}}
 
-{{% cta-primary-center "Script for installing Docker in Ubuntu Linux" "https://raw.githubusercontent.com/tilburgsciencehub/website/master/content/topics/automate-and-execute-your-work/reproducible-work/install-docker-ubuntu.sh" %}}
+{{% cta-primary-center "Script for installing Docker in Ubuntu Linux" "https://raw.githubusercontent.com/tilburgsciencehub/website/master/content/topics/Automation/Replicability/cloud-computing/install-docker-ubuntu.sh" %}}
 
 {{% warning %}}
 **Not working?**
@@ -89,7 +89,7 @@ To start, you'll need to transfer your project's `dockerfile` to your virtual ma
 
 If the image of the project environment you are trying to import has been published on Docker Hub, you don't need to upload and build it manually as described.
 
-Instead you can use the [`docker pull`](dockerhub.md) command and Docker will automatically retrieve and build the image from Docker Hub. Then you will be ready to jump to Step 3.
+Instead you can use the [`docker pull`](https://tilburgsciencehub.com/topics/automation/replicability/docker/dockerhub/) command and Docker will automatically retrieve and build the image from Docker Hub. Then you will be ready to jump to Step 3.
 
 {{% /tip %}}
 
@@ -280,5 +280,5 @@ By the end of this building block, you should be able to:
 
 ## Additional Resources
 
-- Learn how to [Configure a VM with GPUs in Google Cloud](../cloud-computing/config-VM-GCP.md).
+- Learn how to [Configure a VM with GPUs in Google Cloud](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/config-VM-GCP/).
 - Cheat-sheat on [Docker Commands](https://docs.docker.com/get-started/docker_cheatsheet.pdf)

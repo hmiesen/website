@@ -67,5 +67,5 @@ Moreover, each month during the maintenance period, **all personal data stored l
 - The E-disk contains the user profiles (with, for example, python packages). This E-disk is automatically deleted on restart.
 
 {{% tip %}}
-Here are some additional cloud computing solutions you might want to check out to level up your research infrastructure: [SURFsara's LISA Cluster](lisa_cluster.md) and [SURFsara's Cartesius Cluster](cartesius_cluster.md)
+Here are some additional cloud computing solutions you might want to check out to level up your research infrastructure: [SURFsara's LISA Cluster](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/lisa_cluster/) and [SURFsara's Cartesius Cluster](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/cartesius_cluster/)
 {{% /tip %}}

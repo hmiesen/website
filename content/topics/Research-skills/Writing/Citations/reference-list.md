@@ -59,7 +59,7 @@ From Mendeleys's Reference manager there are several ways to add references to y
 Adding references manually is the most reliable way to add a reference because it relies on the metadata of publications. There is a much lower chance that you get incorrect information.
 {{% /tip %}}
 
-- **Search for articles online.** Although the preferred search methods for literature on the web are the ones mentioned in this [topic](../literature-review/search-literature.md), Mendeley Reference Manager also has its own search engine. To use it, go to "Tools" and select "Search for articles online". It will redirect you to the following [page](https://www.mendeley.com/search/?dgcid=refmandesktop).
+- **Search for articles online.** Although the preferred search methods for literature on the web are the ones mentioned in this [topic](https://tilburgsciencehub.com/topics/research-skills/writing/literature-review/search-literature/), Mendeley Reference Manager also has its own search engine. To use it, go to "Tools" and select "Search for articles online". It will redirect you to the following [page](https://www.mendeley.com/search/?dgcid=refmandesktop).
   - Having said this, the Mendeley searcher has an "Add to library" button for every search result, which allows you to instantly add the reference to your Mendeley Reference Manager's library. However, this is no significant advantage compared to other search engines once the Mendeley Web Importer extension is added (see below)
 
 ### Mendeley Web Importer

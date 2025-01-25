@@ -70,7 +70,7 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opti
 {{% /codeblock %}}
 
 {{% tip %}}
-Want to run Chromedriver manually? Check our [page](../../../Computer-Setup/software-installation/Python/configuring-python-for-webscraping.md) on Configuring Python for Web Scraping  
+Want to run Chromedriver manually? Check our [page](https://tilburgsciencehub.com/topics/computer-setup/software-installation/python/configuring-python-for-webscraping/) on Configuring Python for Web Scraping  
 {{% /tip %}}
 
 ### Finding content in a website's source code
@@ -145,7 +145,7 @@ element_to_be_clicked.click()
 
 ### Task Scheduling
 
-See the building block on [task automation](../../../Automation/automation-tools/task-automation/task-scheduling.md) on how to schedule the execution of the web scraper (e.g., every day). Keep in mind that this only works with Python scripts, so if you're currently working in a Jupyter Notebook you need to transform it into a `.py` file first.
+See the building block on [task automation](https://tilburgsciencehub.com/topics/automation/automation-tools/task-automation/task-scheduling/) on how to schedule the execution of the web scraper (e.g., every day). Keep in mind that this only works with Python scripts, so if you're currently working in a Jupyter Notebook you need to transform it into a `.py` file first.
 
 ## See Also
 

@@ -65,11 +65,11 @@ Configure your software environment. The minimum requirements typically are
 - version control system (e.g., Git/GitHub)
 - automation tools (e.g., make).
 
-Head over to the [software section ](../../../Computer-Setup/software-installation/) section Tilburg Science Hub to view the installation guides.
+Head over to the [software section ](https://tilburgsciencehub.com/topics/computer-setup/software-installation/#software-installation-ezo) section Tilburg Science Hub to view the installation guides.
 
 ## 3. Setup the repository
 
-Never worked with Git/GitHub before? Then follow our [onboarding for Git/GitHub first](../Starting/principles-of-project-setup-and-workflow-management/versioning.md).
+Never worked with Git/GitHub before? Then follow our [onboarding for Git/GitHub first](https://tilburgsciencehub.com/topics/automation/version-control/start-git/versioning-using-git/).
 
 1. Initialize a new Github repository and clone it to your local machine. Based on your project requirements, consider whether you need a public or private repository.
 

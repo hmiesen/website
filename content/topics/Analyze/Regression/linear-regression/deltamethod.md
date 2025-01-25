@@ -19,7 +19,7 @@ $Cov(g(X)) = g'(\mu)Cov(X)[g'(\mu)]^T$, where $\mu$ is an estimate of the mean o
 
 Having the regression coefficients might not be enough if we want to interpret some combined effects between them. Merely summing the coefficients does not ensure that the resulting effect is significant and it also does not offer any information on the resulting standard error.
 
-To obtain the combined effects of coefficients we can use the `deltaMethod` function of the R `car` package. To illustrate how to implement it we use two example datasets: the ["Boston Housing" dataset example](#example-1) available in the `MASS` package of R and the ["hernandez.nitrogen" example](#example-2), a dataset of an agricultural trial of corn with nitrogen fertilizer available in the `agridat` package.
+To obtain the combined effects of coefficients we can use the `deltaMethod` function of the R `car` package. To illustrate how to implement it we use two example datasets: the ["Boston Housing" dataset example](..topics/analyze/regression/linear-regression/deltamethod/#example-1) available in the `MASS` package of R and the ["hernandez.nitrogen" example](../topics/analyze/regression/linear-regression/deltamethod/#example-2), a dataset of an agricultural trial of corn with nitrogen fertilizer available in the `agridat` package.
 
 ## Implementation
 

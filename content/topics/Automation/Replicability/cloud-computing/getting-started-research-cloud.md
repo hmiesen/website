@@ -37,7 +37,7 @@ Make sure that you’re affiliated with a Dutch research institution to set up t
 
 {{% /warning %}}
 
-1. Fill in the project [application form](https://www.surf.nl/en/access-to-compute-services#:~:text=Submit%20a%20small%20application%20on,Proceed%20to%20detailed%20info.). Click on "Straight to request portal" and login with SURFconext, selecting Tilburg University and using your TiU credentials. You will be transferred to the SURF servicedesk. On the SURF servicedesk look for "apply for access" and select "small NWO request (EINF)."
+1. Fill in the project [application form](https://www.surf.nl/en/access-to-compute-services). Click on "go to request portal" and login with SURFconext, selecting Tilburg University and using your TiU credentials. You will be transferred to the SURF servicedesk. On the SURF servicedesk look for "apply for access" and select "small NWO request (EINF)."
 
 2. Once your wallet is approved, you will receive an email from SURF to set up your initial workspace. This will look like this:
 
@@ -47,7 +47,7 @@ Still waiting for your wallet to be approved? You can check the [status of your 
 
 3. Upon project approval, Surf will create a workspace and invite you to "join" that workspace via email.
 
-4. You can access the [workspace via this portal](https://portal.live.surfresearchcloud.nl/). In the case that you cannot login via SSO, you can [create a so-called EduID yourself](https://www.surf.nl/en/services/eduid) and use this as your identity provider for logging in to the Research Cloud Portal.
+4. You can access the [workspace via this portal](https://portal.live.surfresearchcloud.nl/). In the case that you cannot login via SSO, you can [create a so-called EduID yourself](https://www.surf.nl/diensten/eduid) and use this as your identity provider for logging in to the Research Cloud Portal.
 
 5. All set up and want to learn more? Then check these detailed instructions on [how to use Research Cloud (including adding data sources)](https://servicedesk.surfsara.nl/wiki/display/WIKI/How+to+get+on+board).
 

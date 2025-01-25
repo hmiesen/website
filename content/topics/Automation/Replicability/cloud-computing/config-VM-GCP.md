@@ -18,7 +18,7 @@ In this building block, you will discover how to create and configure a simple a
 After going through this guide, you'll get more familiar with:
 
 - Establishing a VM instance in Google Cloud with optimized configurations.
-- The usefulness of [Docker](../Docker/docker.md) in combination with cloud virtual machines.
+- The usefulness of [Docker](../Docker/install_docker.md) in combination with cloud virtual machines.
 - NVIDIA drivers to access GPU power.
 
 ## Initialize a new instance
@@ -121,10 +121,10 @@ After fine-tuning your instance's setup and firewall rules, you can go ahead and
 
 ## Establish your environment using Docker
 
-At this point, we strongly recommend you [set up Docker](../Docker/docker.md)
-as a great tool to easily [deploy your projects and environments within your newly created virtual machine](../Docker/dockerhub.md). If you are not familiar with the advantages that Docker offers in terms of productivity and open science value for your project, check out our building block on [Docker for reproducible research](../Docker/docker.md)
+At this point, we strongly recommend you [set up Docker](../Docker/install_docker)
+as a great tool to easily [deploy your projects and environments within your newly created virtual machine](../Docker/dockerhub.md). If you are not familiar with the advantages that Docker offers in terms of productivity and open science value for your project, check out our building block on [Docker for reproducible research](../Docker/install_docker)
 
-You can check Docker's setup process in a Google Cloud virtual machine by visiting [this building block](../Docker/google_cloud_docker.md), where you'll find more details as well as a setup script that will get you Docker up and running in your virtual machine in the blink of an eye. After you're done, come back here to move on to the next step.
+You can check Docker's setup process in a Google Cloud virtual machine by visiting [Docker for reproducible research](../topics/automation/replicability/docker/#docker-ezo), where you'll find more details as well as a setup script that will get you Docker up and running in your virtual machine in the blink of an eye. After you're done, come back here to move on to the next step.
 
 ## Install the NVIDIA drivers and container toolkit
 
@@ -191,7 +191,7 @@ Bear in mind that the particular framework you are using within your project, su
 
 Your Virtual Machine can be monitored, this will be useful especially when the tasks you are running are memory-demanding.
 
-Also, oftentimes you'll be working with large files and you'll need to use the so-called "buckets" to access extra storage. The ways to establish the connection with them might not be that intuitive, but luckily for you, you'll learn these and more useful skills in our [next building block](monitor-memory-vm.md) on the topic!
+Also, oftentimes you'll be working with large files and you'll need to use the so-called "buckets" to access extra storage. The ways to establish the connection with them might not be that intuitive, but luckily for you, you'll learn these and more useful skills in our [next building block](../../../collect-store/data-storage/commercial-cloud/mem-storage-gcp.md) on the topic!
 
 {{% /tip %}}
 
