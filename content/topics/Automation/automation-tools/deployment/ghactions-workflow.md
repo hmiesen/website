@@ -16,7 +16,7 @@ aliases:
 This building block delves deeper into GitHub Actions by providing a hands-on example. We’ll craft a workflow specifically for Python code formatting and testing. After that, you'll discover how to integrate and track it into your own repository.
 
 {{% tip %}}
-If you are new to GitHub Actions, we suggest you review [this building block](https://tilburgsciencehub.com/topics/automation/automation-tools/deployment/intro_ghactions/) first to get familiar with the foundational concepts.
+If you are new to GitHub Actions, we suggest you review [this building block](../topics/automation/automation-tools/deployment/intro_ghactions/) first to get familiar with the foundational concepts.
 
 {{% /tip %}}
 
@@ -27,7 +27,7 @@ Hence, by the end of this block, you will:
 
 ## Building a GitHub Actions Workflow
 
-In this section, we're going to build upon the `.yml` file structure introduced in the previous [guide](https://tilburgsciencehub.com/topics/automation/automation-tools/deployment/intro_ghactions/).
+In this section, we're going to build upon the `.yml` file structure introduced in the previous [guide](../topics/automation/automation-tools/deployment/intro_ghactions/).
 
 To illustrate a useful workflow example, our goal would be to integrate code formatting (using Super Linter) and code testing.
 

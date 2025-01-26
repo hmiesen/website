@@ -26,7 +26,7 @@ Researchers can use makefiles to establish rules detailing how individual compon
 
 {{% tip %}}
 
-- If you don't have `make` installed yet, follow [this guide](https://tilburgsciencehub.com/topics/automation/automation-tools/makefiles/make/)
+- If you don't have `make` installed yet, follow [this guide](../topics/automation/automation-tools/makefiles/make/)
 - For a step-by-step introduction, refer to our [make cheatsheet](../images/tsh_make_cheatsheet.pdf).
   {{% /tip %}}
 

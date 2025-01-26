@@ -293,7 +293,7 @@ As a result, Docker will have created a new image that contains all the newly in
 
 If your project includes computationally demanding tasks visit our building block on how to [Import and run a Python environment on Google Cloud with Docker](https://tilburgsciencehub.com/topics/automation/replicability/docker/google_cloud_docker/). Designed in a complementary manner to this building block, you will learn how to import your recently containerized project and how to interact with it through Jupyter Notebook on a Google Cloud virtual machine, a process that features some key differences compared to the steps presented in this building block.
 
-In case you are new to these, we also invite you to check out our building block on [configuring high-performance Google Cloud virtual machines](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/config-vm-gcp/), a great resource to work on projects that involve computationally demanding and memory-intensive tasks.
+In case you are new to these, we also invite you to check out our building block on [configuring high-performance Google Cloud virtual machines](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/config-VM-GCP/), a great resource to work on projects that involve computationally demanding and memory-intensive tasks.
 
 {{% summary %}}
 
@@ -309,5 +309,5 @@ In case you are new to these, we also invite you to check out our building block
 
 ## Additional Resources
 
-- Learn how to [Configure a VM in Google Cloud with GPUs](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/config-vm-gcp/).
+- Learn how to [Configure a VM in Google Cloud with GPUs](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/config-VM-GCP/).
 - Explore [Docker Hub](https://hub.docker.com/search?q=) public content.

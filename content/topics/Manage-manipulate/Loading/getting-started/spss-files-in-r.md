@@ -211,7 +211,7 @@ df_processed |>
 
 {{% /codeblock %}}
 
-If you happen to find a better way to only consider variables that exist in the dataframe, please [let us know](https://tilburgsciencehub.com/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/contribute/)!
+If you happen to find a better way to only consider variables that exist in the dataframe, please [let us know](https://tilburgsciencehub.com/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/contribute/)!
 
 ### Labeling data
 

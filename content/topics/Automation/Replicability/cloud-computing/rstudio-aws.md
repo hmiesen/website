@@ -18,7 +18,7 @@ Seeking to run R in the cloud? Use this easy step-by-step guide to get started!
 
 ## Overview
 
-While cloud services like [Amazon Web Services (AWS)](https://tilburgsciencehub.com/topics/more-tutorials/running-computations-remotely/cloud-computing/) are great for big data processing and storage, it doesn’t give you immediate access to tools like R and RStudio. With [Docker](https://tilburgsciencehub.com/topics/automation/replicability/docker/docker/), though, you can launch R and RStudio on AWS without trouble.
+While cloud services like [Amazon Web Services (AWS)](https://tilburgsciencehub.com/topics/more-tutorials/running-computations-remotely/cloud-computing/) are great for big data processing and storage, it doesn’t give you immediate access to tools like R and RStudio. With [Docker](https://tilburgsciencehub.com/topics/automation/replicability/docker/install_docker/), though, you can launch R and RStudio on AWS without trouble.
 
 What are the benefits?
 

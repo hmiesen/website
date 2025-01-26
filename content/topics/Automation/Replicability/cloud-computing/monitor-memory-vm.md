@@ -26,7 +26,7 @@ In this guide, we delve deep into:
 
 The commands `htop` and `nvtop` are designed for Linux-based environments (such as Ubuntu or Debian) given their widespread use in virtual machine contexts due to their open-source nature, robust security, and versatility.
 
-If you wonder how to set-up a Virtual Machine with a Linux system, go through our [building block](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/config-vm-gcp/)!
+If you wonder how to set-up a Virtual Machine with a Linux system, go through our [building block](https://tilburgsciencehub.com/topics/Automation/Replicability/cloud-computing/config-VM-GCP/)!
 
 {{% /tip %}}
 

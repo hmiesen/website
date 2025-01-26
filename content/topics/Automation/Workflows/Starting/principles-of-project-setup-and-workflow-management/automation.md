@@ -15,7 +15,7 @@ aliases:
 
 ## Overview
 
-Remember the [different stages of a project's pipeline](https://tilburgsciencehub.com/topics/automation/workflows/starting/principles-of-project-setup-and-workflow-management/pipeline/#project-pipelines)? Let's suppose
+Remember the [different stages of a project's pipeline](https://tilburgsciencehub.com/topics/automation/workflows/starting/#)? Let's suppose
 we're in the process of preparing our data set for analysis. For example:
 
 1. You wish to convert three raw data sets from Excel to CSV files.
@@ -71,7 +71,7 @@ In "`make` code," the workflow above - saved in a _makefile_ (a file called `mak
 -->
 
 {{% tip %}}
-Pay attention to the subdirectory structure used here: the rules refer to files in different folders (src, gen, data, etc.), which are explained [earlier in this guide](https://tilburgsciencehub.com/topics/automation/workflows/starting/principles-of-project-setup-and-workflow-management/directories/).
+Pay attention to the subdirectory structure used here: the rules refer to files in different folders (src, gen, data, etc.), which are explained [earlier in this guide](https://tilburgsciencehub.com/topics/Automation/Workflows/Starting/starting-up-a-new-project/).
 {{% /tip %}}
 
 ## Running `make`

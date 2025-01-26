@@ -22,7 +22,7 @@ This building block will introduce you to self-hosted runners for GitHub Actions
 
 ## Introducing GitHub Actions self-hosted runners
 
-If you have some degree of familiarity with GitHub Actions, you may already have an intuition of what is the role of runners in executing a workflow. Conversely, if you are new to the concept, or you feel that a brief refresher could be useful, consider the following fragment from our [introductory building block to GitHub Actions](https://tilburgsciencehub.com/topics/automation/automation-tools/deployment/intro_ghactions/):
+If you have some degree of familiarity with GitHub Actions, you may already have an intuition of what is the role of runners in executing a workflow. Conversely, if you are new to the concept, or you feel that a brief refresher could be useful, consider the following fragment from our [introductory building block to GitHub Actions](../topics/automation/automation-tools/deployment/intro_ghactions/):
 
 _"runners are the servers where the jobs are executed once a workflow is triggered. GitHub offers runners based on Linux, Windows, or macOS."_
 
@@ -94,7 +94,7 @@ The steps previously presented constitute the standard procedure for configuring
 
 {{% tip %}}
 
-By visiting our [Docker introductory building block](https://tilburgsciencehub.com/topics/automation/replicability/docker/docker/) you will learn more about its advantages and basic functioning, which will also help you get a better grasp of what is happening behind the scenes during the self-hosted runner setup process! Analogously you may also find it interesting to check [other Docker use cases that we have previously covered at Tilburg Science Hub](https://tilburgsciencehub.com/search/?q=docker).
+By visiting our [Docker introductory building block](../topics/automation/replicability/docker/docker/) you will learn more about its advantages and basic functioning, which will also help you get a better grasp of what is happening behind the scenes during the self-hosted runner setup process! Analogously you may also find it interesting to check [other Docker use cases that we have previously covered at Tilburg Science Hub](https://tilburgsciencehub.com/search/?q=docker).
 
 {{% /tip %}}
 
@@ -141,7 +141,7 @@ As you may have noticed in the Dockerfile template, there are some placeholders 
 
 {{% example %}}
 
-Imagine that you are building a GitHub Actions workflow for code formatting and testing like the one presented on [our building block on the topic](https://tilburgsciencehub.com/topics/automation/automation-tools/deployment/ghactions-workflow/). In that case and assuming that your project does not require any additional dependencies not installed by miniconda, your relevant dependencies would be the testing framework `Pytest` and the code formatters `Black`, `Isort` and, `Mypy`. Consequently, line 19 of the Dockerfile would look as follows:
+Imagine that you are building a GitHub Actions workflow for code formatting and testing like the one presented on [our building block on the topic](../topics/automation/automation-tools/deployment/ghactions-workflow/). In that case and assuming that your project does not require any additional dependencies not installed by miniconda, your relevant dependencies would be the testing framework `Pytest` and the code formatters `Black`, `Isort` and, `Mypy`. Consequently, line 19 of the Dockerfile would look as follows:
 
 `RUN pip install pytest black isort mypy`
 

@@ -98,6 +98,6 @@ To quickly visualize the structure of your project directories in a tree-like fo
 
 ## Additional Resources
 
-- Tutorial about [Pipeline Automation using Make](https://tilburgsciencehub.com/topics/automation/automation-tools/makefiles/practicing-pipeline-automation-make/pipeline-automation-overview/).
+- Tutorial about [Pipeline Automation using Make](https://tilburgsciencehub.com/topics/Automation/automation-tools/practicing-pipeline-automation-make/pipeline-make/).
 - Free open-source Master level course on [Data Preparation and Workflow Management](https://dprep.hannesdatta.com/).
 - Reading about an example of a [Digital Project Folder Structure](https://medium.com/@dcbryan/staying-organized-a-project-folder-structure-7764651ff89f).
