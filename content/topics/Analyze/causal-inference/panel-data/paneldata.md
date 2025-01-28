@@ -322,8 +322,7 @@ For example, the observation $Y_{56}$ (firm 5 in year 6) has the intercept $\bet
 - $\delta_6$ represents the year-specific effect for year 6 (value of 1 for year 6, and 0 otherwise)
   {{% /tip %}}
 
-The following code estimates this fixed effects equation in R. Please refer to the [`fixest` article](../topics/analyze/causal-inference/panel-data/fixest/) for a thorough explanation on this fixed effects regression in R and the package `fixest` in general.
-
+The following code estimates this fixed effects equation in R. Please refer to the [`fixest` article](../fixest/) for a thorough explanation on this fixed effects regression in R and the package `fixest` in general.
 {{% codeblock %}}
 
 ```R
