@@ -16,7 +16,7 @@ aliases:
 
 This topic covers the fixed effects regression assumptions for Ordinary Least Squares (OLS) models. These 4 assumptions should hold in a Fixed Effects regression model to establish the unbiasedness of OLS.
 
-To refresh your understanding of panel data and fixed effects, you can refer to the [panel data article](/paneldata). For a comprehensive explanation of fixed effects regressions in R, check the [`fixest` article](../../causal-inference/panel-data/fixest/).
+To refresh your understanding of panel data and fixed effects, you can refer to the [panel data article](/paneldata). For a comprehensive explanation of fixed effects regressions in R, check the [`fixest` article](../../../causal-inference/panel-data/fixest/).
 
 The assumptions are taken from the online course [Introduction to Econometrics with R](https://www.econometrics-with-r.org/10.5-tferaaseffer.html).
 

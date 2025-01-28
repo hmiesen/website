@@ -2,14 +2,13 @@
 tutorialtitle: "Create Your Own Website in 15 Minutes"
 type: "hugo-website"
 indexexclude: "true"
-title: "Add Some Content"
+title: "(Hugo Website) Add Some Content"
 description: "Learn how to customize your Hugo website and add content to it."
 keywords: "hugo, content, markdown, writing, articles"
 date: 2021-01-06T22:01:14+05:30
 draft: false
 weight: 13
 author: "Andrea Antonacci"
-authorlink: "https://www.tilburguniversity.edu/staff/a-d-antonacci"
 aliases:
   - /use/hugo-website
   - /add-content/hugo-website

@@ -9,7 +9,6 @@ date: 2021-01-06T22:01:14+05:30
 draft: false
 weight: 14
 author: "Andrea Antonacci"
-authorlink: "https://www.tilburguniversity.edu/staff/a-d-antonacci"
 aliases:
   - /publish/website
   - /setup/netlify
