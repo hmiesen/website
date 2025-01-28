@@ -1,7 +1,8 @@
 ---
+tutorialtitle: "Create Your Own Website in 15 Minutes"
 type: "hugo-website"
 indexexclude: "true"
-title: " (Hugo Website) Go Live!"
+title: "Go Live!"
 description: "Learn how to publish your static website with GitHub and Netlify."
 keywords: "hugo, netlify, domain, dns, github"
 date: 2021-01-06T22:01:14+05:30
