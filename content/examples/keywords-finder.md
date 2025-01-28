@@ -11,7 +11,7 @@ aliases:
 
 ## Overview
 
-This is a template for a reproducible [Dockerized](../topics/Automation/Replicability/Docker/docker/) application, based on [R](../topics/computer-setup/software-installation/rstudio/learn-r/), that **finds keywords and/or sentences in multiple `PDF` files**.
+This is a template for a reproducible [Dockerized](../topics/automation/replicability/docker/install_docker/) application, based on [R](../topics/computer-setup/software-installation/rstudio/learn-r/), that **finds keywords and/or sentences in multiple `PDF` files**.
 
 {{% summary %}}
 

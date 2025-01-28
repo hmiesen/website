@@ -8,7 +8,6 @@ weight: 1
 date: 2020-11-11T22:01:14+05:30
 draft: false
 author: "Andrea Antonacci"
-authorlink: "https://www.tilburguniversity.edu/staff/a-d-antonacci"
 aliases:
   - /learn/educational-videos
   - /topics/open-education/educational-videos/educational-videos-overview

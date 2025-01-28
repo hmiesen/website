@@ -1,6 +1,4 @@
 ---
-tutorialtitle: "Create Your Own Website in 15 Minutes"
-type: "hugo-website"
 title: "Hugo Website Overview"
 description: "Learn how you can launch your very own static website in a quick and easy way."
 keywords: "hugo, static, website, generator, class, academic"
@@ -8,7 +6,6 @@ weight: 10
 date: 2020-11-11T22:01:14+05:30
 draft: false
 author: "Andrea Antonacci"
-authorlink: "https://www.tilburguniversity.edu/staff/a-d-antonacci"
 aliases:
   - /launch/academic-website
   - /launch/hugo-website
