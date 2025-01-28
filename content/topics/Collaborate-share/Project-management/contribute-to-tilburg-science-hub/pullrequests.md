@@ -32,11 +32,15 @@ The easiest method to make straightforward updates to Markdown files is to use [
 
 1. Click on the "**Edit this page**" button at the bottom of the page you want to edit on our website.
 
-![Edit this page button](./images/tsh-edit-this-page-button.png)
+<p align = "center">
+<img src ="./images/tsh-edit-this-page-button.png" width="400">
+</p>
 
 2. You will be redirected to our GitHub repository where that file is hosted. You will need to **fork** our repository in order to propose changes.
 
-![Click on the pencil icon to open the text editor.](../github-fork.png)
+<p align = "center">
+<img src ="./images/github-fork.png" width="400">
+</p>
 
 3. Edit the file and then **submit a new pull request**. That's it.
 
