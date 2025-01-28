@@ -104,22 +104,27 @@ Don't know how to do this? You can follow a great tutorial about [contributing o
 ### Place new sections in a logical order.
 
 If you have written a new section which you wish to add to the website, make sure they are where they suppose to be.
+
 {{% example %}}
-  You wish to add a Building Block on "Advanced Git Commands". Now, imagine that once your page is completed, you notice that your new section appears in the first position:
+ 
+You wish to add a Building Block on "Advanced Git Commands". Now, imagine that once your page is completed, you notice that your new section appears in the first position:
 
-  ![](./images/advanced-git-misplaced.PNG)
+![](./images/advanced-git-misplaced.PNG)
 
-  Does it make sense to have the "Advanced Git Commands" section before the "Get Started with Git and Github"? It does not.
+Does it make sense to have the "Advanced Git Commands" section before the "Get Started with Git and Github"? It does not.
 
-  - Ideally you would place it for instance, just after "The Most Important Git Commands You Should Know". This way, when going through the tutorials, the new content would come in a more natural order.
-{{% /example%}}
+- Ideally you would place it for instance, just after "The Most Important Git Commands You Should Know". This way, when going through the tutorials, the new content would come in a more natural order.
+
+{{% /example %}}
 
 
 **How to choose the order of sections?**
 
 Well, using our Markdown Templates (which can be found below) it is quite a simple task. You only need to change the value of the parameter **"weight"** in the markdown file:
 
-  ![](../weights.PNG)
+<p align = "center">
+<img src ="./images/weights.png" width="400">
+</p>
 
 {{% tip %}}
 A weight set equal to 1 will place your section in the first place, likewise the prior example. If you wish to make it appear after other sections, make sure to give it a higher weight.
