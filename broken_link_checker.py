@@ -223,7 +223,7 @@ def matchBrokenLinks(brokenLinksList,externalLinksListRaw):
 def push_issue_git(EndDataFrame):
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-    titleissue = 'Broken/Error Links on ' + dt_string
+    titleissue = f'Broken/Error Links on {dt_string}'
 
     df_duplicates = EndDataFrame.reset_index()
     df = df_duplicates.drop_duplicates()
@@ -233,10 +233,16 @@ def push_issue_git(EndDataFrame):
         for index, row in df.iterrows():
             anchortext = row['Anchor Text'].replace("\n", '') if '\n' in row['Anchor Text'] else row['Anchor Text']
             tablebody = f"| {row['URL']} | {row['Broken_Link_URL']} | {anchortext} | {row['statusCode']} |\n"
-            table = table + tablebody
+            table += tablebody
 
         tablecomp = tablehead + table
         issuebody = f"Today, a total of {len(df.index)} link errors have been found. The following links have been found containing errors:\n{tablecomp}"
+
+        # Ensure issue body does not exceed 65,536 characters
+        max_length = 65536
+        if len(issuebody) > max_length:
+            print(f"Exceeded 65536 chars {len(issuebody)}")
+            issuebody = issuebody[:max_length - 100] + "\n\n... (truncated: issue body exceeded 65,536 characters)"
 
         data = {"title": titleissue, "body": issuebody}
 
@@ -250,7 +256,7 @@ def push_issue_git(EndDataFrame):
             print(f'An error occurred: {str(e)}')
 
     else:
-        print('No broken links found')
+        print('✅ No broken links found')
 
 
 # # Execute Functions
