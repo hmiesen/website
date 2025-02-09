@@ -62,4 +62,5 @@ jobs:
         env: 
           GIT_TOKEN: ${{ env.INSTALLATION_TOKEN }}
         run: |
+          echo "GitHub token starts with: ${GIT_TOKEN:0:6}********"
           python broken_link_checker.py
