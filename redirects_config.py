@@ -1,4 +1,5 @@
 # redirects_config.py
+import json
 
 # If you want a direct redirect, do not add a title. If you want to redirect with a message, do use a title. 
 REDIRECTS = {
@@ -16,12 +17,12 @@ REDIRECTS = {
     }
 }
 
-f = open('redirect_aliases.json', 'r')
-import json
-empty_dic = {}
+# Read and parse JSON properly
+with open('redirect_aliases.json', 'r', encoding="utf-8") as f:
+    redirect_aliases = json.load(f)  # ✅ Correct way to load JSON file
 
-iter_dic = f.readlines()
-for c in iter_dic:
-    obj = json.loads(c.replace('\n',''))
-    REDIRECTS.update(obj)
-f.close()
+# Merge the dictionaries
+REDIRECTS.update(redirect_aliases)
+
+# Print the updated REDIRECTS
+print(json.dumps(REDIRECTS, indent=4))
