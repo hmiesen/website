@@ -4,6 +4,7 @@ import re
 import shutil
 import logging
 from PIL import Image, UnidentifiedImageError
+import json
 
 # Create the database and table
 conn = sqlite3.connect('tsh.db')
@@ -86,6 +87,8 @@ conn.commit()
 script_directory = os.path.dirname(os.path.realpath(__file__))
 content_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "content")
 topic_folder = os.path.join(content_directory, 'topics')
+
+REDIRECTS={}
 
 # Insert or update a topic in the database
 # Parameters:
@@ -273,25 +276,29 @@ def process_article(md_file_path, parent_id):
         date_modified = re.search(r'date_modified: (\d{4}-\d{2}-\d{2})', content)
         weight = re.search(r'weight: (\d+)', content)
         author = re.search(r'author: "(.*?)"', content)
-
+        
         # Regular expression to find the aliases block
         match = re.search(r"aliases:\s*\n((?:\s+-\s+[^\n]+\n)*)", content)
-
         if match:
+            # Extract title
+            title_match = re.search(r'title:\s*"([^"]+)"', content)
+            title = title_match.group(1) if title_match else ""
             aliases_block = match.group(1)
 
             # Extract individual aliases
             aliases = re.findall(r"-\s+([^\n]+)", aliases_block)
+            base_url = "https://tilburgsciencehub.com/topics/"
+            relative_path = os.path.relpath(md_file_path, start=topic_folder).replace("\\", "/")
+            file_name = relative_path.rsplit(".", 1)[0]  # Remove .md extension
+            url = base_url + file_name
+            
+            # Update REDIRECTS dictionary
+            for alias in aliases:
+                REDIRECTS[alias] = {"url": url}
+                if title:
+                    REDIRECTS[alias]["title"] = title.strip()  # Ensure title is properly extracted and stripped of spaces
         else:
-            aliases = [] # Return an empty list if no aliases exist
-
-        import json
-        f = open('redirect_aliases.json','a')
-        for alias in aliases:
-            f.write(json.dumps({alias: {'url': '/topics/find/redirected/page/'+os.path.basename(md_file_path).replace('.md', '')}}))
-            f.write('\n')
-        f.close()
-
+            aliases = [] # Return an empty list if no aliases exist 
         # Extract article content
         match = re.search(r'---(.*?)---(.*)', content, re.DOTALL)
         if match:
@@ -305,12 +312,6 @@ def process_article(md_file_path, parent_id):
                                keywords.group(1) if keywords else None, date.group(1) if date else None,
                                date_modified.group(1) if date_modified else None, draft.group(1) if draft else None,
                                int(weight.group(1)) if weight else None, author.group(1) if author else None, file_content)
-
-import sqlite3
-import os
-import re
-import shutil
-import logging
 
 # Loop through topics and fill the database
 # Parameters:
@@ -338,6 +339,12 @@ def fill_database(root_path):
                 if file != '_index.md' and file.endswith('.md'):
                     md_file_path = os.path.join(path, file)
                     process_article(md_file_path, folder_id)
+    # Save REDIRECTS dictionary to a JSON file
+    output_path = "redirect_aliases.json"
+    with open(output_path, "w", encoding="utf-8") as json_file:
+        json.dump(REDIRECTS, json_file, indent=4)
+
+    print(f"REDIRECTS saved to {output_path}")
 
 # Check if the file is an image
 # Parameters:
