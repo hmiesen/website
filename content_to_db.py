@@ -4,7 +4,6 @@ import re
 import shutil
 import logging
 from PIL import Image, UnidentifiedImageError
-import json
 
 # Create the database and table
 conn = sqlite3.connect('tsh.db')
@@ -91,8 +90,6 @@ conn.commit()
 script_directory = os.path.dirname(os.path.realpath(__file__))
 content_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "content")
 topic_folder = os.path.join(content_directory, 'topics')
-
-REDIRECTS={}
 
 # Insert or update a topic in the database
 # Parameters:
@@ -296,7 +293,7 @@ def process_article(md_file_path, parent_id):
         date_modified = re.search(r'date_modified: (\d{4}-\d{2}-\d{2})', content)
         weight = re.search(r'weight: (\d+)', content)
         author = re.search(r'author: "(.*?)"', content)
-        
+
         # Regular expression to find the aliases block
         match = re.search(r"aliases:\s*\n((?:\s+-\s+[^\n]+\n)*)", content)
         if match:
