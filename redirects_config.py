@@ -1,4 +1,3 @@
-import json
 import sqlite3
 
 # If you want a direct redirect, do not add a title. If you want to redirect with a message, do use a title. 
@@ -28,7 +27,7 @@ def get_redirects_as_json(db_path):
     cursor.execute("SELECT alias, path, title FROM redirects")
     rows = cursor.fetchall()
     redirects = {}
-    base_url = "https://tilburgsciencehub.com"
+    base_url = "https://tilburgsciencehub.com/topics"
 
     for alias, path, title in rows:
         redirects[alias] = {
@@ -37,9 +36,8 @@ def get_redirects_as_json(db_path):
 
     conn.close()
     REDIRECTS.update(redirects)
-    
     return redirects
 
 # Read redirects from database
-db_path = "tsh.db"  # Adjust to your actual database file
+db_path = "tsh.db" 
 redirects_json = get_redirects_as_json(db_path)

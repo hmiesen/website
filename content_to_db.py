@@ -9,12 +9,6 @@ import json
 # Create the database and table
 conn = sqlite3.connect('tsh.db')
 cursor = conn.cursor()
-
-# delete redirect aliases
-try:
-    os.remove('redirect_aliases.json')
-except:
-    None
         
 # Create the topics table
 cursor.execute('''
@@ -77,6 +71,16 @@ cursor.execute('''
         date_modified TEXT,
         draft TEXT,
         content TEXT
+    )
+''')
+
+# Create the alias table
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS redirects (
+    alias TEXT NOT NULL,
+    path TEXT NOT NULL,
+    title TEXT,
+    PRIMARY KEY (alias, path)
     )
 ''')
 
@@ -239,6 +243,22 @@ def insert_or_update_blog(cursor, title, description, path, date, date_modified,
             VALUES (?, ?, ?, ?, ?, ?, ?)
         ''', (title, description, path, date, date_modified, draft, content))
 
+
+
+# Inserts a new redirect or updates the title if the alias-path combination already exists.
+# Parameters:    
+# - cursor: SQLite cursor object
+# - alias (str): The alias string.
+# - path (str): The corresponding path.
+# - title (str): The title of the alias.
+def upsert_redirect(cursor, alias, path, title):
+
+    cursor.execute("""
+        INSERT INTO redirects (alias, path, title) 
+        VALUES (?, ?, ?)
+        ON CONFLICT(alias, path) DO UPDATE SET title = excluded.title;
+    """, (alias, path, title))
+    
 # Parse a Markdown file to extract metadata
 # Parameters:
 # - file_path (str): The path to the Markdown file
@@ -287,18 +307,17 @@ def process_article(md_file_path, parent_id):
 
             # Extract individual aliases
             aliases = re.findall(r"-\s+([^\n]+)", aliases_block)
-            base_url = "https://tilburgsciencehub.com/topics/"
             relative_path = os.path.relpath(md_file_path, start=topic_folder).replace("\\", "/")
             file_name = relative_path.rsplit(".", 1)[0]  # Remove .md extension
-            url = base_url + file_name
             
             # Update REDIRECTS dictionary
             for alias in aliases:
-                REDIRECTS[alias] = {"url": url}
                 if title:
-                    REDIRECTS[alias]["title"] = title.strip()  # Ensure title is properly extracted and stripped of spaces
+                    title = title.group(1) if isinstance(title, re.Match) else title
+                    upsert_redirect(cursor, alias, file_name, title)
         else:
             aliases = [] # Return an empty list if no aliases exist 
+
         # Extract article content
         match = re.search(r'---(.*?)---(.*)', content, re.DOTALL)
         if match:
@@ -307,7 +326,7 @@ def process_article(md_file_path, parent_id):
             file_content = None
 
         # Insert data into articles table
-        insert_article_into_db(cursor, 'topic', title.group(1) if title else None, parent_id,
+        insert_article_into_db(cursor, 'topic', title.group(1) if isinstance(title, re.Match) else title, parent_id,
                                description.group(1) if description else None, os.path.basename(md_file_path).replace('.md', ''),
                                keywords.group(1) if keywords else None, date.group(1) if date else None,
                                date_modified.group(1) if date_modified else None, draft.group(1) if draft else None,
@@ -339,12 +358,6 @@ def fill_database(root_path):
                 if file != '_index.md' and file.endswith('.md'):
                     md_file_path = os.path.join(path, file)
                     process_article(md_file_path, folder_id)
-    # Save REDIRECTS dictionary to a JSON file
-    output_path = "redirect_aliases.json"
-    with open(output_path, "w", encoding="utf-8") as json_file:
-        json.dump(REDIRECTS, json_file, indent=4)
-
-    print(f"REDIRECTS saved to {output_path}")
 
 # Check if the file is an image
 # Parameters:
