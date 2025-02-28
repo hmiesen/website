@@ -30,10 +30,13 @@ If you're new to $\LaTeX$, it's essential to grasp the basics before customizing
 
 We provide a ready-to-use $\LaTeX$ template to get you started working on your thesis project.
 
-{{% cta-primary-center "Download Thesis Template" "../latex-thesis-template.zip" %}}
+[Download Thesis Template](/static/files/latex-thesis-template.zip)
 
 You can also download a PDF preview to see what the output file would look like.
 
-{{% cta-secondary-center "Download PDF Preview" "../latex-thesis-template.pdf" %}}
+[Download PDF Preview](/static/files/latex-thesis-template.pdf)
 
-![Thesis Template for LaTeX](../images/latex-thesis-template.png)
+<p align = "center">
+<img src = "../images/latex-thesis-template.png" width="700">
+<figcaption> Preview thesis Template for LaTeX </figcaption>
+</p>

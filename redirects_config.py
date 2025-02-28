@@ -1,4 +1,4 @@
-# redirects_config.py
+import sqlite3
 
 # If you want a direct redirect, do not add a title. If you want to redirect with a message, do use a title. 
 REDIRECTS = {
@@ -16,12 +16,28 @@ REDIRECTS = {
     }
 }
 
-f = open('redirect_aliases.json', 'r')
-import json
-empty_dic = {}
+# Reads all redirects from the SQLite database and returns them as a JSON object.
+# param db_path: Path to the SQLite database file.
+# return: JSON object with alias as the key and {url, title} as values.
+def get_redirects_as_json(db_path):
+    
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
 
-iter_dic = f.readlines()
-for c in iter_dic:
-    obj = json.loads(c.replace('\n',''))
-    REDIRECTS.update(obj)
-f.close()
+    cursor.execute("SELECT alias, path, title FROM redirects")
+    rows = cursor.fetchall()
+    redirects = {}
+    base_url = "https://tilburgsciencehub.com/topics"
+
+    for alias, path, title in rows:
+        redirects[alias] = {
+            "url": f"{base_url}/{path}" if not path.startswith("http") else path
+        }
+
+    conn.close()
+    REDIRECTS.update(redirects)
+    return redirects
+
+# Read redirects from database
+db_path = "tsh.db" 
+redirects_json = get_redirects_as_json(db_path)

@@ -8,12 +8,6 @@ from PIL import Image, UnidentifiedImageError
 # Create the database and table
 conn = sqlite3.connect('tsh.db')
 cursor = conn.cursor()
-
-# delete redirect aliases
-try:
-    os.remove('redirect_aliases.json')
-except:
-    None
         
 # Create the topics table
 cursor.execute('''
@@ -76,6 +70,16 @@ cursor.execute('''
         date_modified TEXT,
         draft TEXT,
         content TEXT
+    )
+''')
+
+# Create the alias table
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS redirects (
+    alias TEXT NOT NULL,
+    path TEXT NOT NULL,
+    title TEXT,
+    PRIMARY KEY (alias, path)
     )
 ''')
 
@@ -236,6 +240,22 @@ def insert_or_update_blog(cursor, title, description, path, date, date_modified,
             VALUES (?, ?, ?, ?, ?, ?, ?)
         ''', (title, description, path, date, date_modified, draft, content))
 
+
+
+# Inserts a new redirect or updates the title if the alias-path combination already exists.
+# Parameters:    
+# - cursor: SQLite cursor object
+# - alias (str): The alias string.
+# - path (str): The corresponding path.
+# - title (str): The title of the alias.
+def upsert_redirect(cursor, alias, path, title):
+
+    cursor.execute("""
+        INSERT INTO redirects (alias, path, title) 
+        VALUES (?, ?, ?)
+        ON CONFLICT(alias, path) DO UPDATE SET title = excluded.title;
+    """, (alias, path, title))
+    
 # Parse a Markdown file to extract metadata
 # Parameters:
 # - file_path (str): The path to the Markdown file
@@ -276,21 +296,24 @@ def process_article(md_file_path, parent_id):
 
         # Regular expression to find the aliases block
         match = re.search(r"aliases:\s*\n((?:\s+-\s+[^\n]+\n)*)", content)
-
         if match:
+            # Extract title
+            title_match = re.search(r'title:\s*"([^"]+)"', content)
+            title = title_match.group(1) if title_match else ""
             aliases_block = match.group(1)
 
             # Extract individual aliases
             aliases = re.findall(r"-\s+([^\n]+)", aliases_block)
+            relative_path = os.path.relpath(md_file_path, start=topic_folder).replace("\\", "/")
+            file_name = relative_path.rsplit(".", 1)[0]  # Remove .md extension
+            
+            # Update REDIRECTS dictionary
+            for alias in aliases:
+                if title:
+                    title = title.group(1) if isinstance(title, re.Match) else title
+                    upsert_redirect(cursor, alias, file_name, title)
         else:
-            aliases = [] # Return an empty list if no aliases exist
-
-        import json
-        f = open('redirect_aliases.json','a')
-        for alias in aliases:
-            f.write(json.dumps({alias: {'url': '/topics/find/redirected/page/'+os.path.basename(md_file_path).replace('.md', '')}}))
-            f.write('\n')
-        f.close()
+            aliases = [] # Return an empty list if no aliases exist 
 
         # Extract article content
         match = re.search(r'---(.*?)---(.*)', content, re.DOTALL)
@@ -300,17 +323,11 @@ def process_article(md_file_path, parent_id):
             file_content = None
 
         # Insert data into articles table
-        insert_article_into_db(cursor, 'topic', title.group(1) if title else None, parent_id,
+        insert_article_into_db(cursor, 'topic', title.group(1) if isinstance(title, re.Match) else title, parent_id,
                                description.group(1) if description else None, os.path.basename(md_file_path).replace('.md', ''),
                                keywords.group(1) if keywords else None, date.group(1) if date else None,
                                date_modified.group(1) if date_modified else None, draft.group(1) if draft else None,
                                int(weight.group(1)) if weight else None, author.group(1) if author else None, file_content)
-
-import sqlite3
-import os
-import re
-import shutil
-import logging
 
 # Loop through topics and fill the database
 # Parameters:
