@@ -12,7 +12,8 @@ aliases:
 ---
 # Overview
 
-[`Make`](https://tilburgsciencehub.com/learn/makefiles/?utm_campaign=referral-short) is a useful tool for automating the execution of scripts and managing datasets in a complex project. However, diagnosing errors in the workflow can be challenging with `make`. To address this issue, the debugger `remake` can be used to provide extensive error information, facilitating the debugging process and helping to ensure that the project runs smoothly.
+
+[`Make`](../../../automation-tools/makefiles/make) is a useful tool for automating the execution of scripts and managing datasets in a complex project. However, diagnosing errors in the workflow can be challenging with `make`. To address this issue, the debugger `remake` can be used to provide extensive error information, facilitating the debugging process and helping to ensure that the project runs smoothly.
 
 Hence, in this building block, you will:
 
@@ -100,8 +101,7 @@ $ brew install remake
 
 {{% tip %}}
 
-Haven't installed Homebrew yet? Check out our [building block](https://tilburgsciencehub.com/configure/cli/?utm_campaign=referral-short) to set it up!
-
+Haven't installed Homebrew yet? Check out our [Python for webscraping building block](/topics/Computer-Setup/software-installation/Python/configuring-python-for-webscraping) to set it up!
 {{% /tip %}}
 
 ### Windows
@@ -272,6 +272,6 @@ This building block provides a comprehensive guide on:
 
 # Additional Resources
 
-* [How to set up Make](https://tilburgsciencehub.com/get/make/?utm_campaign=referral-short)
-* [Use Makefiles to re-run your code](https://tilburgsciencehub.com/learn/makefiles/?utm_campaign=referral-short)
-* [Tutorial on Pipeline automation using make](https://tilburgsciencehub.com/practice/pipeline-automation/?utm_campaign=referral-short)
+* [How to set up Make](../../../automation-tools/makefiles/make)
+* [Use Makefiles to re-run your code](../../../automation-tools/makefiles/what-are-makefiles)
+* [Tutorial on Pipeline automation using make](../../../automation-tools/makefiles/make)

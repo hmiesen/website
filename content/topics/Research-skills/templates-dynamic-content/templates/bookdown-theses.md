@@ -36,4 +36,4 @@ To access the `tisemdown` thesis template, install it as an `R` package from Git
 
 You can also download a PDF preview to see what the output file would look like.
 
-{{% cta-secondary-center "Download PDF Preview" "../tisemdown_thesis_template.pdf" %}}
+[Download PDF Tisem Preview](/static/files/tisemdown_thesis_template.pdf)

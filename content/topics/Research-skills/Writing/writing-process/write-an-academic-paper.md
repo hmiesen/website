@@ -71,7 +71,7 @@ Other great resources are:
 - It is easy to stay consistent with the formatting throughout the whole document. 
 - It can automatically update citations and cross-references with document structure changes. 
 
-We prepared a short guide on [how to install](/setup/latex) a $\LaTeX$ distribution on your system, and [how to write your first LaTex document in 15 minutes](/write/latex). 
+We prepared a short guide on [how to install](../../../../Computer-Setup/software-installation/document-creation/latex) a $\LaTeX$ distribution on your system, and [how to write your first LaTex document in 15 minutes](../../../../templates-dynamic-content/templates/write-your-first-latex-document/your-first-article). 
 
 {{% tip %}}
 Download a [ready-to-use LaTeX template for your thesis](/latex-template).
@@ -90,7 +90,7 @@ Some technical tips when you are using LyX:
 ## Format of tables and figures
 - Put only tables and figures that are important for what you want to say in your paper. The main body of the paper should not have more than 10 tables and figures, often less. 
 - Tables and figures need to be clear enough to be understood without reading the main text! 
-- There are packages available that format or combine output of your statistical analyses (e.g. `stargazer`, and [`kableextra`](/regressions/kableextra/) in R).
+- There are packages available that format or combine output of your statistical analyses (e.g. `stargazer`, and [`kableextra`](https://cran.r-project.org/web/packages/kableExtra/index.html) in R).
 - Use a descriptive title that summarizes the main point ("X increases Y") rather than using a generic title ("Results").
 - Give variables and figure axes clear names.
 - Avoid colors in figures.
