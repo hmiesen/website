@@ -272,6 +272,6 @@ This building block provides a comprehensive guide on:
 
 # Additional Resources
 
-* [How to set up Make](https://tilburgsciencehub.com/get/make/?utm_campaign=referral-short)
-* [Use Makefiles to re-run your code](https://tilburgsciencehub.com/learn/makefiles/?utm_campaign=referral-short)
-* [Tutorial on Pipeline automation using make](https://tilburgsciencehub.com/practice/pipeline-automation/?utm_campaign=referral-short)
+* [How to set up Make](../../../automation-tools/makefiles/make)
+* [Use Makefiles to re-run your code](../../../automation-tools/makefiles/what-are-makefiles)
+* [Tutorial on Pipeline automation using make](../../../automation-tools/makefiles/make)
