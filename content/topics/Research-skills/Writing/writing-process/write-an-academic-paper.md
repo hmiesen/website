@@ -71,7 +71,7 @@ Other great resources are:
 - It is easy to stay consistent with the formatting throughout the whole document. 
 - It can automatically update citations and cross-references with document structure changes. 
 
-We prepared a short guide on [how to install](/setup/latex) a $\LaTeX$ distribution on your system, and [how to write your first LaTex document in 15 minutes](/write/latex). 
+We prepared a short guide on [how to install](../../../../Computer-Setup/software-installation/document-creation/latex) a $\LaTeX$ distribution on your system, and [how to write your first LaTex document in 15 minutes](../../../../templates-dynamic-content/templates/write-your-first-latex-document/your-first-article). 
 
 {{% tip %}}
 Download a [ready-to-use LaTeX template for your thesis](/latex-template).
