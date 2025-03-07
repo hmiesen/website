@@ -54,7 +54,7 @@ In a nutshell, a standard GitHub workflow follows the **Branch-Commit-Push-Pull 
 The default approach we follow is the [GitHub Flow](https://guides.github.com/introduction/flow/). This workflow model is explained in the rest of this topic.
 
 {{% tip %}}
-The [GitHub Cheatsheet](../images/github_cheatsheet_tsh.pdf) also summarizes this approach, so you can easily follow along or refresh your memory in case you ever forget a step in the workflow!
+The [GitHub Cheatsheet](/static/files/github_cheatsheet_tsh.pdf) also summarizes this approach, so you can easily follow along or refresh your memory in case you ever forget a step in the workflow!
 {{% /tip %}}
 
 ### Branching

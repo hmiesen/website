@@ -90,7 +90,7 @@ Some technical tips when you are using LyX:
 ## Format of tables and figures
 - Put only tables and figures that are important for what you want to say in your paper. The main body of the paper should not have more than 10 tables and figures, often less. 
 - Tables and figures need to be clear enough to be understood without reading the main text! 
-- There are packages available that format or combine output of your statistical analyses (e.g. `stargazer`, and [`kableextra`](/regressions/kableextra/) in R).
+- There are packages available that format or combine output of your statistical analyses (e.g. `stargazer`, and [`kableextra`](https://cran.r-project.org/web/packages/kableExtra/index.html) in R).
 - Use a descriptive title that summarizes the main point ("X increases Y") rather than using a generic title ("Results").
 - Give variables and figure axes clear names.
 - Avoid colors in figures.
