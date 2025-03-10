@@ -56,7 +56,7 @@ Netlify can host your website for free, it's very easy to use since it's linked 
 4. Now create a "**New site from Git**".
 
 <p align = "center">
-<img src = "../img/netlify-add-new-site.png" width="400">
+<img src = "../img/netlify-add-new-site.jpg" width="400">
 </p>
 
 <!-- ![New site from Git](https://d33wubrfki0l68.cloudfront.net/1a92de85be074abc024967fa7088c8b719c32466/f7496/images/hosting-and-deployment/hosting-on-netlify/netlify-add-new-site.jpg) -->
@@ -75,7 +75,7 @@ Netlify can host your website for free, it's very easy to use since it's linked 
 8. Once it's done, you should see a successful message and an URL for your website (which has been automatically generated for you). You can change the URL in "Settings". You can now **visit your live website!**
 
 <p align = "center">
-<img src = "../img/netlify-deploy-published.png" width="400">
+<img src = "../img/netlify-deploy-published.jpg" width="400">
 </p>
 
 <!-- 

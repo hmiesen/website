@@ -20,15 +20,28 @@ It's time you pick a theme for your website. This will determine how the content
 
 - We suggest [Academia Hugo](https://gethugothemes.com/products/academia) as a simple theme **for personal websites**, where you can showcase your portfolio, resume, and research work.
 
-![Academia Theme](https://d33wubrfki0l68.cloudfront.net/f1ccb690b1e8ffff4a3680cfa84f08424da25a69/f122a/academia-hugo/screenshot-academia-hugo_hub5e9edd9f1f6717e4545a90cfadcc4ac_738415_750x500_fill_catmullrom_top_2.png)
+<p align = "center">
+<img src = "../img/professional-academia-hugo.png" width="400">
+</p>
+
+<!-- 
+![Academia Theme](https://d33wubrfki0l68.cloudfront.net/f1ccb690b1e8ffff4a3680cfa84f08424da25a69/f122a/academia-hugo/screenshot-academia-hugo_hub5e9edd9f1f6717e4545a90cfadcc4ac_738415_750x500_fill_catmullrom_top_2.png) -->
 
 - The [Wowchemy Academic Theme](https://wowchemy.com/hugo-themes/) **for personal websites too**.
 
-![Wowchemy Academic](../img/wowchemy.png)
+<p align = "center">
+<img src = "../img/wowchemy.png" width="400">
+</p>
+
+<!-- ![Wowchemy Academic](../img/wowchemy.png) -->
 
 - The [Hugo Dot Theme](https://gethugothemes.com/products/dot) **for knowledge bases and documentation websites**, for instance a thesis companion:
 
-![Hugo Dot](../img/thesis-theme.png)
+<p align = "center">
+<img src = "../img/thesis-theme.png" width="400">
+</p>
+
+<!-- ![Hugo Dot](../img/thesis-theme.png) -->
 
 - Our brand-new **[Hugo-TiU](#get-hugo-tiu)** theme for open education classes. See below!
 
@@ -49,7 +62,11 @@ As a consequence, you need to explicitly tell Hugo (in the configuration file) w
 
 Meet `Hugo-TiU`, our new **Hugo open education theme for Tilburg University**, based on the original Hugo Book theme! The styling, fonts, and colors are inspired by the official Tilburg University website.
 
-![Hugo-TiU](https://github.com/tilburgsciencehub/hugo-tiu/raw/master/images/screenshot.png)
+<p align = "center">
+<img src = "../img/hugo-tiu-example.png" width="400">
+</p>
+
+<!-- ![Hugo-TiU](https://github.com/tilburgsciencehub/hugo-tiu/raw/master/images/screenshot.png) -->
 
 {{% tip %}}
 This theme is great for running open education classes. See, for instance, how Prof. Hannes Datta runs his [course on Online Data Collection and Management](https://odcm.hannesdatta.com) with `Hugo-TiU`.
@@ -57,7 +74,7 @@ This theme is great for running open education classes. See, for instance, how P
 
 We may be biased, but we love our new theme and we encourage you to use it!
 
-{{% cta-primary "Learn more about Hugo-TiU" "https://github.com/tilburgsciencehub/hugo-tiu"%}}
+{{% cta-primary-center "Learn more about Hugo-TiU" "https://github.com/tilburgsciencehub/hugo-tiu" %}}
 
 ### How to install Hugo-TiU
 
