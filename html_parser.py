@@ -135,7 +135,7 @@ def convert_warning_to_html(md_content):
         warning_content = match.group(1)
         html_content = convert_md_to_html(warning_content)
         return f'  <div class="admonition warning">' \
-               f'     <div class="font-weight-bold mb-3"><img class="align-bottom mr-2" src="/img/warning.svg"> Warning</div>\n' \
+               f'     <div class="font-weight-bold mb-3"><img class="align-bottom mr-2" src="/static/img/warning.svg"> Warning</div>\n' \
                f'     <div class="admonition-content"><p>{html_content}</p></div>' \
                f'     </div>\n'
 
@@ -154,7 +154,7 @@ def convert_example_shortcode_to_html(md_content):
         example_content = match.group(1)
         html_content = convert_md_to_html(example_content)
         return f'<div class="admonition example">\n' \
-               f'    <div class="font-weight-bold mb-3"><img class="align-bottom mr-2" src="/img/example.svg" width="20px"> Example</div>\n' \
+               f'    <div class="font-weight-bold mb-3"><img class="align-bottom mr-2" src="/static/img/example.svg" width="20px"> Example</div>\n' \
                f'    <div class="admonition-content">{html_content}</div>\n' \
                f'</div>'
 

@@ -50,12 +50,22 @@
 
                 {% include 'partials/announcement.html' %}
                 {{ content|safe }}
+                <!-- Extract all contributor names into a list -->
+                {% set contributors_names = contributors_list | map(attribute="name") | list %}
+
                 {% if article.author %}
                     {% set authors = article.author.split(',') %}
                     <div class="admonition author">
                         <div class="admonition-content">Contributed by
                             {% for author in authors %}
-                                <b><a href="/contributors/{{ author|lower|replace(' ', '-') }}">{{ author }}</a></b>{% if not loop.last %}, {% endif %}
+                                {% set author_trimmed = author.strip() %}  {# Trim spaces to avoid mismatches #}
+                                {% if author_trimmed in contributors_names %}
+                                    <b><a href="/contributors/{{ author_trimmed | lower | replace(' ', '-') }}">{{ author_trimmed }}</a></b>
+                                {% else %}
+                                    <b><a href="/contributors">{{ author_trimmed }}</a></b>
+                                {% endif %}
+
+                                {% if not loop.last %}, {% endif %}
                             {% endfor %}
                         </div>
                     </div>

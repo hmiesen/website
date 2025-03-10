@@ -174,6 +174,7 @@ def topic_single(first_level_topic_path, second_level_topic_path, third_level_to
     current_url = request.url
     article = None
     article = articles.query.filter_by(path=article_path).first()
+    contributors_list = Contributors.query.all()
     meta_data = fetch_meta_data(article)
     related_articles = None
     table_of_contents = None
@@ -193,7 +194,7 @@ def topic_single(first_level_topic_path, second_level_topic_path, third_level_to
         if (len(content) > 0):
             reading_time = calculate_reading_time(article.content)
 
-    return render_template('topic-single.html', breadcrumbs=breadcrumbs, assets=assets, article=article, current_url=current_url, table_of_contents=table_of_contents, content=content, reading_time=reading_time, meta_data=meta_data, related_articles=related_articles)
+    return render_template('topic-single.html', breadcrumbs=breadcrumbs, assets=assets, article=article, contributors_list=contributors_list, current_url=current_url, table_of_contents=table_of_contents, content=content, reading_time=reading_time, meta_data=meta_data, related_articles=related_articles)
 
 # List Examples
 @app.route('/examples')
@@ -275,7 +276,6 @@ def contributors():
     # Meta Data
     data_object = {'title' : 'Contributors'}
     meta_data = fetch_meta_data(data_object)
-
     
     contributors_list = Contributors.query.all()
     return render_template('contributors-list.html', assets=assets, contributors_list=contributors_list, meta_data=meta_data)

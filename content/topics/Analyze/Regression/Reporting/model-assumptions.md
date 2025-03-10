@@ -46,11 +46,17 @@ autoplot(
 
 
 ### Outputs
-![Residual-fitted plot](../images/residual-fitted.png)
+<p align = "center">
+<img src = "../images/residual-fitted.png" width="400">
+</p>
 - **Residuals vs Fitted**: Residuals indicate the difference between the predicted and the actual value. The residuals vs fitted plot shows the residuals and the data points should center around the horizontal axis (i.e., the mean of the residuals is 0). The equally spread residuals around the horizontal line without distinct patterns are a good indication of having the linear relationships. Although the line goes a little downward around the middle, it does not look worrisome at first sight. The linearity assumption seems to hold reasonably well.
 
-![Normal Q-Q plot](../images/normal-qq.png)
+<p align = "center">
+<img src = "../images/normal-qq.png" width="400">
+</p>
 - **Normal Q-Q**: Another requirement is that the residuals are approximately normally distributed. This means that if you would plot the distribution of all residuals it would look like a bell-shaped distribution (also known as Gaussian distribution). This is the case if the data points in the QQ-Plot are close to the diagonal. Here, we find that record 23, 35, and 49 are somewhat higher than expected (the right tail).
 
-![Scale-location plot](../images/scale-location.png)
+<p align = "center">
+<img src = "../images/scale-location.png" width="400">
+</p>
 - **Scale-Location**: Finally, the scale-location plot shows the standardized residuals for all fitted values. The homoskedasticity assumption states that the error term should be the same across all values of the independent variables. Hence, we should check here if there is any pattern that stands out. In our case, this happens to be the case as the blue line stays rather flat. It would, however, be troublesome if the error value increases for higher speed values(i.e. if there is a “fanning out” pattern).
