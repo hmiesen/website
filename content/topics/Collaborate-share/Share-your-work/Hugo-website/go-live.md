@@ -55,7 +55,11 @@ Netlify can host your website for free, it's very easy to use since it's linked 
 
 4. Now create a "**New site from Git**".
 
-![New site from Git](https://d33wubrfki0l68.cloudfront.net/1a92de85be074abc024967fa7088c8b719c32466/f7496/images/hosting-and-deployment/hosting-on-netlify/netlify-add-new-site.jpg)
+<p align = "center">
+<img src = "../img/netlify-add-new-site.png" width="400">
+</p>
+
+<!-- ![New site from Git](https://d33wubrfki0l68.cloudfront.net/1a92de85be074abc024967fa7088c8b719c32466/f7496/images/hosting-and-deployment/hosting-on-netlify/netlify-add-new-site.jpg) -->
 
 5. Follow the required steps. You will need to select and authorize GitHub again (this time with added permissions to your repos).
 
@@ -70,7 +74,12 @@ Netlify can host your website for free, it's very easy to use since it's linked 
 
 8. Once it's done, you should see a successful message and an URL for your website (which has been automatically generated for you). You can change the URL in "Settings". You can now **visit your live website!**
 
-![Netlify successful message](https://d33wubrfki0l68.cloudfront.net/e2ea775b0985b93f2e0d7c88ae134e90c3e7446e/8a3d7/images/hosting-and-deployment/hosting-on-netlify/netlify-deploy-published.jpg)
+<p align = "center">
+<img src = "../img/netlify-deploy-published.png" width="400">
+</p>
+
+<!-- 
+![Netlify successful message](https://d33wubrfki0l68.cloudfront.net/e2ea775b0985b93f2e0d7c88ae134e90c3e7446e/8a3d7/images/hosting-and-deployment/hosting-on-netlify/netlify-deploy-published.jpg) -->
 
 {{% warning %}}
 **You've made it!**
