@@ -1780,4 +1780,4 @@ def setup_redirects(app):
     
     @app.route('/topics/Collaborate-share/Share-your-work/content-creation/Hugo-website/go-live/')
     def redirect_444():
-        return redirect(url_for('home'_, external=True) + '/topics/Collaborate-share/Share-your-work/Hugo-website/go-live/' ,code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/Hugo-website/go-live/', code=301)
