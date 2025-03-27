@@ -1738,15 +1738,15 @@ def setup_redirects(app):
     def redirect_433():
         return redirect(url_for('home', _external=True) + "topics/", code=301)
     
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/')
     def redirect_434():
-        return redirect(url_for('home', _external=True) + "topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/", code=301)
+        return redirect(url_for('home', _external=True) + "/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/", code=301)
     
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/style-guide')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/style-guide/')
     def redirect_435():
         return redirect(url_for('home', _external=True) + "/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/style-guide", code=301)
     
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/building-block-shell/')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/building-block-shell/')
     def redirect_436():
         return redirect(url_for('home', _external=True) + "/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/building-block-shell", code=301)
     
@@ -1781,3 +1781,15 @@ def setup_redirects(app):
     @app.route('/topics/Collaborate-share/Share-your-work/content-creation/Hugo-website/go-live/')
     def redirect_444():
         return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/Hugo-website/go-live/', code=301)
+    
+    @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/')
+    def redirect_445():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/', code=301)
+    
+    @app.route('/topics/Automation/automation-tools/Makefiles/practicing-pipeline-automation-make/')
+    def redirect_446():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/automation-tools/practicing-pipeline-automation-make/', code=301)
+    
+    @app.route('/topics/Collaborate-share/Share-your-work/content-creation/Hugo-website/hugo-website-overview/')
+    def refirect_447():
+        return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/Hugo-website/', code=301)

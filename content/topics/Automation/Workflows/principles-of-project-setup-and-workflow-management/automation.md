@@ -25,7 +25,7 @@ we're in the process of preparing our data set for analysis. For example:
 
 This workflow for your specific pipeline can be visualized as follows:
 
-![Workflow](../make_flowchart.png)
+![Workflow](../images/make_flowchart.png)
 
 Using so-called "build tools" such as [`make`](/topics/configure-your-computer/automation-and-workflows/make/), we can specify:
 
