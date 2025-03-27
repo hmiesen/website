@@ -1782,7 +1782,7 @@ def setup_redirects(app):
     def redirect_444():
         return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/Hugo-website/go-live/', code=301)
     
-    @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/')
+    @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/_index')
     def redirect_445():
         return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/', code=301)
     
