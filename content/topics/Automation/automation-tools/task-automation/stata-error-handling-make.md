@@ -29,7 +29,7 @@ Hence, in this building block, you will learn:
 
 We will show you how to simply check the Stata log files for errors and stop the `makefile` if there are any errors.
 
-* Ensure you have installed [Make](/get/make), [Stata](/get/stata) and [R](/get/r/).
+* Ensure you have installed [Make][`make`](/topics/Automation/automation-tools/make-and-makefiles/make/), [Stata](/topics/computer-setup/software-installation/stata/getting-started-with-stata/) and [R](/topics/computer-setup/software-installation/RStudio/r/).
 * Confirm that your Stata do-file is set up to generate a log file. This log file will be the primary source for error detection.
 * Use the below code block to create an R script called `logcheck.R` that checks for errors and the completion of the do-file from the log file.
 

@@ -82,8 +82,7 @@ For more information, visit [Copilot](https://docs.github.com/en/copilot/quickst
 ### RStudio
 
 1. To start using Copilot in RStudio, you must first install R and RStudio on your computer. 
-If you haven't checked it out, Tilburg Science Hub has a building block on this: [Installing R & RStudio](https://tilburgsciencehub.com/get/r/). 
-
+If you haven't checked it out, Tilburg Science Hub has a building block on this: [Installing R & RStudio](/topics/computer-setup/software-installation/RStudio/r/). 
 
 2. The process does not end here. To enable Copilot in RStudio, follow these steps. Open the app, click on Tools -> Global Options -> Copilot -> tick the box saying "Enable GitHub Copilot" -> sign in to your GitHub account, and there you go; you are ready to start!
 

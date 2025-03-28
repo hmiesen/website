@@ -74,7 +74,7 @@ your repository from one of our [example projects](/examples).
 Just navigate to a project's GitHub page, and select *Use this template* (a green button).
 Choose a name for your new repository, and proceed with the standard options.
 
-Note down the URL for your repository (e.g., `https://github.com/tilburgsciencehub/test-repository`), and proceed to step 2c.
+Note down the URL for your repository (e.g., `https://github.com/tilburgsciencehub`), and proceed to step 2c.
 
 ### 2b. Create a repository for an existing project
 **(Check [cheatsheet](https://education.github.com/git-cheat-sheet-education.pdf) &rarr; setup & init)**
@@ -277,7 +277,9 @@ the University of Zurich have a [fantastic tutorial on using Git](https://github
 
 {{% summary %}}
 
-![Git workflows.](../git.png)
+<p align = "center">
+<img src = "../images/git.png" width="450" alt="Git workflows">
+</p>
 
 1. We distinguish between **local** and **remote** repositories.
     - Each project can consist of multiple local repositories, which are stored on one or many computers (e.g., your desktop PC, your laptop, a computer in a cloud, or computers by team members).

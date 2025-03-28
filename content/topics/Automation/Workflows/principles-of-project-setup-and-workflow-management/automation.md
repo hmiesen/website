@@ -25,9 +25,11 @@ we're in the process of preparing our data set for analysis. For example:
 
 This workflow for your specific pipeline can be visualized as follows:
 
-![Workflow](../make_flowchart.png)
+<p align = "center">
+<img src = "../images/make_flowchart.png" width="450" alt="Make flowchart">
+</p>
 
-Using so-called "build tools" such as [`make`](/topics/configure-your-computer/automation-and-workflows/make/), we can specify:
+Using so-called "build tools" such as [`make`](/topics/Automation/automation-tools/practicing-pipeline-automation-make/pipeline-make/), we can specify:
 
 - what code runs and when, and
 - what inputs (e.g., data, parameters) a given source code file needs to run.

@@ -1722,11 +1722,11 @@ def setup_redirects(app):
     def redirect_429():
         return redirect(url_for('home', _external=True) + "topics/analyze/causal-inference/rdd/rd-plots/", code=301)
 
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/tutorial-shell/')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/tutorial-shell/')
     def redirect_430():
         return redirect(url_for('home', _external=True) + "topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/tutorial-shell/", code=301)
    
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/pullrequests/')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/pullrequests/')
     def redirect_431():
         return redirect(url_for('home', _external=True) + "/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/pullrequests/", code=301)
     
@@ -1738,15 +1738,15 @@ def setup_redirects(app):
     def redirect_433():
         return redirect(url_for('home', _external=True) + "topics/", code=301)
     
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/')
     def redirect_434():
-        return redirect(url_for('home', _external=True) + "topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/", code=301)
+        return redirect(url_for('home', _external=True) + "/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/", code=301)
     
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/style-guide')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/style-guide/')
     def redirect_435():
         return redirect(url_for('home', _external=True) + "/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/style-guide", code=301)
     
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/building-block-shell/')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/building-block-shell/')
     def redirect_436():
         return redirect(url_for('home', _external=True) + "/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/building-block-shell", code=301)
     
@@ -1758,11 +1758,11 @@ def setup_redirects(app):
     def redirect_438():
         return redirect(url_for('home', _external=True) + "/topics/collect-store/data-storage/databases", code=301)
     
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/add-contributor')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/add-contributor')
     def redirect_439():
         return redirect(url_for('home', _external=True) + "/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/add-contributor", code=301)
     
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/homepage-cards')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/homepage-cards')
     def redirect_440():
         return redirect(url_for('home', _external=True) + "/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/homepage-cards", code=301)
     
@@ -1770,7 +1770,7 @@ def setup_redirects(app):
     def redirect_441():
         return redirect(url_for('home', _external=True) + "/blog/disclaimer", code=301)
     
-    @app.route('/topics/collaborate-share/project-management/engage-open-science/contribute-to-tilburg-science-hub/code-of-conduct/')
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/code-of-conduct/')
     def redirect_442():
         return redirect(url_for('home', _external=True) + "/topics/collaborate-share/project-management/contribute-to-tilburg-science-hub/code-of-conduct", code=301)
    
@@ -1781,3 +1781,15 @@ def setup_redirects(app):
     @app.route('/topics/Collaborate-share/Share-your-work/content-creation/Hugo-website/go-live/')
     def redirect_444():
         return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/Hugo-website/go-live/', code=301)
+    
+    @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/_index')
+    def redirect_445():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/', code=301)
+    
+    @app.route('/topics/Automation/automation-tools/Makefiles/practicing-pipeline-automation-make/')
+    def redirect_446():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/automation-tools/practicing-pipeline-automation-make/', code=301)
+    
+    @app.route('/topics/Collaborate-share/Share-your-work/content-creation/Hugo-website/hugo-website-overview/')
+    def refirect_447():
+        return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/Hugo-website/', code=301)
