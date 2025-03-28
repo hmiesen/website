@@ -14,6 +14,13 @@ aliases:
 
 HPC TiU Computing is a service by Tilburg University's Library and IT Services (LIS).
 
+{{% warning}}
+**Important Note**
+Every Tilburg University employee can gain access to the Tilburg University High Performance Computing environment. However, the environment is not available to students.
+
+Access for external researchers is possible. The guest researcher must have a Tilburg University username, known as a PNIL account (staff-not-on-payroll). A PNIL account can be requested through the HRM department.
+{{% /warning %}}
+
 The environment consists of powerful servers on which researchers can interactively work on data and run statistical computations. This is a Windows-based environment, which looks and feels like a regular Windows desktop. It's accessible through this [web portal](https://rdweb.campus.uvt.nl/RDWeb/webclient/).
 
 <p align = "center">
