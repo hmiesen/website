@@ -32,7 +32,9 @@ If a coding task requires an extended duration, possibly spanning over several d
 #### *Feature toggle
 **Feature toggles**, also known as feature flags, can be used in software development to manage features that are not yet ready for release or that need to be shown only to specific users or groups. They function like a switch that can be turned on or off to enable or disable a particular feature in the codebase.
 
-![Trunk-Based Development](./images/trunk-based-development.png)
+<p align = "center">
+<img src = "../images/trunk-based-development.png" width="450" alt="Trunk Based Development">
+</p>
 *Trunk-Based Development* by [Atlassian](https://www.atlassian.com/git/topics/comparing-workflows), edited / [CC BY](https://creativecommons.org/licenses/by/2.5/au/)
 
 ### Trunk-Based Development Workflow
@@ -64,7 +66,10 @@ Trunk-based development is suitable for projects with **small teams**, **short r
 ### What is Feature Branching?
 **Feature Branching** is a commonly used workflow that involves creating a new branch for a specific feature or change in the codebase. This allows developers to work on the feature independently without affecting the `main` branch. When the feature is complete, it can be merged back into the `main` branch through a pull request. The pull request allows other team members to review the changes and suggest modifications or improvements before merging the feature into the `main` branch.
 
-![Feature Branching](../images/feature-branching.png "Feature Branching")
+<p align = "center">
+<img src = "../images/feature-branching.png" width="450" alt="Feature Branching">
+</p>
+
 *Feature Branching* by [Atlassian](https://www.atlassian.com/git/topics/using-branches/git-merge), edited / [CC BY](https://creativecommons.org/licenses/by/2.5/au/)
 
 ### Feature Branching Workflow
@@ -94,7 +99,10 @@ Feature Branching is commonly used in **collaborative software development envir
 ### What is Git Flow?
 **Git Flow** is a branching strategy that uses two main long-lived branches - `main` and `develop` - that remain in the project during its entire lifetime. Additionally, it employs several short-lived branches - `feature`, `release`, and `hotfix` - that are created as needed to manage the development process and deleted once they have fulfilled their purpose. The `main` branch is the stable production-ready code and the `develop` branch is where all development takes place. `Feature` branches are used to develop new features or changes, `release` branches are used to prepare for a new release, and `hotfix` branches are used to quickly address critical issues in the production code.
 
-![Git Flow](./images/git-flow.png "Git Flow")
+<p align = "center">
+<img src = "../images/git-flow.png" width="450" alt="Git flow">
+</p>
+
 *Git Flow* by [Atlassian](https://www.atlassian.com/git/topics/comparing-workflows/gitflow-workflow) / [CC BY](https://creativecommons.org/licenses/by/2.5/au/)
 
 ### Git Flow Workflow

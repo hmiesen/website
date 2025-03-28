@@ -140,7 +140,9 @@ It's time to finally build your project! See our overview chart below,
 which illustrates how different stages of your pipeline use
 different project components.
 
-![Workflow overview](../workflow.png)
+<p align = "center">
+<img src = "../images/workflow.png" width="450" alt="Workflow">
+</p>
 
 {{% summary %}}
 **Written explanation of the workflow**

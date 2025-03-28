@@ -277,7 +277,9 @@ the University of Zurich have a [fantastic tutorial on using Git](https://github
 
 {{% summary %}}
 
-![Git workflows.](../git.png)
+<p align = "center">
+<img src = "../images/git.png" width="450" alt="Git workflows">
+</p>
 
 1. We distinguish between **local** and **remote** repositories.
     - Each project can consist of multiple local repositories, which are stored on one or many computers (e.g., your desktop PC, your laptop, a computer in a cloud, or computers by team members).

@@ -75,7 +75,7 @@ Think your machine is already configured well? Then proceed directly to [the nex
 {{% tip %}}
 **Configure your computer**.
 - Note that to implement our workflow suggestions, your computer needs to be configured properly - so we [suggest you to do that first](/topics/computer-setup).
-- Of course, you need not to install all software tools - but pick *at least* your statistical software package (e.g., [we use R](/get/r/), but others prefer [Stata](/get/stata/)), [Python](/get/python/), and [`make`](/get/make/).
+- Of course, you need not to install all software tools - but pick *at least* your statistical software package (e.g., [we use R](/topics/computer-setup/software-installation/RStudio/r/), but others prefer [Stata](/topics/computer-setup/software-installation/stata/getting-started-with-stata/), [Python](/topics/computer-setup/software-installation/python/python/), and [`make`](/topics/Automation/automation-tools/make-and-makefiles/make/)).
 {{% /tip %}}
 
 Of course, there are many ways to set up a machine, and we do not mean to consider our way of doing to be perfect. In fact, the setup instructions sometimes resemble a compromise, so that later instructions - given to both Windows, Mac and Linux users - can be followed as closely as possible.
