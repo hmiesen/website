@@ -10,7 +10,7 @@ aliases:
   - /configure/research-cloud
 ---
 
-# HPC TiU: Overview
+## HPC TiU: Overview
 
 HPC TiU (High Performance Computing, previously known as TiU Blade Computing) is one of TiU's academic computing environments and started out as a shared workspace for TiSEMS's Finance Department. Its primary purpose was and still is to provide researchers with a shared environment with a lot more sources (memory and processing power) available in contrast to a regular workstation.
 
