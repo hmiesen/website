@@ -2,7 +2,7 @@
 title: "Set up the AWS Client"
 description: "Learn how to install the command-line interface for using Amazing Web Services."
 keywords: "AWS, CLI, command line, terminal, command"
-weight: 2
+weight: 7
 #date: 2020-11-11T22:02:51+05:30
 draft: false
 aliases:

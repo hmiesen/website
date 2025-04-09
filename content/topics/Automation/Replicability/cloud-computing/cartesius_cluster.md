@@ -2,33 +2,20 @@
 title: "Cloud Computing with SURFsara's Cartesius Cluster"
 description: "A free cloud solution from SURFsara for heavy computation tasks."
 keywords: "cloud, virtual computers, HPC TiU, SURFsara, research clusters,infrastructure, parallel, research cloud"
-weight: 7
+weight: 4
 draft: false
-author: "Roshini Sudhaharan"
-authorlink: "https://nl.linkedin.com/in/roshinisudhaharan"
+author: "Roshini Sudhaharan,Harold Miesen"
+authorlink: "https://nl.linkedin.com/in/roshinisudhaharan,https://www.linkedin.com/in/haroldmiesen/"
 aliases:
   - /configure/research-cloud
 ---
 
 ## SURFsara's Cartesius Cluster: Overview
 
-Cartesius is a supercomputer in the true sense of the word. All servers in the cluster are linked with high-speed connections to form a very large computer. Cartesius is best suited for calculations in which the individual components (functions and procedures) have a great interdependence.
-A so-called Graphical Processing Unit (GPU) is also offered in this environment. In some cases, for example with Floating Point calculations, running a program on a Graphics adapter is much more efficient than on a computer processor.
+{{% warning %}}
 
-### Pros
+Cartesius is no longer available, as it has been fully decommissioned and replaced by [__**SURF's Snellius Supercomputer**__](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/snellius_cluster/). Snellius is the successor to Cartesius, the former national supercomputer of the Netherlands.
 
-- The most rapid solution.
-- Graphical Processing Unit (GPU) available.
-- A huge amount of software.
-- Users do not have to share resources but have exclusive access.
+Operational since 2021, Snellius provides significantly more computational power, better scalability, and a modern architecture tailored for high-performance computing and AI workloads. It is also more energy-efficient and supports the latest tools and technologies. Snellius is managed by [__**SURF**__](https://www.surf.nl/en) and serves as the primary HPC system for Dutch academic research.
 
-### Cons
-
-- Steep learning curve. Knowledge is required to be able to build an efficient job.
-- No direct access to the joint network of Tilburg University.
-- There may be a queue and thus waiting time.
-- Less interactive because of the queue principle.
-
-## How to access SURFsara's Cartesius cluster
-
-You can request access via a 'small compute grant' at SURF [here](https://www.surf.nl/en/small-compute-applications-nwo). Applications are light-weight, and are handled within 2 weeks. Contrary to the name, the grant will award a decent amount of hours on either the HPC Cloud, a linux cluster, or the supercomputer. Larger grants are available via a more involved procedure. Support at TiU is available at digital research support, reachable via the self service portal.
+{{% /warning %}}
