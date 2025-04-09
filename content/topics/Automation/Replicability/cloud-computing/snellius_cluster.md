@@ -22,15 +22,20 @@ Snellius is one of the most powerful supercomputers in the Netherlands, designed
   - Large amount of data storage available.
 
 ### Cons
-  - Steep learning curve. Requires knowledge of Linux, command-line-tools, and job scheduling.
-  - Limited interactivity due to lack of default GUI.
+  - Steep learning curve.
   - Job scheduling means you have to wait for compute slots.
   - Custom software installations can be non-trivial and rely on modules or containers.
 
-### Information on How to Use the National Supercomputer
+### Obtaining an account to the Snellius Cluster
 
-You can find extensive information on how to use the National Supercomputer and its technical specifications in the [__**Snellius user information**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660184/Snellius).
+You can find information on how to obtain an account on Snellius [__**here**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660190/Obtaining+an+account+on+Snellius).
 
 ### Gaining access to the Snellius Cluster
 
-You can find information on how to obtain an account on Snellius [__**here**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660190/Obtaining+an+account+on+Snellius).
+Once your request is approved, you can connect to Snellius. Instructions on how to connect to the system can be found [__**here**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660216/Connecting+to+the+system).
+
+### Information on How to Use the National Supercomputer
+
+You can find extensive information on how to use the National Supercomputer and its technical specifications in the [__**Snellius user information**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660184/Snellius). Here is a weblink to the [__**Generic Usage Guides**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/74227835/Generic+usage+guides).
+
+Additional support at TiU is available at Digital Research Support (DRS) via [email](mailto:drs@tilburguniversity.edu) or the self-service portal of TiU.
