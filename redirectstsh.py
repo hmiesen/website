@@ -1804,43 +1804,39 @@ def setup_redirects(app):
     
     @app.route('/topics/Research-skills/templates-dynamic-content/templates/write-your-first-latex-document/bibliography/')
     def refirect_450():
-        return redirect(url_for('home', _external=True) + '', code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Research-skills/templates-dynamic-content/write-your-first-latex-document/bibliography/', code=301)
     
     @app.route('/topics/Research-skills/templates-dynamic-content/templates/write-your-first-latex-document/latex-tips/')
     def refirect_451():
-        return redirect(url_for('home', _external=True) + '', code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Research-skills/templates-dynamic-content/write-your-first-latex-document/latex-tips/', code=301)
     
     @app.route('/topics/Research-skills/templates-dynamic-content/templates/write-your-first-latex-document/what-is-latex/')
     def refirect_452():
-        return redirect(url_for('home', _external=True) + '', code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Research-skills/templates-dynamic-content/write-your-first-latex-document/what-is-latex/', code=301)
 
     @app.route('/topics/Research-skills/templates-dynamic-content/templates/write-your-first-latex-document/your-first-article/')
     def refirect_453():
-        return redirect(url_for('home', _external=True) + '', code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Research-skills/templates-dynamic-content/write-your-first-latex-document/your-first-article/', code=301)
 
     @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/cloud-computing/')
     def refirect_454():
-        return redirect(url_for('home', _external=True) + '', code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/cloud-computing/', code=301)
     
     @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/connect-instance/')
     def refirect_455():
-        return redirect(url_for('home', _external=True) + '', code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/connect-instance/', code=301)
     
     @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/launch-instance/')
     def refirect_456():
-        return redirect(url_for('home', _external=True) + '', code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/launch-instance/', code=301)
     
     @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/move-files/')
     def refirect_457():
-        return redirect(url_for('home', _external=True) + '', code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/move-files/', code=301)
     
     @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/run-scripts/')
     def refirect_458():
-        return redirect(url_for('home', _external=True) + '', code=301)
-    
-    @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/terminate-instance/')
-    def refirect_459():
-        return redirect(url_for('home', _external=True) + '', code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/run-scripts/', code=301)
     
     @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/contribute/')
     def refirect_460():
@@ -1848,7 +1844,7 @@ def setup_redirects(app):
     
     @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/terminate-instance/')
     def refirect_461():
-        return redirect(url_for('home', _external=True) + '', code=301)
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/terminate-instance/', code=301)
 
     @app.route('/topics/Collaborate-share/Share-your-work/content-creation/Hugo-website/add-content/')
     def refirect_462():
