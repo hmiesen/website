@@ -238,7 +238,7 @@ If you're using wide tables, they may appear broken on smaller screens like mobi
 
 This will make sure that the right edge of the table fades out on small screens and they become scrollable on the horizontal axis. The following is an example of a wide table:
 {{%table%}}
-{{% wide-table %}}
+{{%wide-table %}}
 | | | | | | |  
 |-------------|-------------|------------|------------|---------------|---------------|
 | $\alpha$ | `\alpha` | $\beta$ | `\beta` | $\gamma$ | `\gamma` |

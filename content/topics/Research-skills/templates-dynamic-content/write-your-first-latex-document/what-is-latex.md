@@ -28,7 +28,10 @@ This is mainly what sets $\LaTeX$ apart from WYSIWYG (an acronym for "What You S
 
 Because:
 
-![Why LaTeX?](../img/why-latex.png)
+<p align = "center">
+<img src = "../images/why-latex.png" width="500">
+<figcaption>Why Latex?</figcaption>
+</p>
 
 Jokes aside, there are a few advantages in using $\LaTeX$:
 
@@ -46,7 +49,10 @@ You'll probably find yourself Googling a lot even for the most elementary comman
 
 In the end, if you're a researcher dealing with complex econometrics models on a daily basis, if you can read a financial statement, if you can prove the transcendence of $\pi$... we are pretty sure you can also learn to typeset documents professionally.
 
-![Is LaTeX difficult?](../img/latex-comparison.jpg)
+<p align = "center">
+<img src = "../images/latex-comparison.jpg" width="500">
+<figcaption>Is Latex difficult?</figcaption>
+</p>
 
 ## When to Use It
 

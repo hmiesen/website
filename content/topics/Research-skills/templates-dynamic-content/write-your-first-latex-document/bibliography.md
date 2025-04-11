@@ -38,7 +38,9 @@ The following is an example for an article entry:
 
 We **strongly** suggest to use a *bibtex generator* for this task. Some reference management tools can build `.bib` files automatically for you. More on this at [the end of this tutorial](/tips/latex).
 
-{{% cta-primary "Download a Dummy .bib File for Prototyping" "../assets/bibliography.bib" %}}
+<!-- {{% cta-primary "Download a Dummy .bib File for Prototyping" "../assets/bibliography.bib" %}} -->
+
+[Download a Dummy .bib](/static/files/bibliography.bib)
 
 ## Use BibTeX
 
@@ -95,4 +97,7 @@ Adding a bibliography to our previous article, we should get the following $\LaT
 ```
 {{% /codeblock %}}
 
-![Our final LaTeX example.](../img/article-example.png)
+<p align = "center">
+<img src = "../images/article-example.png" width="500">
+<figcaption>Our final Latex example</figcaption>
+</p>

@@ -22,7 +22,10 @@ We're going to present three different setup options ordered by increasing compl
 ## Option 1 - Home Setup with a Webcam
 The need of expensive gear to produce high quality images is a myth. A lot can be achieved just with proper **lighting**.
 
-![Hard lighting v. soft lighting.](../img/hard-soft-l.jpg)
+<p align = "center">
+<img src = "../img/hard-soft-l.jpg" width="700">
+<figcaption> Hard lighting v. soft lighting </figcaption>
+</p>
 
 Knowing the difference between hard and soft lighting will dramatically improve your image.
 
@@ -89,7 +92,10 @@ What does that mean? It's important to take into account the **color temperature
 
 When we said that the sun is one of the best light sources available, we meant it! That is because **daylight is considered full-spectrum light**, meaning that it covers the entire visible spectrum, from infrared to almost ultraviolet. Therefore, daylight (the midday sun with a blue sky, with a color temperature measured at 5600K) is considered a benchmark in photography and videography. Good quality lighting equipment should be full-spectrum and daylight-balanced, meaning that it emulates the quality of natural light and it's tuned to work at 5600K. Nowadays, some LED lights are also getting closer to full-spectrum, but these can get quite expensive. Using full-spectur lights ensures that you get no color cast in your image.
 
-![Light spectrum comparison.](../img/l-spectrum.jpg)
+<p align = "center">
+<img src = "../img/l-spectrum.jpg" width="700">
+<figcaption> Light spectrum comparison. </figcaption>
+</p>
 
 For your main light (or key light), the one that will be lighting your face, you should try to get a source as close as possible to daylight. Try to avoid incandescent light (usually way too warm, like a candle light). **Avoid at all cost fluorescent light**. Most video lights can be mainly HMI (hydrargyrum medium-arc iodide), tungsten or LED. You will be most likely to **use LED lights** since they are cheaper and widely available today.
 
@@ -160,7 +166,11 @@ Just remember this: **shorter focal lengths with the camera closer to the subjec
 
 However, to make things even more complicated, depth of field depends not only on the lens aperture, but also on the focal length! Longer focal lengths allow for a shallower depth of field. In the next image, notice how the cactus stays relatively the same while the background changes dramatically.
 
-![Focal lengths and moving the camera away.](../img/zoom-or-move.jpeg)
+<p align = "center">
+<img src = "../img/zoom-or-move.jpeg" width="700">
+<figcaption> Focal lengths and moving the camera away. </figcaption>
+</p>
+
 
 As regards the lens aperture, go with the lens with the lowest f-number, if possible. Ideally, you'd want a wide-aperture lens (we also call it a fast lens). If you're buying Canon or Nikon, I'd suggest their budget line of "normal lenses": the [Canon 50mm f/1.8 STM](https://www.amazon.com/Canon-50mm-1-8-STM-Lens/dp/B00X8MRBCW/) or the [Nikon 35mm f/1.8G](https://www.amazon.com/Nikon-AF-S-NIKKOR-Focus-Cameras/dp/B001S2PPT0).
 
@@ -191,7 +201,10 @@ If you don't have enough space to place a light stand close to the subject, but 
 
 There are [a lot](https://digital-photography-school.com/a-beginners-guide-to-light-modifiers/) of light modifiers out there. The underlying idea is to **use them to shape the light according to your needs**. The followings are some modifiers mainly used in photography - however, some of them can be used for video too. In cinema, much more expensive and elaborate solutions are involved.
 
-![Light modifiers.](../img/modifiers.jpg)
+<p align = "center">
+<img src = "../img/modifiers.jpeg" width="700">
+<figcaption> Light modifiers. </figcaption>
+</p>
 
 As we said, you want the make the light bigger, so you will need any kind of diffuser to make it appear bigger. The most common ones for this purpose are umbrellas, softboxes, and scrims.
 
@@ -201,7 +214,10 @@ Most modifiers directly attach to your light source, so when choosing one, make 
 
 Some modifiers are away from the source, like flags and scrims which often are placed on their own stands. They are common in cinema and usually work better in bigger spaces as they have a larger footprint. You can see how a scrim is used to diffuse a point light source in the next picture.
 
-![A scrim in use.](../img/scrim.jpg)
+<p align = "center">
+<img src = "../img/scrim.jpeg" width="700">
+<figcaption> A scrim in use. </figcaption>
+</p>
 
 #### One Last Note
 
