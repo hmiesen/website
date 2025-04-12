@@ -188,7 +188,7 @@ def setup_redirects(app):
 
     @app.route('/tutorials/reproducible-research-and-automation/principles-of-project-setup-and-workflow-management/project-setup-overview/')
     def redirect_46():
-        return redirect(url_for('home', _external=True) + "topics/automation/workflows/starting/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
+        return redirect(url_for('home', _external=True) + "/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
 
     @app.route('/workflow/documenting-data')
     def redirect_47():
@@ -1168,7 +1168,7 @@ def setup_redirects(app):
 
     @app.route('/tutorials/project-management/principles-of-project-setup-and-workflow-management/project-setup-overview')
     def redirect_291():
-        return redirect(url_for('home', _external=True) + "topics/automation/workflows/starting/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
+        return redirect(url_for('home', _external=True) + "/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
 
     @app.route('/building-blocks/configure-your-computer/automation-and-workflows/commandline/')
     def redirect_292():
@@ -1204,7 +1204,7 @@ def setup_redirects(app):
 
     @app.route('/tutorials/project-management/principles-of-project-setup-and-workflow-management/project-setup-overview/')
     def redirect_300():
-        return redirect(url_for('home', _external=True) + "topics/automation/workflows/starting/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
+        return redirect(url_for('home', _external=True) + "/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
 
     @app.route('/topics/analyze-data/regressions/deltamethod/')
     def redirect_301():
@@ -1881,3 +1881,9 @@ def setup_redirects(app):
     @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/collaboration')
     def refirect_470():
         return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/collaboration/', code=301)
+
+    @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/project-setup-overview')
+    def refirect_471():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/project-setup-overview/', code=301)
+    
+    
