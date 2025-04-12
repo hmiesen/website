@@ -188,7 +188,7 @@ def setup_redirects(app):
 
     @app.route('/tutorials/reproducible-research-and-automation/principles-of-project-setup-and-workflow-management/project-setup-overview/')
     def redirect_46():
-        return redirect(url_for('home', _external=True) + "topics/automation/workflows/starting/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
+        return redirect(url_for('home', _external=True) + "/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
 
     @app.route('/workflow/documenting-data')
     def redirect_47():
@@ -364,7 +364,7 @@ def setup_redirects(app):
 
     @app.route('/tutorials/more-tutorials/write-your-first-latex-document/setup-latex/')
     def redirect_90():
-        return redirect(url_for('home', _external=True) + "topics/research-skills/templates-dynamic-content/templates/write-your-first-latex-document/setup-latex/", code=301)
+        return redirect(url_for('home', _external=True) + "topics/Computer-Setup/software-installation/document-creation/latex/", code=301)
 
     @app.route('/building-blocks/store-and-document-your-data/document-data/documenting-new-data/')
     def redirect_91():
@@ -1168,7 +1168,7 @@ def setup_redirects(app):
 
     @app.route('/tutorials/project-management/principles-of-project-setup-and-workflow-management/project-setup-overview')
     def redirect_291():
-        return redirect(url_for('home', _external=True) + "topics/automation/workflows/starting/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
+        return redirect(url_for('home', _external=True) + "/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
 
     @app.route('/building-blocks/configure-your-computer/automation-and-workflows/commandline/')
     def redirect_292():
@@ -1204,7 +1204,7 @@ def setup_redirects(app):
 
     @app.route('/tutorials/project-management/principles-of-project-setup-and-workflow-management/project-setup-overview/')
     def redirect_300():
-        return redirect(url_for('home', _external=True) + "topics/automation/workflows/starting/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
+        return redirect(url_for('home', _external=True) + "/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/project-setup-overview/", code=301)
 
     @app.route('/topics/analyze-data/regressions/deltamethod/')
     def redirect_301():
@@ -1793,3 +1793,97 @@ def setup_redirects(app):
     @app.route('/topics/Collaborate-share/Share-your-work/content-creation/Hugo-website/hugo-website-overview/')
     def refirect_447():
         return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/Hugo-website/', code=301)
+    
+    @app.route('/topics/Research-skills/templates-dynamic-content/templates/write-your-first-latex-document/setup-latex/')
+    def refirect_448():
+        return redirect(url_for('home', _external=True) + 'topics/Computer-Setup/software-installation/document-creation/latex/', code=301)
+    
+    @app.route('/topics/Research-skills/templates-dynamic-content/templates/write-your-first-latex-document/setup-latex/')
+    def refirect_449():
+        return redirect(url_for('home', _external=True) + 'topics/Computer-Setup/software-installation/document-creation/latex/', code=301)
+    
+    @app.route('/topics/Research-skills/templates-dynamic-content/templates/write-your-first-latex-document/bibliography/')
+    def refirect_450():
+        return redirect(url_for('home', _external=True) + '/topics/Research-skills/templates-dynamic-content/write-your-first-latex-document/bibliography/', code=301)
+    
+    @app.route('/topics/Research-skills/templates-dynamic-content/templates/write-your-first-latex-document/latex-tips/')
+    def refirect_451():
+        return redirect(url_for('home', _external=True) + '/topics/Research-skills/templates-dynamic-content/write-your-first-latex-document/latex-tips/', code=301)
+    
+    @app.route('/topics/Research-skills/templates-dynamic-content/templates/write-your-first-latex-document/what-is-latex/')
+    def refirect_452():
+        return redirect(url_for('home', _external=True) + '/topics/Research-skills/templates-dynamic-content/write-your-first-latex-document/what-is-latex/', code=301)
+
+    @app.route('/topics/Research-skills/templates-dynamic-content/templates/write-your-first-latex-document/your-first-article/')
+    def refirect_453():
+        return redirect(url_for('home', _external=True) + '/topics/Research-skills/templates-dynamic-content/write-your-first-latex-document/your-first-article/', code=301)
+
+    @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/cloud-computing/')
+    def refirect_454():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/cloud-computing/', code=301)
+    
+    @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/connect-instance/')
+    def refirect_455():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/connect-instance/', code=301)
+    
+    @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/launch-instance/')
+    def refirect_456():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/launch-instance/', code=301)
+    
+    @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/move-files/')
+    def refirect_457():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/move-files/', code=301)
+    
+    @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/run-scripts/')
+    def refirect_458():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/run-scripts/', code=301)
+    
+    @app.route('/topics/Collaborate-share/Project-management/engage-open-science/contribute-to-tilburg-science-hub/contribute/')
+    def refirect_460():
+        return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Project-management/contribute-to-tilburg-science-hub/contribute/', code=301)
+    
+    @app.route('/topics/Automation/Replicability/cloud-computing/running-computations-remotely/terminate-instance/')
+    def refirect_461():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Replicability/running-computations-remotely/terminate-instance/', code=301)
+
+    @app.route('/topics/Collaborate-share/Share-your-work/content-creation/Hugo-website/add-content/')
+    def refirect_462():
+        return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/Hugo-website/add-content/', code=301)
+    
+    @app.route('/topics/Collaborate-share/Share-your-work/content-creation/Hugo-website/pick-theme/')
+    def refirect_463():
+        return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/Hugo-website/pick-theme/', code=301)
+    
+    @app.route('/topics/Collaborate-share/Share-your-work/content-creation/educational-videos/_index')
+    def refirect_464():
+        return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/educational-videos/educational-videos-overview/', code=301)
+    
+    @app.route('/topics/Collaborate-share/Share-your-work/content-creation/educational-videos/equipment-edu-videos/')
+    def refirect_465():
+        return redirect(url_for('home', _external=True) + '/topics/Collaborate-share/Share-your-work/educational-videos/equipment-edu-videos/', code=301)
+    
+    @app.route('/topics/Automation/automation-tools/Makefiles/practicing-pipeline-automation-make/pipeline-automation-overview/')
+    def refirect_466():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/automation-tools/practicing-pipeline-automation-make/', code=301)
+    
+    @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/documenting-data/')
+    def refirect_467():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/documenting-data/', code=301)
+    
+    @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/versioning')
+    def refirect_468():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/versioning', code=301)
+    
+    @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/checklist/')
+    def refirect_469():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/checklist/', code=301)
+
+    @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/collaboration')
+    def refirect_470():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/collaboration/', code=301)
+
+    @app.route('/topics/Automation/Workflows/Starting/principles-of-project-setup-and-workflow-management/project-setup-overview')
+    def refirect_471():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/project-setup-overview/', code=301)
+    
+    

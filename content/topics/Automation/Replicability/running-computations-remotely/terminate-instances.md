@@ -15,7 +15,7 @@ aliases:
 
 Even though the very basic VMs can run for free forever, it is good practice to shut down inactive VMs. After all, you don't want to find out at the end of the month - once you receive your bill from AWS - that you accidentally left an instance running in the background. To terminate a VM follow the steps below:
 
-![Terminate instance](../img/terminate-instance.gif)
+![Terminate instance](../images/terminate-instance.gif)
 
 
 1. Visit your "Instances" dashboard in the console

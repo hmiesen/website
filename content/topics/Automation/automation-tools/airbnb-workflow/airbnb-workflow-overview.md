@@ -15,9 +15,7 @@ weight: 10
 
 For example, [here](http://insideairbnb.com/amsterdam/) is the dashboard for the city of Amsterdam. The animation below illustrates how the number of listings have been growing rapidly throughout the years:
 
-![title](../images/airbnb_expansion.gif)
-
-
+![Airbnb expansion](../images/airbnb_expansion.gif)
 
 
 ## Research Question  

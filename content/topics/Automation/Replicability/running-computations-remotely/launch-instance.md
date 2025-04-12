@@ -16,7 +16,7 @@ aliases:
 
 Although you can also launch instances via the command line, here we show you how to get started with the [AWS console](https://console.aws.amazon.com/console) in your browser.
 
-![Launch Instance](../img/launch-instance.gif)
+![Launch Instance](../images/launch-instance.gif)
 
 1. After you have signed in, type “EC2” in the search bar.
 

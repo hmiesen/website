@@ -17,8 +17,8 @@ aliases:
 Web scraping usually involves programmatically collecting content displayed in a web browser. Usually, the websites/ web apps are publicly accessible which enables one to generate the datasets without involving data providers.
 On the contrary, API mining usually involves requiring permission from data providers to access their internal databases.
 
-{{% wide-table %}}
-
+{{%table%}}
+{{%wide-table%}}
 |  | Web scraping | Application <br> Programming <br> Interfaces (APIs) |
 | --- | --- | --- |
 | **Usage scope** | Extract any content <br> displayed in a web <br> browser/websites/apps | Extract any content <br> made available by <br> the API provider |
@@ -27,8 +27,8 @@ On the contrary, API mining usually involves requiring permission from data prov
 | **Scalability** | Moderate | High |
 | **Legal risks** | Low-high | Low-moderate |
 | **Example sources** | E-commerce (amazon.com); <br> Online review (yelp.com) | Discussion forum <br> (Reddit API); <br> Social media <br> (Twitter API) |
-
-{{% /wide-table %}}
+{{%/wide-table%}}
+{{%/table%}}
 
 ## Objectives of this tutorial
 - Learn how to scrape static websites

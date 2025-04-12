@@ -146,12 +146,13 @@ Try building your document with and without the `\newpage` command to see how it
 
 A few formatting options that you'll need to remember:
 
+{{%table%}}
 | $\LaTeX$ | Output |
 |-----------------------|-----------------------|
 | `\textbf{This text is bold}` | **This text is bold** |
 | `\textit{This text is italicised}` | *This text is italicised* |
-
 ---
+{{%/table%}}
 
 These backslashes`\\`will break the line.
 
