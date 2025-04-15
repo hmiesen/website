@@ -23,11 +23,11 @@ Snellius is one of the most powerful supercomputers in the Netherlands, designed
 
 ### Access to Compute Services by SURF
 
-In case you want to become a user of Snellius then please see the information on [__**requesting access**__](https://www.surf.nl/en/access-to-compute-services) to SURF's compute services. You can find additional information on how to obtain an account on Snellius [__**here**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660190/Obtaining+an+account+on+Snellius).
+In case you want to become a user of Snellius, we refer you to the information on [__**requesting access**__](https://www.surf.nl/en/access-to-compute-services) to SURF's compute services. You can apply for limited amounts of computing time, data services and support at SURF [here](https://www.surf.nl/en/small-compute-applications-nwo). Applications are done through SURF, but funded by [__**NWO**__](https://www.nwo.nl/en). You can find additional information on how to obtain an account on Snellius [__**here**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660190/Obtaining+an+account+on+Snellius).
 
 ### Connecting to the Snellius Cluster
 
-Once your request is approved, you can connect to Snellius. You can find instructions on how to connect to the system [__**here**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660216/Connecting+to+the+system).
+Once your request is approved, you can connect to Snellius. Because the method of connecting to Snellius may change over time, we refer to the manual in SURF's wiki: [__**Connecting to the system**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660216/Connecting+to+the+system).
 
 ### Information on How to Use Snellius
 
