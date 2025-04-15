@@ -14,8 +14,10 @@ aliases:
 
 {{% warning %}}
 
-Cartesius is no longer available, as it has been fully decommissioned and replaced by [__**SURF's Snellius Supercomputer**__](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/snellius_cluster/). Snellius is the successor to Cartesius, the former national supercomputer of the Netherlands.
+Cartesius is no longer available, as it has been fully decommissioned and replaced by [__**SURF's Snellius Supercomputer**__](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/snellius_cluster/). [__**Snellius**__](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/snellius_cluster/) is the successor to Cartesius, the former national supercomputer of the Netherlands.
 
-Operational since 2021, Snellius provides significantly more computational power, better scalability, and a modern architecture tailored for high-performance computing and AI workloads. It is also more energy-efficient and supports the latest tools and technologies. Snellius is managed by [__**SURF**__](https://www.surf.nl/en) and serves as the primary HPC system for Dutch academic research.
+Operational since 2021, [__**Snellius**__](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/snellius_cluster/) provides significantly more computational power, better scalability, and a modern architecture tailored for high-performance computing and AI workloads. It is also more energy-efficient and supports the latest tools and technologies.
+
+[__**Snellius**__](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/snellius_cluster/) is managed by [__**SURF**__](https://www.surf.nl/en) and serves as the primary HPC system for Dutch academic research.
 
 {{% /warning %}}

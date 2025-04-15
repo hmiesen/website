@@ -29,11 +29,11 @@ In case you want to become a user of Snellius then please see the information on
 
 Once your request is approved, you can connect to Snellius. You can find instructions on how to connect to the system [__**here**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660216/Connecting+to+the+system).
 
-### Information on How to Use the National Supercomputer
+### Information on How to Use Snellius
 
 You can find extensive information on Snellius' technical specifications and research examples in the Virtual 3D tour via the [__**SURF User Knowledge Base**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660184/Snellius). You will find information on how to use the National Supercomputer via the following weblink: [__**Generic Usage Guides**__](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/74227835/Generic+usage+guides).
 
-Additional support at TiU is available at Digital Research Support (DRS) via [email](mailto:digitalresearchsupport@tilburguniversity.edu) or the Self-Service Portal of TiU.
+Additional support at Tilburg University (TiU) is available at Digital Research Support (DRS) via [email](mailto:digitalresearchsupport@tilburguniversity.edu) or the Self-Service Portal of TiU.
 
 {{% tip %}}
 
