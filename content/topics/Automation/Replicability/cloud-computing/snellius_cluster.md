@@ -37,6 +37,6 @@ Additional support at Tilburg University (TiU) is available at Digital Research 
 
 {{% tip %}}
 
- NWO regularly publishes [__**updates**__](https://www.nwo.nl/en/researchprogrammes/computing-time-on-national-computer-facilities) on applications for National Computing Facilities that were awarded, which includes use of Snellius.
+NWO regularly publishes [__**updates**__](https://www.nwo.nl/en/researchprogrammes/computing-time-on-national-computer-facilities) on applications for National Computing Facilities that were awarded, which includes use of Snellius.
 
 {{% /tip %}}
