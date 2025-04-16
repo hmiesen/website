@@ -1,79 +1,66 @@
 ---
-title: "Getting Started with Research Cloud"
+title: "Getting Started with SURF Research Cloud (SRC)"
 description: "A free cloud solution for conducting research."
 keywords: "cloud, virtual computers, SURF, infrastructure, parallel, research cloud, service desk"
 weight: 5
 #date: 2021-01-06T22:01:14+05:30
 draft: false
-author: "Shrabastee Banerjee"
-authorlink: "https://sites.google.com/view/shrabastee"
+author: "Shrabastee Banerjee,Harold Miesen"
+authorlink: "https://sites.google.com/view/shrabastee,https://www.linkedin.com/in/haroldmiesen"
 aliases:
   - /configure/research-cloud
   - /get/chromedriver
 ---
 
-## What is Research Cloud
+## SURF Research Cloud: Overview
 
-Research Cloud is a highly customizable cloud solution for conducting your research. Think of it as a “free” version of Amazon EC2 or Microsoft Azure machine, but then brought to you under the Dutch National e-Infrastructure. SURF services are only available for researchers affiliated with Dutch institutions (though collaborators from any institution can be added to a project by the primary researcher).
+[SURF Research Cloud (SRC)](https://www.surf.nl/en/services/compute/surf-research-cloud) is an easy-to-use online platform that helps you set up your own digital workspace in just a few steps. Without needing advanced IT skills, you can access powerful computing resources, storage, and research software to work with large datasets or perform complex analyses. Everything runs in the cloud, so you can work from anywhere and focus on your research rather than the technical setup.
 
-- **What can you do with it?**
-  Start virtual computers that run R or Python, attach some storage space, and share these computers with co-authors.
-
-- **The benefits?** As a project leader:
-
-  - You are in charge of the IT infrastructure.
-
-  - Decide what packages are installed. Make sure that your coauthors can focus on doing their research, rather than installing packages or coping with memory problems on their laptops.
-
-  - Research Cloud is also beneficial if you just want to work on a project on your own, by the way…
-
-At present, SURF offers year-long “start-up” grants, which can then be renewed based on usage and feedback. For longer-term projects, they also offer the option to apply to [NWO grants](https://www.nwo.nl/en/news/call-computing-time-national-computer-facilities-2021-open-submission) that focus on computing resources.
-
-## How to get started
+The platform also makes it simple to collaborate with colleagues by allowing you to share your workspace, tools, and data. SRC offers a reliable, flexible, and secure environment that supports modern research in a wide range of disciplines. You can offer your colleagues secure access to this research environment by means of a simple authentication process through [SURF's Research Access Management (SRAM)](https://www.surf.nl/en/services/identity-access-management/surf-research-access-management).
 
 {{% warning %}}
+__**Important Note**__
 
-Make sure that you’re affiliated with a Dutch research institution to set up the work space for yourself.
+Access to SRC is available to researchers and staff who are affiliated with a Dutch research or higher education institution that is a member of SURF. However, it's possible to invite external collaborators — such as international partners or researchers from non-member institutions — by granting them guest access, making it easy to work together across organizational boundaries.
 
 {{% /warning %}}
 
-1. Fill in the project [application form](https://www.surf.nl/en/access-to-compute-services). Click on "go to request portal" and login with SURFconext, selecting Tilburg University and using your TiU credentials. You will be transferred to the SURF servicedesk. On the SURF servicedesk look for "apply for access" and select "small NWO request (EINF)."
+<p align = "center">
+<img src = "../images/surf-research-cloud.png" width="600">
+<figcaption> Pros and Cons of Using SRC </figcaption>
+</p>
 
-2. Once your wallet is approved, you will receive an email from SURF to set up your initial workspace. This will look like this:
+### Requesting access to SRC
+In case you want to become a user of SRC, we refer you to the information on [requesting access](https://www.surf.nl/en/access-to-compute-services) to SURF's compute services. You can apply for limited amounts of computing time, data services and support at SURF [here](https://www.surf.nl/en/small-compute-applications-nwo). Applications are done through SURF, but funded by [NWO](https://www.nwo.nl/en). You can check the status of your application at [SURF's service desk](https://servicedesk.surf.nl).
 
-![surf mail](../images/surf_mail.png)
+### SRC workflow
 
-Still waiting for your wallet to be approved? You can check the [status of your application at SurfSara's service desk](https://servicedesk.surfsara.nl).
+Although it is not our intention to rewrite the manual, it can still be helpful for understanding SURF Research Cloud to cover a few key terms that clarify the workflow.
 
-3. Upon project approval, Surf will create a workspace and invite you to "join" that workspace via email.
+1. Join a __**Collaboration**__: Once your application has been approved, start by joining a collaboration (CO) via [SURF's Research Access Management (SRAM)](https://www.surf.nl/en/services/identity-access-management/surf-research-access-management). This gives you access to the SURF Research Cloud portal and connects you with your research team — or you can work solo within your own collaboration.
 
-4. You can access the [workspace via this portal](https://portal.live.surfresearchcloud.nl/). In the case that you cannot login via SSO, you can [create a so-called EduID yourself](https://www.surf.nl/diensten/eduid) and use this as your identity provider for logging in to the Research Cloud Portal.
+2. Request a __**Wallet**__: Once you're in, request a wallet to get budget credits linked to your project. These credits allow you to use compute and storage resources within SRC.
 
-5. All set up and want to learn more? Then check these detailed instructions on [how to use Research Cloud (including adding data sources)](https://servicedesk.surfsara.nl/wiki/display/WIKI/How+to+get+on+board).
-
-## Advanced use cases
-
-### Adding collaborators
-
-To give students/collaborators access to a VM you have already created, you can [invite into your CO](https://wiki.surfnet.nl/display/SRAM/Invite+admins+and+members+to+a+collaboration) (collaborative organization) in [SRAM](https://sbs.sram.surf.nl/):
-
-Once they become a member of your CO they can:
-
-- Log in to the Research Cloud portal.
-- Set up TOTP.
-- See the workspaces that you have started for the CO.
-
-### Usage of Research Drive in combination with Research Cloud
-
-The Dutch foundation SURF offers login via SurfConext, which is an easy way to keep things consistent. While this works for Research Drive which is operated by LIS <link here>, it is not yet enabled for Research Cloud. Therefore, one would need to create a separate account through eduID (step 4 under “logging in” [here](https://servicedesk.surfsara.nl/wiki/display/WIKI/How+to+get+on+board)).
+3. Launch and Access a __**Workspace**__: Finally, create or access a workspace, which is typically a Virtual Machine (VM). Workspaces are tied to your CO and can be used for data analysis, software testing, or simulations. You'll find all available workspaces in the portal and can log in with your assigned credentials.
 
 {{% warning %}}
-Make sure to check your workspace from time to time using df -h to prevent memory overload. You will get an alert from SURF if the root disk is at 80% capacity. If this happens, do the following:
 
-- Install ncdu command:
-  `sudo apt-get install ncdu`
+__**Workspace should be paused when not in use**__
 
-- Then run `ncdu` and it will show you the disk space usage stats and you click enter to dig deeper into each directory. Then look for cache files or other unnecessary files manually and press `d` to delete that file or directory.
-- Run df -h again to check status of the disk space storage
+Don't forget to pauze your workspace when you are not working in it. Use the "PAUSE" button. It is visible next to the access button when you extend the display of your workspace. Pausing your workspace helps you to spare your budget. While your workspace is paused, it will not consume any CPU or GPU credits. The configuration of your workspace and the current data on it are preserved.
 
 {{% /warning %}}
+
+### Integration of SURF Research Drive with SRC
+
+You can seamlessly integrate [SURF Research Drive (SRD)](https://www.surf.nl/en/services/storage-data-management/research-drive) with SRC workspaces which is a secure and user-friendly cloud storage solution. This allows you and other researchers to easily access, store, and manage large research datasets directly from within your virtual environment. You can find a Tilburg ScienceHub article on SURF Research Drive [here](https://tilburgsciencehub.com/topics/Collect-store/data-storage/SURF-research-cloud/surf-research-drive/).
+
+By connecting SRD to a workspace, you can read and write data without the need to manually transfer files between systems. This integration supports efficient, secure, and scalable data handling — especially valuable for collaborative projects where data needs to be shared across institutions or with external partners. It also ensures that sensitive or large data sets remain within the trusted SURF infrastructure.
+
+### Using SRC
+
+You can find detailed information on how to use SRC [here](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/9798172/SURF+Research+Cloud).
+
+### Tilburg University (TiU) offers additional support
+
+If you need support using SRC or if you're looking for a suitable solution for your research, the Digital Research Support (DRS) Team at LIS TiU can assist you. The team can be reached via the following email address: [digitalresearchsupport@tilburguniversity.edu](mailto: digitialresearchsupport@tilburguniversity.edu). Or contact the DRS team through the Self-Service Portal of TiU.
