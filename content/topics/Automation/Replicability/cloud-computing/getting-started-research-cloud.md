@@ -45,6 +45,12 @@ Apply for (limited) amounts of computing time: go to [small compute applications
 
 {{% tip %}}
 
+If the Digital Research Support Team at Tilburg University (TiU) has created a CO for a research project earlier at your request, and you subsequently apply for a grant, you must clearly indicate in your grant application that it should be added to the already exisiting CO.
+
+{{% /tip %}}
+
+{{% tip %}}
+
 __**Pause your workspace when not in use**__
 
 Don't forget to pause your workspace when you are not working in it. Use the "PAUSE" button. It is visible next to the access button when you extend the display of your workspace. Pausing your workspace helps you to spare your budget. While your workspace is paused, it will not consume any CPU or GPU credits. The configuration of your workspace and the current data on it are preserved.
@@ -98,9 +104,3 @@ The remote data will now be overwritten with the local copy in cases where there
 ### Additional support for Tilburg University employees
 
 If you need support using SRC or if you're looking for a suitable solution for your research, the Digital Research Support (DRS) Team at LIS can assist you. The team can be reached via the following email address: [digitalresearchsupport@tilburguniversity.edu](mailto: digitialresearchsupport@tilburguniversity.edu). Or contact the DRS team through the Self-Service Portal of TiU.
-
-{{% tip %}}
-
-If DRS has created a CO for a research project earlier at your request, and you subsequently apply for a grant, you must clearly indicate in your grant application that it should be added to the already exisiting CO.
-
-{{% /tip %}}
