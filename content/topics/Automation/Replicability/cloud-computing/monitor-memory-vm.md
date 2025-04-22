@@ -2,7 +2,7 @@
 title: "Monitor and solve memory constraints in your computational environment"
 description: "After configuring a Google Cloud instance with GPUs, learn to monitor and handle memory issues"
 keywords: "Environment, Python, Jupyter notebook, Google cloud, Cloud computing, Cloud storage, GPU, Virtual Machine, Instance, Memory"
-weight: 11
+weight: 12
 author: "Fernando Iscar"
 authorlink: "https://www.linkedin.com/in/fernando-iscar/"
 draft: false
