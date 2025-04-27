@@ -33,10 +33,16 @@ Please fork our site, and develop your content in a new branch. When you're done
 
 You can add an image into your building block using html tags, please see an example below
 
-`<p align = "center">
-<img src ="../images/<name-of-your-image>.png" width="400">
 
-</p> `
+{{% codeblock %}}
+
+```html
+<p align = "center">
+<img src ="../images/<name-of-your-image>.png" width="400">
+</p>
+```
+
+{{% /codeblock %}}
 
 ### Bear in mind breaks in front of lists
 

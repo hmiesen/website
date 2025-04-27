@@ -1886,4 +1886,12 @@ def setup_redirects(app):
     def refirect_471():
         return redirect(url_for('home', _external=True) + '/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/project-setup-overview/', code=301)
     
+    @app.route('/topics/Automation/automation-tools/Makefiles/airbnb-workflow/_index')
+    def refirect_472():
+        return redirect(url_for('home', _external=True) + '/examples/reproducible-workflow-airbnb', code=301)
+    
+    @app.route('/topics/Automation/automation-tools/Makefiles/airbnb-workflow/airbnb-workflow-overview')
+    def refirect_473():
+        return redirect(url_for('home', _external=True) + '/topics/Automation/automation-tools/airbnb-workflow/airbnb-workflow-overview/', code=301)
+    
     
