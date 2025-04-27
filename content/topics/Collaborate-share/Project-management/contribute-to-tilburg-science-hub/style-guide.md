@@ -150,12 +150,12 @@ Provide your code in all the relevant languages and/or operating systems and spe
 
 ```python
 # some Python code here
-print("Hello 2, world!")
+print("Hello, world!")
 ```
 
 ```R
 # some R code here
-cat('Hello 3, world!')
+cat('Hello, world!')
 ```
 
 {{% /codeblock %}}
