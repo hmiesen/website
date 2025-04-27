@@ -15,8 +15,10 @@ weight: 10
 
 For example, [here](http://insideairbnb.com/amsterdam/) is the dashboard for the city of Amsterdam. The animation below illustrates how the number of listings have been growing rapidly throughout the years:
 
-![Airbnb expansion](../images/airbnb_expansion.gif)
-
+<p align = "center">
+<img src = "/static/img/airbnb_expansion.gif" width="500">
+<figcaption> Difference in means table (2 x 2 case) </figcaption>
+</p>
 
 ## Research Question  
 The overarching research question that we aim to investigate is:    

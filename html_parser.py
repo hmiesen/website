@@ -339,7 +339,7 @@ def replace_img_src(md_content):
     img_tags = soup.find_all('img')
 
     # Define valid image extensions
-    image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.mov']
+    image_extensions = ['.jpg', '.jpeg', '.png','.bmp', '.mov']
     
     for img_tag in img_tags:
         src = img_tag.get('src')
