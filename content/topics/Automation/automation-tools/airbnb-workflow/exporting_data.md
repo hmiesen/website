@@ -20,7 +20,10 @@ A time-series plot that shows the total number of reviews over time (across all 
 * Group by date and calculate the sum of all reviews across neighborhoods.
 * Plot the chart and store the visualisation.
 
-![](../images/plot_all.png)
+<p align = "center">
+<img src = "../images/plot_all.png" width="500">
+<figcaption> Plot </figcaption>
+</p>
 
 **plot_Amsterdam.R**  
 A time-series plot that shows the total number of reviews over time for the top 3 neighborhoods (Centrum-West, De Pijp - Rivierenbuurt, and De Baarsjes - Oud-West). Add a plot title, axes labels, and a legend to make your graph easier to read. Store it as `plot_Amsterdam.pdf` in `gen/plots`.
@@ -29,4 +32,7 @@ A time-series plot that shows the total number of reviews over time for the top 
 * Convert the `date` column into date format.
 * Plot the chart and store the visualisation.
 
-![](../images/plot_Amsterdam.png)
+<p align = "center">
+<img src = "../images/plot_Amsterdam.png" width="500">
+<figcaption> Plot Amsterdam </figcaption>
+</p>
