@@ -17,7 +17,7 @@ For example, [here](http://insideairbnb.com/amsterdam/) is the dashboard for the
 
 <p align = "center">
 <img src = "/static/img/airbnb_expansion.gif" width="500">
-<figcaption> Difference in means table (2 x 2 case) </figcaption>
+<figcaption> Airbnb Expansion </figcaption>
 </p>
 
 ## Research Question  
