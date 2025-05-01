@@ -80,6 +80,13 @@ The easiest way to access RD is via the browser.
 
 To easily collaborate on research, you can synchronize documents to your local workstation through the [ownCloud Desktop Client](https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/102827682/ownCloud+desktop+client). The ownCloud Desktop Client keeps your RD files in sync with a folder on your harddisk. 
 
+
+{{% tip %}}
+
+If you want to use SRD to synchronize data with Surf Research Cloud (SRC), it's worth reading the following article: [Getting Started with SURF Research Cloud](http://localhost:8070/topics/Automation/Replicability/cloud-computing/getting-started-research-cloud/). This article suggests OwnCloud as a good alternative for synchronizing data with SRC, as SRD is causing issues at the time of writing.
+
+{{% /tip %}}
+
 ### Ad 3. Via rclone
 
 [Rclone](https://rclone.org) is an open-source command line program to manage files on cloud storage. You can use it to selectively access, download, upload, move and delete data on RD. This will save you disk space: you won't need to download the entire project directory on your local disk, but only the files that you need.
