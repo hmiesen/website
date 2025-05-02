@@ -9,7 +9,7 @@ import os
 # # Lists & Other Necessities
 
 # Domain
-fullDomain = 'https://tilburgsciencehub.com'
+fullDomain = 'https://github.com/hmiesen/website'
 
 #Sitemap listpages
 listPages_Raw = []
