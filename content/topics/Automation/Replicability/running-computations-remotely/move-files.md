@@ -22,7 +22,10 @@ aliases:
 
 
 ## FileZilla (Mac & Windows)
-![Move files](../images/move-files.gif)
+<p align = "center">
+<img src = "/static/img/move-files.gif" width="500">
+<figcaption> Move files</figcaption>
+</p>
 
 1. Alternatively, install File Transfer Protocol (FTP) client [FileZilla](https://filezilla-project.org/).
 2. Click on File > Site Manager > New Site.

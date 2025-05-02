@@ -1,13 +1,13 @@
 ---
-title: "Combine GitHub and Google Colab for Collaborative Development" 
+title: "Combine GitHub and Google Colab for Collaborative Development"
 description: "Explore how integrating GitHub with Google Colab can streamline your development workflow, enabling more efficient project management and collaboration."
 keywords: "GitHub, Google Colab, Collaboration, Project Management, Development Workflow, Git Commands, Persistent Storage, Project Visibility"
-weight: 3
+weight: 11
 author: "Fernando Iscar"
 authorlink: "https://www.linkedin.com/in/fernando-iscar/"
 draft: false
 date: 2024-03-25T10:00:00+00:00
-aliases: 
+aliases:
   - /github_colab/integration
 ---
 
@@ -38,7 +38,7 @@ To set up the workspace, you'll first need a GitHub repository to work from, whi
 
 **2.** In the *'File'* menu, select *'Open notebook'*, then go to the *'GitHub'* tab. You can enter the URL of your repository or search for it using your GitHub username. Include private repositories if necessary by clicking on the respective option.
 
-**3.** After finding your repository, click on the notebook you want to open. 
+**3.** After finding your repository, click on the notebook you want to open.
 
 <p align = "center">
 <img src = "../images/open-nb-colab.png" width="700" style="border:1px solid black;">

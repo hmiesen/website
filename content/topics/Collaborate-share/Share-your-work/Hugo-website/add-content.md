@@ -1,5 +1,5 @@
 ---
-tutorialtitle: "Create Your Own Website in 15 Minutes"
+tutorialtitle: "How to Add Content to Your Hugo Website"
 type: "hugo-website"
 indexexclude: "true"
 title: "(Hugo Website) Add Some Content"
