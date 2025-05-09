@@ -2,6 +2,7 @@
 title: "Use Google Colab to Run Python in the Cloud"
 description: "Learn Google Colab and collaborate on python code remotely. Our tutorial explains how to run your Jupyter notebook in the cloud on the servers of Google for free"
 keywords: "cloud, python, jupyter, slow computer, fast, collaborate, google, google colab, colab python"
+weight: 9
 date: 2022-04-08T10:01:14+05:30
 draft: false
 author: "Cas Ruger"

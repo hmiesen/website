@@ -2,7 +2,7 @@
 title: "Configure a VM with GPUs in Google Cloud"
 description: "Learn how to configure code in a Google Cloud instance with GPUs within a Docker environment"
 keywords: "Docker, Environment, Python, Jupyter notebook, Google cloud, Cloud computing, GPU, Virtual Machine, Instance, Memory"
-weight: 3
+weight: 10
 author: "Fernando Iscar"
 authorlink: "https://www.linkedin.com/in/fernando-iscar/"
 draft: false

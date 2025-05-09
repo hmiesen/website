@@ -1,78 +1,56 @@
 ---
-title: "HPC TiU for Cloud Computing"
-description: "A free cloud solution from Tilburg University for heavy computation tasks."
-keywords: "cloud, virtual computers, HPC TiU, infrastructure, parallel, research cloud"
+title: "HPC TiU High-performance Computing"
+description: "A free high-performance computing infrastructure from Tilburg University for heavy computation tasks (employees only)."
+keywords: "high performance, virtual computers, HPC TiU, infrastructure, data-analyses, simulations, on-premises"
 weight: 1
 draft: false
-author: "Roshini Sudhaharan"
-authorlink: "https://nl.linkedin.com/in/roshinisudhaharan"
+author: "Roshini Sudhaharan,Harold Miesen"
+authorlink: "https://nl.linkedin.com/in/roshinisudhaharan,https://www.linkedin.com/in/haroldmiesen"
 aliases:
   - /configure/research-cloud
 ---
 
-# HPC TiU: Overview
+## HPC TiU: Overview
 
-HPC TiU Computing is a service by Tilburg University's Library and IT Services (LIS).
+HPC TiU (High Performance Computing, previously known as TiU Blade Computing) is one of TiU's academic computing environments and started out as a shared workspace for TiSEMS's Finance Department. Its primary purpose was and still is to provide researchers with a shared environment with a lot more sources (memory and processing power) available in contrast to a regular workstation.
 
-{{% warning}}
-**Important Note**
-Every Tilburg University employee can gain access to the Tilburg University High Performance Computing environment. However, the environment is not available to students.
+HPC TiU is an interactive environment which looks and feels like a regular TiU Windows workspace. Through this environment users have access to a selection of popular statistical software and programming tools, some of which are licensed to use on campus only. It's available from anywhere in the world (provided there's an internet connection available).
+
+{{% warning %}}
+__**Important Note**__
+
+Every Tilburg University employee can gain access to the Tilburg University HPC environment. However, the environment is not available to students. Many of the web links in this article may lead to pages on Tilburg University's intranet. Hence, if you log in with a student account, many of the web links in this article will not be visisble.
 
 Access for external researchers is possible. The guest researcher must have a Tilburg University username, known as a PNIL account (staff-not-on-payroll). A PNIL account can be requested through the HRM department.
 {{% /warning %}}
 
-The environment consists of powerful servers on which researchers can interactively work on data and run statistical computations. This is a Windows-based environment, which looks and feels like a regular Windows desktop. It's accessible through this [web portal](https://rdweb.campus.uvt.nl/RDWeb/webclient/).
-
 <p align = "center">
-<img src = "../images/blade.png" width="500">
+<img src = "../images/blade.png" width="600">
 <figcaption> Pros and Cons of Using HPC TiU </figcaption>
 </p>
 
-### How to Access HPC TiU?
+### Requesting access to HPC TiU
 
-You can [request access to HPC TiU](https://servicedesk.uvt.nl/tas/public/ssp/content/detail/knowledgeitem?unid=db72c119bf344fb78a196d5b6c669ecc) via the IT Service Desk and filling in a form. Access for external researchers is possible. The guest researcher needs to have a Tilburg University username, and a so-called PNIL-account (staff-not-on-payroll).
-These accounts can be requested at the HRM department.
+You can [request access to HPC TiU](https://servicedesk.uvt.nl/tas/public/ssp/content/detail/knowledgeitem?unid=db72c119bf344fb78a196d5b6c669ecc) via the IT Service Desk and filling in a form. As stated in the above warning, access for external researchers is possible. The guest researcher needs to have a Tilburg University username, and a so-called PNIL-account (staff-not-on-payroll). These accounts can be requested at the HRM department.
 
-Once your request is approved, you can access HPC TiU:
+### Connecting to HPC TiU
 
-- On a **Windows, macOS, ChromeOS or Linux** computer enter the following [URL](https://rdweb.campus.uvt.nl/RDWeb/webclient/) in a recent version of your web browser and sign in with your TiU credentials.
-
-**If this doesn't work**, proceed with the following:
-
-- On a **Windows** computer use the following [URL](https://rdweb.campus.uvt.nl/RDWeb/webclient/) in web browser and sign in with your TiU credentials (campus\TiU username)
-
-- On a **macOS** computer use Microsoft Remote Desktop Client for Mac (install from App Store), use this web feed [URL](https://rdweb.campus.uvt.nl/RDWeb/feed/webfeed.aspx) and sign in with your TiU credentials (campus\TiU username)
-
-{{% warning %}}
-**Scheduled maintenance**
-
-Every **Friday after the 2nd Tuesday of the month** the TiU HPC servers will be put offline for maintenance. You will receive an email reminder each month.
-
-Do **NOT** run your analyses when maintenance is performed, because unsaved work will be lost.
-
-Moreover, each month during the maintenance period, **all personal data stored locally on HPC TiU on scratch drives (D:) will be erased!** Therefore, you should back up your files before.
-{{% /warning %}}
+Once your request is approved, you can access HPC TiU. Because the method of connecting to HPC TiU may change over time, we refer to the manual on the intranet, which contains the most up-to-date information. You can find the HPC TiU usermanual [__**here**__](https://servicedesk.uvt.nl/tas/public/ssp/content/detail/knowledgeitem?unid=db72c119bf344fb78a196d5b6c669ecc).
 
 ### Where to Save your Files?
 
-**M / S / T drive**
+**Local drive access and shared folders**
 
-- Use M / S / T disc for storing data that must be retained.
+When using HPC TiU you have access to the local drive of your client computer which is very useful for moving data to and from the service. In addition, you can use shared folders to share files with with other users. We refer to the HPC TiU usermanual for the most up-to-date information regarding the availability and any backup and retention of the shared folders.
 
-**D drive (Scratch)**
+{{% warning %}}
+__**Regular maintenance**__
 
-- Use only the D-disk (Scratch) for temporary data storage.
-  During standard (monthly) maintenance, the D drive is deleted.
+The TiU HPC servers will be put offline for maintenance on a regular basis. Access to the servers will be unavailable during this maintainance window. Any personal data stored locally on the servers and the scratch discs __**will be removed**__ during the maintenance window. Please consult the HPC TiU usermanual for the most up-to-date information regarding scheduled maintenance times.
+{{% /warning %}}
 
-**C drive**
-
-- The C drive is only intended for the Operating System and Applications.
-
-**E drive**
-
-- The E-disk has been used since 12-10-2018 to store the local user profiles. (This is because of possible filling up of the C-drive and thus undermining the entire server).
-- The E-disk contains the user profiles (with, for example, python packages). This E-disk is automatically deleted on restart.
+If you need support using the HPC TiU environment, or if you're looking for a suitable solution for your research, the Digital Research Support Team at LIS TiU can assist you. The team can be reached via the following email address: [digitalresearchsupport@tilburguniversity.edu](mailto: digitialresearchsupport@tilburguniversity.edu).
 
 {{% tip %}}
-Here are some additional cloud computing solutions you might want to check out to level up your research infrastructure: [SURFsara's LISA Cluster](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/lisa_cluster/) and [SURFsara's Cartesius Cluster](https://tilburgsciencehub.com/topics/automation/replicability/cloud-computing/cartesius_cluster/)
+Here is an additional cloud computing solution you might want to check out to level up your research infrastructure: [SURF's Research Cloud](https://tilburgsciencehub.com/topics/Automation/Replicability/cloud-computing/getting-started-research-cloud/)
 {{% /tip %}}

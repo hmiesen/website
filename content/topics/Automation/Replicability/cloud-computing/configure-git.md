@@ -2,7 +2,7 @@
 title: "Setting Up a New Workspace, Configuring Git and Adding Research Drive on Research Cloud"
 description: "Learn how to set up a new workspace/VM instance on Research Cloud and configure Git on the instance."
 keywords: "surf, rd, rclone, large files, webdav, store, storage, git, configure"
-weight: 9
+weight: 6
 author: "Roshini Sudhaharan"
 authorlink: "https://nl.linkedin.com/in/roshinisudhaharan"
 draft: false
