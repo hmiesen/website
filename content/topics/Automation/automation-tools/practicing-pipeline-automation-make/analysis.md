@@ -1,9 +1,8 @@
 ---
-# tutorialtitle: "Practicing Pipeline Automation using Make"
 type: "practicing-pipeline-automation-make"
 indexexclude: "true"
 weight: 8
-title: "Extending the Analysis"
+title: "Part 8: Extending the Analysis"
 date: 2021-01-06T22:01:14+05:30
 draft: false
 aliases:

@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Create Your Own Website in 15 Minutes"
 type: "hugo-website"
 indexexclude: "true"
-title: "(Hugo Website) Add Some Content"
+title: "Part 4: Add Some Content"
 description: "Learn how to customize your Hugo website and add content to it."
 keywords: "hugo, content, markdown, writing, articles"
 date: 2021-01-06T22:01:14+05:30

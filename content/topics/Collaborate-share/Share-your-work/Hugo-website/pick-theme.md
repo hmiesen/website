@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Create Your Own Website in 15 Minutes"
 type: "hugo-website"
 indexexclude: "true"
-title: "Pick a Theme"
+title: "Part 3: Pick a Theme"
 description: "Learn how to install a Hugo theme to make your website glossy."
 keywords: "hugo, hugo-tiu, tilburg, static, website"
 date: 2021-01-06T22:01:14+05:30
