@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Write Your First LaTeX Document in 15 Minutes"
 type: "write-your-first-latex-document"
 indexexclude: "true"
-title: "Your First Article"
+title: "Part 3: Your First Article"
 description: "Learn to write your very first professional-looking document with LaTeX."
 keywords: "first, latex, beginner"
 weight: 102
