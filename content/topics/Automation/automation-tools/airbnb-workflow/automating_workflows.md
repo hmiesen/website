@@ -1,5 +1,5 @@
 ---
-title: "Part 6: Automating Workflows"
+title: "Part 5: Automating Workflows"
 type: "airbnb-workflow"
 indexexclude: "true"
 weight: 50

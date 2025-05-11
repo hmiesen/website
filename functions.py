@@ -83,6 +83,15 @@ def build_data_dict(contributors, blogs, topics, articles):
         }
         
     def serialize_topic(topic, level, parent, articles):
+        article_objs = articles.query.filter_by(parent=topic.id).all()
+
+        # Assign default weight if missing and sort
+        for a in article_objs:
+            if not hasattr(a, 'weight') or a.weight is None:
+                a.weight = 1  # assign default weight
+
+        sorted_articles = sorted(article_objs, key=lambda a: a.weight)
+
         return {
             'id': topic.id,
             'title': topic.title,
@@ -91,8 +100,9 @@ def build_data_dict(contributors, blogs, topics, articles):
             'level': topic.level,
             'draft': topic.draft,
             'childtopics': build_structure(level + 1, topic.id, articles),
-            'articles': [serialize_article(article) for article in articles.query.filter_by(parent=topic.id).all()]
+            'articles': [serialize_article(article) for article in sorted_articles]
         }
+
 
     def build_structure(level, parent, articles):
         if level not in topic_dict:

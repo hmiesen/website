@@ -6,7 +6,7 @@ description: "We can automate our pipeline using so-called build tools to execut
 keywords: "make, data, automation, build, recipe, pipeline"
 date: 2020-11-11T22:01:14+05:30
 draft: false
-Weight: 4
+weight: 4
 aliases:
   - /automate/project-setup
   - /topics/project-management/principles-of-project-setup-and-workflow-management/automation
