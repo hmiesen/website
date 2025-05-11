@@ -1,7 +1,6 @@
 ---
-tutorialtitle: "Running Computations Remotely"
 type: "running-computations-remotely"
-title: "Move Files"
+title: "Part 4: Move Files"
 indexexclude: "true"
 description: "Learn how to run computations remotely"
 keywords: "cloud computing, azure, amazon, google, virtual machine"

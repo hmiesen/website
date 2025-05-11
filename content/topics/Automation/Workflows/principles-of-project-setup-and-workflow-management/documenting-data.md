@@ -1,13 +1,12 @@
 ---
-tutorialtitle: "Principles of Project Setup and Workflow Management"
 type: "principles-of-project-setup"
 indexexclude: "true"
-title: "Documenting Datasets"
+title: "Part 5: Documenting Datasets"
 description: "If your project contains data that has been newly created, you are required to include a documentation of that data in your project."
 keywords: "document, data, dataset, derived, readme, describe"
 date: 2020-11-11T22:01:14+05:30
 draft: false
-Weight: 5
+weight: 5
 aliases:
   - /document-data/project-setup
   - /topics/project-management/principles-of-project-setup-and-workflow-management/documenting-data

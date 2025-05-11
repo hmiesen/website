@@ -2,7 +2,7 @@
 tutorialtitle: "Running Computations Remotely"
 type: "running-computations-remotely"
 indexexclude: "true"
-title: "Connect Instance"
+title: "Part 2: Connect Instance"
 description: "Learn how to run computations remotely"
 keywords: "cloud computing, azure, amazon, google, virtual machine"
 weight: 102

@@ -1,10 +1,9 @@
 ---
-# tutorialtitle: "Practicing Pipeline Automation using Make"
 type: "practicing-pipeline-automation-make"
 indexexclude: "true"
 weight: 2
 keywords: "verify, video"
-title: "Verify Software Setup"
+title: "Part 2: Verify Software Setup"
 date: 2021-01-06T22:01:14+05:30
 draft: false
 aliases:

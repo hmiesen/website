@@ -1,9 +1,8 @@
 ---
-# tutorialtitle: "Practicing Pipeline Automation using Make"
 type: "practicing-pipeline-automation-make"
 indexexclude: "true"
 weight: 6
-title: "Dry-run of Make and First Modifications"
+title: "Part 6: Dry-run of Make and First Modifications"
 date: 2021-01-06T22:01:14+05:30
 draft: false
 keywords: "modifications, data preparation"

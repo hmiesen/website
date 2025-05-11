@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Principles of Project Setup and Workflow Management"
 type: "principles-of-project-setup"
 indexexclude: "true"
-title: "Checklist to Audit Data- and Computation-intensive Projects"
+title: "Part 9: Checklist to Audit Data- and Computation-intensive Projects"
 description: "Here is a checklist to audit your progress in making your workflows efficient, reproducible, and well-structured."
 keywords: "checklist, workflow, efficient, reproducible"
 date: 2020-11-11T22:01:14+05:30

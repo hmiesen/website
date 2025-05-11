@@ -1,7 +1,6 @@
 ---
-tutorialtitle: "Write Your First LaTeX Document in 15 Minutes"
 type: "write-your-first-latex-document"
-title: "The Fine Art of Typesetting"
+title: "Part 1: The Fine Art of Typesetting"
 description: "Learn to write your very first professional-looking document with LaTeX."
 keywords: "first, latex, beginner, typesetting"
 weight: 100

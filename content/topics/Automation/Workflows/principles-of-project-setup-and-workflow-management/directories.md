@@ -1,14 +1,13 @@
 ---
-tutorialtitle: "Principles of Project Setup and Workflow Management"
 type: "principles-of-project-setup"
 indexexclude: "true"
-title: "Data Management and Directory Structure"
+title: "Part 3: Data Management and Directory Structure"
 description: "A guide on how to manage project components, by casting a
 prototypical directory structure."
 keywords: "data, directory, directories, data management, structure, raw, generated, source"
 date: 2020-10-10T22:01:14+05:30
 draft: false
-Weight: 3
+weight: 3
 aliases:
   - /structure/project-setup
   - /topics/project-management/principles-of-project-setup-and-workflow-management/directories

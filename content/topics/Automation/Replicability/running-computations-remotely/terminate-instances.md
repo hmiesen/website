@@ -1,7 +1,6 @@
 ---
-tutorialtitle: "Running Computations Remotely"
 type: "running-computations-remotely"
-title: "Terminate Instance"
+title: "Part 6: Terminate Instance"
 indexexclude: "true"
 description: "Learn how to run computations remotely"
 keywords: "cloud computing, azure, amazon, google, virtual machine"
