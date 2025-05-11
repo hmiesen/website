@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Principles of Project Setup and Workflow Management"
 type: "principles-of-project-setup"
 indexexclude: "true"
-title: "Documenting Source Code and Pipeline Workflows"
+title: "Part 6: Documenting Source Code and Pipeline Workflows"
 date: 2020-11-11T22:01:14+05:30
 description: "Documenting your project's workflow, not only for others, but also for your future self is absolutely crucial. Learn how."
 keywords: "document, code, workflow, reference, comment, documentation"

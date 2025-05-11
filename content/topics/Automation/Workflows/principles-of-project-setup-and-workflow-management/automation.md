@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Principles of Project Setup and Workflow Management"
 type: "principles-of-project-setup"
 indexexclude: "true"
-title: "Automating your Pipeline"
+title: "Part 4: Automating your Pipeline"
 description: "We can automate our pipeline using so-called build tools to execute sequential code files."
 keywords: "make, data, automation, build, recipe, pipeline"
 date: 2020-11-11T22:01:14+05:30
