@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Running Computations Remotely"
 type: "running-computations-remotely"
 indexexclude: "true"
-title: "Launch Instance"
+title: "Part 2: Launch Instance"
 description: "Learn how to run computations remotely"
 keywords: "cloud computing, azure, amazon, google, virtual machine"
 weight: 101
