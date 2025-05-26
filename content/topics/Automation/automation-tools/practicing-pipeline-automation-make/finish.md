@@ -1,9 +1,8 @@
 ---
-# tutorialtitle: "Practicing Pipeline Automation using Make"
 type: "practicing-pipeline-automation-make"
 indexexclude: "true"
 weight: 9
-title: "Wrap-Up"
+title: "Part 9: Wrap-Up"
 date: 2021-01-06T22:01:14+05:30
 keywords: "wrap-up, conclusion"
 draft: false

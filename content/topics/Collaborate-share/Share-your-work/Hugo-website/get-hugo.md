@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Create Your Own Website in 15 Minutes"
 type: "hugo-website"
 indexexclude: "true"
-title: "Get Hugo"
+title: "Part 2: Get Hugo"
 description: "Learn how to install Hugo, a famous static site generator."
 keywords: "hugo, static, website, generator, class, academic"
 date: 2021-01-06T22:01:14+05:30

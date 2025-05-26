@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Shoot Educational Videos"
 type: "educational-videos"
 indexexclude: "true"
-title: "Buying Equipment for Educational Videos"
+title: "Part 2: Buying Equipment for Educational Videos"
 description: "Learn what equipment is need to get you started producing educational videos."
 keywords: "educational, videos, shooting, camera, teaching, tips, lighting, lenses, microphone, audio"
 date: 2021-01-06T22:01:14+05:30
