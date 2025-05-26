@@ -54,7 +54,7 @@ headers = {
 }
 
 # Generate target repositoryURL using Github API
-username = 'hmiesen'
+username = 'tilburgsciencehub'
 Repositoryname = 'website'
 url = "https://api.github.com/repos/{}/{}/issues".format(username,Repositoryname)
 
