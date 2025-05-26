@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Shoot Educational Videos"
 type: "educational-videos"
 indexexclude: "true"
-title: "Shooting Educational Videos"
+title: "Part 3: Shooting Educational Videos"
 description: "Learn about the essential steps required to shoot and produce educational videos."
 keywords: "educational, videos, shooting, camera, teaching, tips, lighting, lenses, microphone, audio"
 date: 2021-01-06T22:01:14+05:30

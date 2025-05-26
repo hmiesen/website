@@ -1,7 +1,6 @@
 ---
-tutorialtitle: "Running Computations Remotely"
 type: "running-computations-remotely"
-title: "Run Scripts"
+title: "Part 5: Run Scripts"
 indexexclude: "true"
 description: "Learn how to run computations remotely"
 keywords: "cloud computing, azure, amazon, google, virtual machine"

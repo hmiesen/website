@@ -1,8 +1,7 @@
 ---
-tutorialtitle: "Write Your First LaTeX Document in 15 Minutes"
 type: "write-your-first-latex-document"
 indexexclude: "true"
-title: "Setup LaTeX"
+title: "Part 2: Setup LaTeX"
 description: "Learn to setup your computer to produce LaTeX documents."
 keywords: "setup, latex, vscode, overleaf, tex, editor"
 weight: 101

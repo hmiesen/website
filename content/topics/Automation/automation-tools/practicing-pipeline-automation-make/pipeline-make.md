@@ -1,9 +1,8 @@
 ---
-# tutorialtitle: "Practicing Pipeline Automation using Make"
 type: "practicing-pipeline-automation-make"
 indexexclude: "true"
 weight: 5
-title: "Inspecting the Data-preparation Pipeline"
+title: "Part 5: Inspecting the Data-preparation Pipeline"
 keywords: "makefile, practice"
 date: 2021-01-06T22:01:14+05:30
 draft: false
