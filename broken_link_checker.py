@@ -1,13 +1,9 @@
 from usp.tree import sitemap_tree_for_homepage
 from bs4 import BeautifulSoup
-from urllib3.util.retry import Retry
 import pandas as pd
-import json
-from datetime import datetime
 import os
-from itertools import islice
+from datetime import datetime
 from urllib.parse import urljoin, urlparse
-from collections import defaultdict
 import traceback
 import asyncio
 import aiohttp
@@ -17,72 +13,49 @@ import time
 # Domain
 full_domain = 'https://tilburgsciencehub.com/'
 
-# Sitemap listpages
+# Data containers
 list_pages_raw = []
 list_pages = []
-
-# Links on pages
 all_extracted_links = []
 unique_http_links_to_check = []
+broken_links_dict = {'link': [], 'statusCode': []}
 
-# Simulate a real browser
+# Configs
 user_agent = {'User-Agent': 'Mozilla/5.0'}
-
-# Skip the following URL's
 skipped_prefixes = {
     "https://tilburgsciencehub.com/tour",
     "https://tilburgsciencehub.com/researcher-tour",
 }
 
-def is_skipped_for_reporting(link):
-    return any(link.startswith(prefix) for prefix in skipped_prefixes)
-
-# Broken link dict
-broken_links_dict = {'link':[],'statusCode':[]}
-
-# Git token by git secret
 token = os.environ['GIT_TOKEN']
-
-# Git headers authorization
 headers = {
     "Authorization": f"Bearer {token}",
     "Accept": "application/vnd.github+json",
     "Content-Type": "application/json"
 }
 
-# Generate target repositoryURL using Github API
-username = 'hmiesen'
+username = 'tilburgsciencehub'
 repository_name = 'website'
-url = "https://api.github.com/repos/{}/{}/issues".format(username,repository_name)
+url = f"https://api.github.com/repos/{username}/{repository_name}/issues"
 
-# Github table setup
-tablehead = "| Page URL | Broken Link URL | Anchor Text | Status Code |\n|---|---|---|---|\n"
+def is_skipped_for_reporting(link):
+    return any(link.startswith(prefix) for prefix in skipped_prefixes)
 
-## Functions
 def get_pages_from_sitemap(full_domain, max_pages=10):
     list_pages_raw.clear()
     tree = sitemap_tree_for_homepage(full_domain)
-
-    if max_pages == "all":
-        pages = tree.all_pages()
-    else:
-        pages = islice(tree.all_pages(), max_pages)
-
+    pages = tree.all_pages() if max_pages == "all" else list(tree.all_pages())[:max_pages]
     for page in pages:
         list_pages_raw.append(page.url)
-
     print(f"🔍 Loaded {len(list_pages_raw)} pages from sitemap (limit = {max_pages})")
 
 def get_list_unique_pages():
     list_pages.clear()
     list_pages.extend(sorted(set(list_pages_raw)))
-    print(f"🔍 The following unique pages have been generated ({len(list_pages)} total):")
-    for page in list_pages:
-        print(f" - {page}")
+    print(f"🔍 Unique pages: {len(list_pages)}")
 
 async def async_extract_all_http_links(list_pages, full_domain, session):
     all_extracted_links.clear()
-
     for url in list_pages:
         try:
             async with session.get(url, headers=user_agent, allow_redirects=False) as response:
@@ -96,125 +69,63 @@ async def async_extract_all_http_links(list_pages, full_domain, session):
         for link in links:
             href = link.get("href", "")
             text = link.get_text(strip=True)
-
             if not href or href.startswith("#") or ('.py' in href and 'http' not in href):
                 continue
-
             absolute_url = urljoin(url, href)
-
             if "github.com" in absolute_url and "/issues/new" in absolute_url:
                 continue
-
             if absolute_url == url:
                 all_extracted_links.append([url, 'Same destination as page', text])
             else:
                 all_extracted_links.append([url, absolute_url, text])
 
-
-for entry in all_extracted_links[:5]:
-    print("🔗", entry)
-
 def filter_unique_http_links(all_extracted_links):
     unique_http_links_to_check.clear()
     seen = set()
-
     for _, link, _ in all_extracted_links:
-        if not link.startswith("http"):
+        if not link.startswith("http") or is_skipped_for_reporting(link):
             continue
-
-        if is_skipped_for_reporting(link):
+        if any(bad in link for bad in ["linkedin.com/sharing", "twitter.com/intent", "facebook.com/sharer", "mailto:", "javascript:"]):
             continue
-
-        if any(bad in link for bad in [
-            "linkedin.com/sharing",
-            "twitter.com/intent",
-            "facebook.com/sharer",
-            "mailto:",
-            "javascript:",
-        ]):
-            continue
-
         if link not in seen:
             unique_http_links_to_check.append(link)
             seen.add(link)
-
-    print(f"✅ Remaining unique links after filtering: {len(unique_http_links_to_check)}")
-    for link in unique_http_links_to_check:
-        print("🔗", link)
-
-# Clear previous results
-broken_links_dict.clear()
-broken_links_dict.update({'link': [], 'statusCode': []})
+    print(f"✅ Filtered links: {len(unique_http_links_to_check)}")
 
 async def async_check_url(session, url):
     try:
-        # Try HEAD-request
         try:
             async with session.head(url, allow_redirects=True, timeout=8) as response:
                 return {"link": url, "statusCode": response.status, "errorType": None}
-        except (aiohttp.ClientError, asyncio.TimeoutError) as head_error:
-            # HEAD failed → fallback on GET
-            try:
-                async with session.get(url, allow_redirects=True, timeout=8) as response:
-                    return {"link": url, "statusCode": response.status, "errorType": None}
-            except Exception as get_error:
-                return {"link": url, "statusCode": None, "errorType": f"GET error: {repr(get_error)}"}
-
-    except asyncio.TimeoutError:
-        return {"link": url, "statusCode": None, "errorType": "Timeout"}
-    except aiohttp.ClientConnectorError as e:
-        return {"link": url, "statusCode": None, "errorType": f"Connection error: {repr(e)}"}
-    except aiohttp.ClientSSLError as e:
-        return {"link": url, "statusCode": None, "errorType": f"SSL error: {repr(e)}"}
-    except aiohttp.ClientResponseError as e:
-        return {"link": url, "statusCode": None, "errorType": f"Invalid response: {repr(e)}"}
-    except aiohttp.ClientError as e:
-        return {"link": url, "statusCode": None, "errorType": f"Client error: {repr(e)}"}
+        except:
+            async with session.get(url, allow_redirects=True, timeout=8) as response:
+                return {"link": url, "statusCode": response.status, "errorType": None}
     except Exception as e:
-        return {"link": url, "statusCode": None, "errorType": f"Unknown error: {repr(e)}"}
-    
-async def run_extraction():
+        return {"link": url, "statusCode": None, "errorType": repr(e)}
+
+async def check_all_urls(urls, concurrency=50):
     timeout = ClientTimeout(total=8)
-    connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
-
-    async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
-        await async_extract_all_http_links(list_pages, full_domain, session)
-
-# Call in main-flow:
-asyncio.run(run_extraction())
-
-from urllib.parse import urlparse
+    connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
+    async with aiohttp.ClientSession(timeout=timeout, connector=connector, headers=user_agent) as session:
+        tasks = [async_check_url(session, url) for url in urls]
+        return await asyncio.gather(*tasks)
 
 def identify_broken_links(unique_external_links):
-    print(f"🚀 Starting async link check for {len(unique_external_links)} URLs...\n")
-
+    print(f"🚀 Checking {len(unique_external_links)} URLs...")
     results = asyncio.run(check_all_urls(unique_external_links, concurrency=50))
-
     for result in results:
         link = result["link"]
         status = result["statusCode"]
         error = result["errorType"]
-
-        if isinstance(status, int):
-            if status == 403:
-                print(f"⏭️ Skipping 403 (likely bot protection): {link}")
-                continue  # do not report
-            elif 400 <= status <= 599:
-                if is_skipped_for_reporting(link):
-                    print(f"ℹ️  [{status}] {link} (ignored from reporting)")
-                    continue
-                print(f"❌ [{status}] {link}")
-                broken_links_dict['link'].append(link)
-                broken_links_dict['statusCode'].append(status)
-            elif status in [301, 302]:
-                continue  # redirects negeren
-            else:
-                print(f"✅ [{status}] {link}")
-
+        if isinstance(status, int) and 400 <= status <= 599:
+            if is_skipped_for_reporting(link):
+                continue
+            print(f"❌ [{status}] {link}")
+            broken_links_dict['link'].append(link)
+            broken_links_dict['statusCode'].append(status)
         elif error:
-            print(f"⚠️ Skipped (non-HTTP): {link} → {error}")
+            print(f"⚠️ {link} → {error}")
 
-# Identify unique broken links and match them to original list of all external links
 def match_broken_links(external_links_list_raw):
     matched_broken = [
         [source, link, anchor, status]
@@ -222,112 +133,63 @@ def match_broken_links(external_links_list_raw):
         for i, b in enumerate(broken_links_dict['link'])
         if link == b and (status := broken_links_dict['statusCode'][i])
     ]
-
-    all_matched = matched_broken
-    df_all = pd.DataFrame(all_matched, columns=["Page URL", "Broken Link URL", "Anchor Text", "statusCode"])
-
-    # Separate internal and external links
+    df_all = pd.DataFrame(matched_broken, columns=["Page URL", "Broken Link URL", "Anchor Text", "statusCode"])
     own_domain = urlparse(full_domain).netloc.replace("www.", "")
     df_internal = df_all[df_all["Broken Link URL"].apply(lambda x: own_domain in urlparse(x).netloc)]
     df_external = df_all[df_all["Broken Link URL"].apply(lambda x: own_domain not in urlparse(x).netloc)]
-
-    print("🧪 Columns in df_external:", df_external.columns.tolist())
-    print("🔢 Rows in df_external:", len(df_external))
-    print(df_external.head(3))
-
     return df_internal, df_external
 
 def push_issue_git_batched(df_internal, df_external, batch_size=500, max_issues=10):
     if df_internal.empty and df_external.empty:
         print("✅ No broken links found.")
         return
-
-    df_combined = pd.concat([df_internal, df_external], ignore_index=True)
-    df_combined = df_combined.reset_index(drop=True).drop_duplicates()
-
-    if 'statusCode' not in df_combined.columns:
-        print("⚠️ No 'statusCode' column found in combined DataFrame. Skipping issue creation.")
-        print(f"Columns present: {df_combined.columns.tolist()}")
-        return
-
+    df_combined = pd.concat([df_internal, df_external], ignore_index=True).drop_duplicates()
     df_combined['statusCode'] = df_combined['statusCode'].astype(str)
-    df_combined = df_combined.sort_values(by=['statusCode', 'Page URL'])
-
-    if df_combined.empty:
-        print("✅ No broken links found.")
-        return
-
-    total_batches = (len(df_combined) - 1) // batch_size + 1
-    total_batches = min(total_batches, max_issues)
+    total_batches = min((len(df_combined) - 1) // batch_size + 1, max_issues)
 
     for batch_num in range(total_batches):
         df_batch = df_combined.iloc[batch_num * batch_size:(batch_num + 1) * batch_size]
         dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-        title_issue = f'Broken/Error Links (Batch {batch_num + 1}/{total_batches}) - {dt_string}'
+        title = f'Broken Links (Batch {batch_num + 1}) - {dt_string}'
 
-        def build_section(title, df):
-            section = f"\n### {title}\n"
-            section += "| Page URL | Broken Link URL | Anchor Text | Status Code |\n"
-            section += "|---|---|---|---|\n"
+        def build_table(title, df):
+            table = f"\n### {title}\n| Page URL | Broken Link URL | Anchor Text | Status Code |\n|---|---|---|---|\n"
             for _, row in df.iterrows():
                 anchortext = row['Anchor Text'].replace("\n", ' ') if isinstance(row['Anchor Text'], str) else ''
-                section += f"| {row['Page URL']} | {row['Broken Link URL']} | {anchortext} | {row['statusCode']} |\n"
-            return section
+                table += f"| {row['Page URL']} | {row['Broken Link URL']} | {anchortext} | {row['statusCode']} |\n"
+            return table
 
         df_internal_batch = df_batch[df_batch["Broken Link URL"].apply(lambda x: urlparse(x).netloc.endswith("tilburgsciencehub.com"))]
         df_external_batch = df_batch[df_batch["Broken Link URL"].apply(lambda x: not urlparse(x).netloc.endswith("tilburgsciencehub.com"))]
 
-        table = ""
+        issue_body = f"Batch {batch_num + 1}: {len(df_batch)} broken links found.\n"
         if not df_internal_batch.empty:
-            table += build_section("🔁 Internal Broken Links", df_internal_batch)
+            issue_body += build_table("🔁 Internal Broken Links", df_internal_batch)
         if not df_external_batch.empty:
-            table += build_section("🌍 External Broken Links", df_external_batch)
+            issue_body += build_table("🌍 External Broken Links", df_external_batch)
 
-        issue_body = (
-            f"Batch {batch_num + 1} of {total_batches}: {len(df_batch)} broken link(s) found.\n"
-            f"The following errors were detected:\n{table}"
-        )
-
-        max_length = 65536
-        if len(issue_body) > max_length:
-            print(f"⚠️ Issue body exceeded 65536 characters — truncating.")
-            issue_body = issue_body[:max_length - 100] + "\n\n... (truncated)"
-
-        data = {"title": title_issue, "body": issue_body}
-
+        data = {"title": title, "body": issue_body[:65000]}  # truncated if too long
         try:
-            response = requests.post(url, json=data, headers=headers)
-            if response.status_code == 201:
-                print(f'✅ Issue created for batch {batch_num + 1}/{total_batches}')
-            elif response.status_code == 403 and "rate limit" in response.text.lower():
-                print(f"⛔ Rate limit hit — stopping after batch {batch_num + 1}")
-                break
-            else:
-                print(f'❌ Failed to create issue for batch {batch_num + 1}: {response.status_code} - {response.text}')
+            response = aiohttp.request("POST", url, headers=headers, json=data)
+            print(f"✅ Created issue for batch {batch_num + 1}")
         except Exception as e:
-            print(f'❌ Error for batch {batch_num + 1}: {str(e)}')
-            traceback.print_exc()
-
+            print(f"❌ Error creating issue: {str(e)}")
         time.sleep(1)
 
 async def main_async_scraper():
-    # Load pages from sitemap
     get_pages_from_sitemap(full_domain, max_pages="all")
     get_list_unique_pages()
 
-    # Setup aiohttp session
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
 
     async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
         await async_extract_all_http_links(list_pages, full_domain, session)
 
-    # Continue processing
     filter_unique_http_links(all_extracted_links)
     identify_broken_links(unique_http_links_to_check)
     df_internal, df_external = match_broken_links(all_extracted_links)
     push_issue_git_batched(df_internal, df_external)
 
-# Run the async pipeline
 if __name__ == "__main__":
     asyncio.run(main_async_scraper())
