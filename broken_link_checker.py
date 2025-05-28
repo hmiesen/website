@@ -141,42 +141,49 @@ def match_broken_links(external_links_list_raw):
     df_external = df_all[df_all["Broken Link URL"].apply(lambda x: own_domain not in urlparse(x).netloc)]
     return df_internal, df_external
 
-def push_issue_git_batched(df_internal, df_external, batch_size=500, max_issues=10):
+async def push_issue_git_batched(df_internal, df_external, batch_size=500, max_issues=10):
     if df_internal.empty and df_external.empty:
         print("✅ No broken links found.")
         return
+
     df_combined = pd.concat([df_internal, df_external], ignore_index=True).drop_duplicates()
     df_combined['statusCode'] = df_combined['statusCode'].astype(str)
+
     total_batches = min((len(df_combined) - 1) // batch_size + 1, max_issues)
 
-    for batch_num in range(total_batches):
-        df_batch = df_combined.iloc[batch_num * batch_size:(batch_num + 1) * batch_size]
-        dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-        title = f'Broken Links (Batch {batch_num + 1}) - {dt_string}'
+    async with aiohttp.ClientSession(headers=headers) as session:
+        for batch_num in range(total_batches):
+            df_batch = df_combined.iloc[batch_num * batch_size:(batch_num + 1) * batch_size]
+            dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            title = f'Broken Links (Batch {batch_num + 1}) - {dt_string}'
 
-        def build_table(title, df):
-            table = f"\n### {title}\n| Page URL | Broken Link URL | Anchor Text | Status Code |\n|---|---|---|---|\n"
-            for _, row in df.iterrows():
-                anchortext = row['Anchor Text'].replace("\n", ' ') if isinstance(row['Anchor Text'], str) else ''
-                table += f"| {row['Page URL']} | {row['Broken Link URL']} | {anchortext} | {row['statusCode']} |\n"
-            return table
+            def build_table(title, df):
+                table = f"\n### {title}\n| Page URL | Broken Link URL | Anchor Text | Status Code |\n|---|---|---|---|\n"
+                for _, row in df.iterrows():
+                    anchortext = row['Anchor Text'].replace("\n", ' ') if isinstance(row['Anchor Text'], str) else ''
+                    table += f"| {row['Page URL']} | {row['Broken Link URL']} | {anchortext} | {row['statusCode']} |\n"
+                return table
 
-        df_internal_batch = df_batch[df_batch["Broken Link URL"].apply(lambda x: urlparse(x).netloc.endswith("tilburgsciencehub.com"))]
-        df_external_batch = df_batch[df_batch["Broken Link URL"].apply(lambda x: not urlparse(x).netloc.endswith("tilburgsciencehub.com"))]
+            df_internal_batch = df_batch[df_batch["Broken Link URL"].apply(lambda x: urlparse(x).netloc.endswith("tilburgsciencehub.com"))]
+            df_external_batch = df_batch[df_batch["Broken Link URL"].apply(lambda x: not urlparse(x).netloc.endswith("tilburgsciencehub.com"))]
 
-        issue_body = f"Batch {batch_num + 1}: {len(df_batch)} broken links found.\n"
-        if not df_internal_batch.empty:
-            issue_body += build_table("🔁 Internal Broken Links", df_internal_batch)
-        if not df_external_batch.empty:
-            issue_body += build_table("🌍 External Broken Links", df_external_batch)
+            issue_body = f"Batch {batch_num + 1}: {len(df_batch)} broken links found.\n"
+            if not df_internal_batch.empty:
+                issue_body += build_table("🔁 Internal Broken Links", df_internal_batch)
+            if not df_external_batch.empty:
+                issue_body += build_table("🌍 External Broken Links", df_external_batch)
 
-        data = {"title": title, "body": issue_body[:65000]}  # truncated if too long
-        try:
-            response = aiohttp.request("POST", url, headers=headers, json=data)
-            print(f"✅ Created issue for batch {batch_num + 1}")
-        except Exception as e:
-            print(f"❌ Error creating issue: {str(e)}")
-        time.sleep(1)
+            data = {"title": title, "body": issue_body[:65000]}  # truncate if needed
+
+            try:
+                async with session.post(url, json=data) as response:
+                    if response.status == 201:
+                        print(f"✅ Issue created for batch {batch_num + 1}")
+                    else:
+                        print(f"❌ Failed to create issue {batch_num + 1}: {response.status} - {await response.text()}")
+            except Exception as e:
+                print(f"❌ Error creating issue for batch {batch_num + 1}: {str(e)}")
+            await asyncio.sleep(1)  # respectful pause
 
 async def main_async_scraper():
     get_pages_from_sitemap(full_domain, max_pages="all")
