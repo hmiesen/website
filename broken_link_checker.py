@@ -198,7 +198,7 @@ async def main_async_scraper():
     filter_unique_http_links(all_extracted_links)
     await identify_broken_links(unique_http_links_to_check)
     df_internal, df_external = match_broken_links(all_extracted_links)
-    push_issue_git_batched(df_internal, df_external)
+    await push_issue_git_batched(df_internal, df_external)
 
 if __name__ == "__main__":
     asyncio.run(main_async_scraper())
