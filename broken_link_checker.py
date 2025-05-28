@@ -94,6 +94,8 @@ def filter_unique_http_links(all_extracted_links):
 
 async def async_check_url(session, url):
     try:
+        await asyncio.sleep(0.5)
+
         try:
             async with session.head(url, allow_redirects=True, timeout=8) as response:
                 return {"link": url, "statusCode": response.status, "errorType": None}
@@ -103,7 +105,7 @@ async def async_check_url(session, url):
     except Exception as e:
         return {"link": url, "statusCode": None, "errorType": repr(e)}
 
-async def check_all_urls(urls, concurrency=50):
+async def check_all_urls(urls, concurrency=5):
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
     async with aiohttp.ClientSession(timeout=timeout, connector=connector, headers=user_agent) as session:
