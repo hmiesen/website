@@ -114,19 +114,31 @@ async def identify_broken_links(unique_external_links):
     print(f"🚀 Checking {len(unique_external_links)} URLs...")
     results = await check_all_urls(unique_external_links, concurrency=50)
 
+    own_domain = urlparse(full_domain).netloc.replace("www.", "")
+
     for result in results:
         link = result["link"]
         status = result["statusCode"]
         error = result["errorType"]
 
-        if isinstance(status, int) and 400 <= status <= 599:
-            if is_skipped_for_reporting(link):
+        if is_skipped_for_reporting(link):
+            continue
+
+        # Alleen links buiten het eigen domein (= extern)
+        is_external = own_domain not in urlparse(link).netloc
+
+        if isinstance(status, int):
+            if status == 403:
+                print(f"⏭️ Skipping 403 Forbidden (bot protection): {link}")
                 continue
-            print(f"❌ [{status}] {link}")
-            broken_links_dict['link'].append(link)
-            broken_links_dict['statusCode'].append(status)
+            elif is_external and status in [404, 410] or (500 <= status <= 599):
+                print(f"❌ [{status}] {link}")
+                broken_links_dict['link'].append(link)
+                broken_links_dict['statusCode'].append(status)
+            else:
+                print(f"✅ [{status}] {link}")
         elif error:
-            print(f"⚠️ {link} → {error}")
+            print(f"⚠️ Skipped (non-HTTP): {link} → {error}")
 
 def match_broken_links(external_links_list_raw):
     matched_broken = [
