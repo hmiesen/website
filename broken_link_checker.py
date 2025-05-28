@@ -1,7 +1,5 @@
 from usp.tree import sitemap_tree_for_homepage
 from bs4 import BeautifulSoup
-import requests
-from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import pandas as pd
 import json
@@ -99,22 +97,19 @@ async def async_extract_all_http_links(list_pages, full_domain, session):
             href = link.get("href", "")
             text = link.get_text(strip=True)
 
-            # Skip anchors and local script links
             if not href or href.startswith("#") or ('.py' in href and 'http' not in href):
                 continue
 
-            # Resolve relative URLs
             absolute_url = urljoin(url, href)
 
-            # Skip GitHub issue forms
             if "github.com" in absolute_url and "/issues/new" in absolute_url:
                 continue
 
-            # Skip if same as page
             if absolute_url == url:
                 all_extracted_links.append([url, 'Same destination as page', text])
             else:
                 all_extracted_links.append([url, absolute_url, text])
+
 
 for entry in all_extracted_links[:5]:
     print("🔗", entry)
@@ -315,11 +310,24 @@ def push_issue_git_batched(df_internal, df_external, batch_size=500, max_issues=
 
         time.sleep(1)
 
-# # Execute Functions
-get_pages_from_sitemap(full_domain, max_pages="all")
-get_list_unique_pages()
-async_extract_all_http_links(list_pages, full_domain)
-filter_unique_http_links(all_extracted_links)
-identify_broken_links(unique_http_links_to_check)
-df_internal, df_external = match_broken_links(all_extracted_links)
-push_issue_git_batched(df_internal, df_external)
+async def main_async_scraper():
+    # Load pages from sitemap
+    get_pages_from_sitemap(full_domain, max_pages="all")
+    get_list_unique_pages()
+
+    # Setup aiohttp session
+    timeout = ClientTimeout(total=8)
+    connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
+
+    async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
+        await async_extract_all_http_links(list_pages, full_domain, session)
+
+    # Continue processing
+    filter_unique_http_links(all_extracted_links)
+    identify_broken_links(unique_http_links_to_check)
+    df_internal, df_external = match_broken_links(all_extracted_links)
+    push_issue_git_batched(df_internal, df_external)
+
+# Run the async pipeline
+if __name__ == "__main__":
+    asyncio.run(main_async_scraper())
