@@ -124,16 +124,24 @@ async def identify_broken_links(unique_external_links):
         if is_skipped_for_reporting(link):
             continue
 
-        is_external = own_domain not in urlparse(link).netloc
+        is_internal = own_domain in urlparse(link).netloc
+        is_external = not is_internal
 
         if isinstance(status, int):
-            if status == 403:
-                print(f"⏭️ Skipping 403 Forbidden (bot protection): {link}")
+            if status == 403 and is_external:
+                print(f"⏭️ Skipping external 403 (likely bot protection): {link}")
                 continue
-            elif is_external and status in [404, 410] or (500 <= status <= 599):
-                print(f"❌ [{status}] {link}")
+
+            if is_internal and 400 <= status <= 599:
+                print(f"❌ Internal [{status}] {link}")
                 broken_links_dict['link'].append(link)
                 broken_links_dict['statusCode'].append(status)
+
+            elif is_external and (status in [404, 410] or status >= 500):
+                print(f"❌ External [{status}] {link}")
+                broken_links_dict['link'].append(link)
+                broken_links_dict['statusCode'].append(status)
+
             else:
                 print(f"✅ [{status}] {link}")
         elif error:
