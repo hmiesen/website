@@ -34,7 +34,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
-username = 'tilburgsciencehub'
+username = 'hmiesen'
 repository_name = 'website'
 url = f"https://api.github.com/repos/{username}/{repository_name}/issues"
 
