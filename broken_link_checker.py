@@ -110,9 +110,9 @@ async def check_all_urls(urls, concurrency=50):
         tasks = [async_check_url(session, url) for url in urls]
         return await asyncio.gather(*tasks)
 
-async def identify_broken_links(unique_external_links):
-    print(f"🚀 Checking {len(unique_external_links)} URLs...")
-    results = await check_all_urls(unique_external_links, concurrency=50)
+async def check_links_for_errors(links_to_check):
+    print(f"🚀 Checking {len(links_to_check)} URLs...")
+    results = await check_all_urls(links_to_check, concurrency=50)
 
     own_domain = urlparse(full_domain).netloc.replace("www.", "")
 
@@ -215,7 +215,7 @@ async def main_async_scraper():
         await async_extract_all_http_links(list_pages, full_domain, session)
 
     filter_unique_http_links(all_extracted_links)
-    await identify_broken_links(unique_http_links_to_check)
+    await check_links_for_errors(unique_http_links_to_check)
     df_internal, df_external = match_broken_links(all_extracted_links)
     await push_issue_git_batched(df_internal, df_external)
 
