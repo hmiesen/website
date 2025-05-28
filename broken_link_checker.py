@@ -10,7 +10,6 @@ import os
 from itertools import islice
 from urllib.parse import urljoin, urlparse
 from collections import defaultdict
-import pandas as pd
 import traceback
 import asyncio
 import aiohttp
@@ -54,7 +53,7 @@ headers = {
 }
 
 # Generate target repositoryURL using Github API
-username = 'tilburgsciencehub'
+username = 'hmiesen'
 repository_name = 'website'
 url = "https://api.github.com/repos/{}/{}/issues".format(username,repository_name)
 
@@ -83,14 +82,15 @@ def get_list_unique_pages():
     for page in list_pages:
         print(f" - {page}")
 
-def extract_all_http_links(list_pages, full_domain):
+async def extract_all_http_links_async(list_pages, full_domain, session):
     all_extracted_links.clear()
-    
+
     for url in list_pages:
         try:
-            response = requests.get(url, headers=user_agent, allow_redirects=False)
-            soup = BeautifulSoup(response.content, 'html.parser')
-            links = soup.find_all("a")
+            async with session.get(url, headers=user_agent, allow_redirects=False) as response:
+                html = await response.text()
+                soup = BeautifulSoup(html, 'html.parser')
+                links = soup.find_all("a")
         except Exception as e:
             print(f"⚠️ Failed to fetch {url}: {e}")
             continue
@@ -99,16 +99,16 @@ def extract_all_http_links(list_pages, full_domain):
             href = link.get("href", "")
             text = link.get_text(strip=True)
 
-            # Skip anchors
+            # Skip anchors and local script links
             if not href or href.startswith("#") or ('.py' in href and 'http' not in href):
                 continue
 
             # Resolve relative URLs
             absolute_url = urljoin(url, href)
 
-            # Skip GitHub forms
+            # Skip GitHub issue forms
             if "github.com" in absolute_url and "/issues/new" in absolute_url:
-               continue
+                continue
 
             # Skip if same as page
             if absolute_url == url:
