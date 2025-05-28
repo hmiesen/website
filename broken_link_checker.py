@@ -110,13 +110,15 @@ async def check_all_urls(urls, concurrency=50):
         tasks = [async_check_url(session, url) for url in urls]
         return await asyncio.gather(*tasks)
 
-def identify_broken_links(unique_external_links):
+async def identify_broken_links(unique_external_links):
     print(f"🚀 Checking {len(unique_external_links)} URLs...")
-    results = asyncio.run(check_all_urls(unique_external_links, concurrency=50))
+    results = await check_all_urls(unique_external_links, concurrency=50)
+
     for result in results:
         link = result["link"]
         status = result["statusCode"]
         error = result["errorType"]
+
         if isinstance(status, int) and 400 <= status <= 599:
             if is_skipped_for_reporting(link):
                 continue
@@ -187,7 +189,7 @@ async def main_async_scraper():
         await async_extract_all_http_links(list_pages, full_domain, session)
 
     filter_unique_http_links(all_extracted_links)
-    identify_broken_links(unique_http_links_to_check)
+    await identify_broken_links(unique_http_links_to_check)
     df_internal, df_external = match_broken_links(all_extracted_links)
     push_issue_git_batched(df_internal, df_external)
 
