@@ -82,7 +82,7 @@ def get_list_unique_pages():
     for page in list_pages:
         print(f" - {page}")
 
-async def extract_all_http_links_async(list_pages, full_domain, session):
+async def async_extract_all_http_links(list_pages, full_domain, session):
     all_extracted_links.clear()
 
     for url in list_pages:
@@ -178,22 +178,15 @@ async def async_check_url(session, url):
     except Exception as e:
         return {"link": url, "statusCode": None, "errorType": f"Unknown error: {repr(e)}"}
     
-async def check_all_urls(urls, concurrency=100):
+async def run_extraction():
     timeout = ClientTimeout(total=8)
-    connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
+    connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
 
-    async with aiohttp.ClientSession(
-        timeout=timeout,
-        connector=connector,
-        headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.5",
-            "Referer": "https://google.com"
-        }
-    ) as session:
-        tasks = [async_check_url(session, url) for url in urls]
-        return await asyncio.gather(*tasks)
+    async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
+        await async_extract_all_http_links(list_pages, full_domain, session)
+
+# Call in main-flow:
+asyncio.run(run_extraction())
 
 from urllib.parse import urlparse
 
@@ -325,7 +318,7 @@ def push_issue_git_batched(df_internal, df_external, batch_size=500, max_issues=
 # # Execute Functions
 get_pages_from_sitemap(full_domain, max_pages="all")
 get_list_unique_pages()
-extract_all_http_links(list_pages, full_domain)
+async_extract_all_http_links(list_pages, full_domain)
 filter_unique_http_links(all_extracted_links)
 identify_broken_links(unique_http_links_to_check)
 df_internal, df_external = match_broken_links(all_extracted_links)
