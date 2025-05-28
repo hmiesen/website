@@ -18,30 +18,30 @@ from aiohttp import ClientTimeout
 import time
 
 # Domain
-fullDomain = 'https://tilburgsciencehub.com/'
+full_domain = 'https://tilburgsciencehub.com/'
 
 # Sitemap listpages
-listPages_Raw = []
-listPages = []
+list_pages_raw = []
+list_pages = []
 
 # Links on pages
-allExtractedLinks = []
-uniqueHttpLinksToCheck = []
+all_extracted_links = []
+unique_http_links_to_check = []
 
 # Simulate a real browser
 user_agent = {'User-Agent': 'Mozilla/5.0'}
 
 # Skip the following URL's
-skippedPrefixes = {
+skipped_prefixes = {
     "https://tilburgsciencehub.com/tour",
     "https://tilburgsciencehub.com/researcher-tour",
 }
 
 def is_skipped_for_reporting(link):
-    return any(link.startswith(prefix) for prefix in skippedPrefixes)
+    return any(link.startswith(prefix) for prefix in skipped_prefixes)
 
 # Broken link dict
-brokenLinksDict = {'link':[],'statusCode':[]}
+broken_links_dict = {'link':[],'statusCode':[]}
 
 # Git token by git secret
 token = os.environ['GIT_TOKEN']
@@ -55,16 +55,16 @@ headers = {
 
 # Generate target repositoryURL using Github API
 username = 'tilburgsciencehub'
-Repositoryname = 'website'
-url = "https://api.github.com/repos/{}/{}/issues".format(username,Repositoryname)
+repository_name = 'website'
+url = "https://api.github.com/repos/{}/{}/issues".format(username,repository_name)
 
 # Github table setup
 tablehead = "| Page URL | Broken Link URL | Anchor Text | Status Code |\n|---|---|---|---|\n"
 
 ## Functions
-def getPagesFromSitemap(fullDomain, max_pages=10):
-    listPages_Raw.clear()
-    tree = sitemap_tree_for_homepage(fullDomain)
+def get_pages_from_sitemap(full_domain, max_pages=10):
+    list_pages_raw.clear()
+    tree = sitemap_tree_for_homepage(full_domain)
 
     if max_pages == "all":
         pages = tree.all_pages()
@@ -72,21 +72,21 @@ def getPagesFromSitemap(fullDomain, max_pages=10):
         pages = islice(tree.all_pages(), max_pages)
 
     for page in pages:
-        listPages_Raw.append(page.url)
+        list_pages_raw.append(page.url)
 
-    print(f"🔍 Loaded {len(listPages_Raw)} pages from sitemap (limit = {max_pages})")
+    print(f"🔍 Loaded {len(list_pages_raw)} pages from sitemap (limit = {max_pages})")
 
-def getListUniquePages():
-    listPages.clear()
-    listPages.extend(sorted(set(listPages_Raw)))
-    print(f"🔍 The following unique pages have been generated ({len(listPages)} total):")
-    for page in listPages:
+def get_list_unique_pages():
+    list_pages.clear()
+    list_pages.extend(sorted(set(list_pages_raw)))
+    print(f"🔍 The following unique pages have been generated ({len(list_pages)} total):")
+    for page in list_pages:
         print(f" - {page}")
 
-def extractAllHttpLinks(listPages, fullDomain):
-    allExtractedLinks.clear()
+def extract_all_http_links(list_pages, full_domain):
+    all_extracted_links.clear()
     
-    for url in listPages:
+    for url in list_pages:
         try:
             response = requests.get(url, headers=user_agent, allow_redirects=False)
             soup = BeautifulSoup(response.content, 'html.parser')
@@ -112,18 +112,18 @@ def extractAllHttpLinks(listPages, fullDomain):
 
             # Skip if same as page
             if absolute_url == url:
-                allExtractedLinks.append([url, 'Same destination as page', text])
+                all_extracted_links.append([url, 'Same destination as page', text])
             else:
-                allExtractedLinks.append([url, absolute_url, text])
+                all_extracted_links.append([url, absolute_url, text])
 
-for entry in allExtractedLinks[:5]:
+for entry in all_extracted_links[:5]:
     print("🔗", entry)
 
-def filterUniqueHttpLinks(allExtractedLinks):
-    uniqueHttpLinksToCheck.clear()
+def filter_unique_http_links(all_extracted_links):
+    unique_http_links_to_check.clear()
     seen = set()
 
-    for _, link, _ in allExtractedLinks:
+    for _, link, _ in all_extracted_links:
         if not link.startswith("http"):
             continue
 
@@ -140,16 +140,16 @@ def filterUniqueHttpLinks(allExtractedLinks):
             continue
 
         if link not in seen:
-            uniqueHttpLinksToCheck.append(link)
+            unique_http_links_to_check.append(link)
             seen.add(link)
 
-    print(f"✅ Remaining unique links after filtering: {len(uniqueHttpLinksToCheck)}")
-    for link in uniqueHttpLinksToCheck:
+    print(f"✅ Remaining unique links after filtering: {len(unique_http_links_to_check)}")
+    for link in unique_http_links_to_check:
         print("🔗", link)
 
 # Clear previous results
-brokenLinksDict.clear()
-brokenLinksDict.update({'link': [], 'statusCode': []})
+broken_links_dict.clear()
+broken_links_dict.update({'link': [], 'statusCode': []})
 
 async def async_check_url(session, url):
     try:
@@ -197,10 +197,10 @@ async def check_all_urls(urls, concurrency=100):
 
 from urllib.parse import urlparse
 
-def identifyBrokenLinks(uniqueExternalLinks):
-    print(f"🚀 Starting async link check for {len(uniqueExternalLinks)} URLs...\n")
+def identify_broken_links(unique_external_links):
+    print(f"🚀 Starting async link check for {len(unique_external_links)} URLs...\n")
 
-    results = asyncio.run(check_all_urls(uniqueExternalLinks, concurrency=50))
+    results = asyncio.run(check_all_urls(unique_external_links, concurrency=50))
 
     for result in results:
         link = result["link"]
@@ -216,8 +216,8 @@ def identifyBrokenLinks(uniqueExternalLinks):
                     print(f"ℹ️  [{status}] {link} (ignored from reporting)")
                     continue
                 print(f"❌ [{status}] {link}")
-                brokenLinksDict['link'].append(link)
-                brokenLinksDict['statusCode'].append(status)
+                broken_links_dict['link'].append(link)
+                broken_links_dict['statusCode'].append(status)
             elif status in [301, 302]:
                 continue  # redirects negeren
             else:
@@ -227,19 +227,19 @@ def identifyBrokenLinks(uniqueExternalLinks):
             print(f"⚠️ Skipped (non-HTTP): {link} → {error}")
 
 # Identify unique broken links and match them to original list of all external links
-def matchBrokenLinks(externalLinksListRaw):
+def match_broken_links(external_links_list_raw):
     matched_broken = [
         [source, link, anchor, status]
-        for source, link, anchor in externalLinksListRaw
-        for i, b in enumerate(brokenLinksDict['link'])
-        if link == b and (status := brokenLinksDict['statusCode'][i])
+        for source, link, anchor in external_links_list_raw
+        for i, b in enumerate(broken_links_dict['link'])
+        if link == b and (status := broken_links_dict['statusCode'][i])
     ]
 
     all_matched = matched_broken
     df_all = pd.DataFrame(all_matched, columns=["Page URL", "Broken Link URL", "Anchor Text", "statusCode"])
 
     # Separate internal and external links
-    own_domain = urlparse(fullDomain).netloc.replace("www.", "")
+    own_domain = urlparse(full_domain).netloc.replace("www.", "")
     df_internal = df_all[df_all["Broken Link URL"].apply(lambda x: own_domain in urlparse(x).netloc)]
     df_external = df_all[df_all["Broken Link URL"].apply(lambda x: own_domain not in urlparse(x).netloc)]
 
@@ -275,7 +275,7 @@ def push_issue_git_batched(df_internal, df_external, batch_size=500, max_issues=
     for batch_num in range(total_batches):
         df_batch = df_combined.iloc[batch_num * batch_size:(batch_num + 1) * batch_size]
         dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-        titleissue = f'Broken/Error Links (Batch {batch_num + 1}/{total_batches}) - {dt_string}'
+        title_issue = f'Broken/Error Links (Batch {batch_num + 1}/{total_batches}) - {dt_string}'
 
         def build_section(title, df):
             section = f"\n### {title}\n"
@@ -295,17 +295,17 @@ def push_issue_git_batched(df_internal, df_external, batch_size=500, max_issues=
         if not df_external_batch.empty:
             table += build_section("🌍 External Broken Links", df_external_batch)
 
-        issuebody = (
+        issue_body = (
             f"Batch {batch_num + 1} of {total_batches}: {len(df_batch)} broken link(s) found.\n"
             f"The following errors were detected:\n{table}"
         )
 
         max_length = 65536
-        if len(issuebody) > max_length:
+        if len(issue_body) > max_length:
             print(f"⚠️ Issue body exceeded 65536 characters — truncating.")
-            issuebody = issuebody[:max_length - 100] + "\n\n... (truncated)"
+            issue_body = issue_body[:max_length - 100] + "\n\n... (truncated)"
 
-        data = {"title": titleissue, "body": issuebody}
+        data = {"title": title_issue, "body": issue_body}
 
         try:
             response = requests.post(url, json=data, headers=headers)
@@ -323,10 +323,10 @@ def push_issue_git_batched(df_internal, df_external, batch_size=500, max_issues=
         time.sleep(1)
 
 # # Execute Functions
-getPagesFromSitemap(fullDomain, max_pages="all")
-getListUniquePages()
-extractAllHttpLinks(listPages, fullDomain)
-filterUniqueHttpLinks(allExtractedLinks)
-identifyBrokenLinks(uniqueHttpLinksToCheck)
-df_internal, df_external = matchBrokenLinks(allExtractedLinks)
+get_pages_from_sitemap(full_domain, max_pages="all")
+get_list_unique_pages()
+extract_all_http_links(list_pages, full_domain)
+filter_unique_http_links(all_extracted_links)
+identify_broken_links(unique_http_links_to_check)
+df_internal, df_external = match_broken_links(all_extracted_links)
 push_issue_git_batched(df_internal, df_external)
