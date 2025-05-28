@@ -124,7 +124,6 @@ async def identify_broken_links(unique_external_links):
         if is_skipped_for_reporting(link):
             continue
 
-        # Alleen links buiten het eigen domein (= extern)
         is_external = own_domain not in urlparse(link).netloc
 
         if isinstance(status, int):
