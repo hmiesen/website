@@ -170,20 +170,18 @@ async def check_links_for_errors(links_to_check):
                 print(f"⏭️ Skipping external 403 (likely bot protection): {link}")
                 continue
 
+            if is_external and status == 999:
+                print(f"⏭️ Skipping external 999 (bot protection): {link}")
+                continue
+
             if is_internal and 400 <= status <= 599:
                 print(f"❌ Internal [{status}] {link}")
                 broken_links_dict['link'].append(link)
                 broken_links_dict['statusCode'].append(status)
-
             elif is_external and (status in [404, 410] or status >= 500):
                 print(f"❌ External [{status}] {link}")
                 broken_links_dict['link'].append(link)
                 broken_links_dict['statusCode'].append(status)
-
-            elif status == 999 and is_external:
-               print(f"⏭️ Skipping external 999 (bot protection): {link}")
-               continue
-
             else:
                 print(f"✅ [{status}] {link}")
         elif error:
