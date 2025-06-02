@@ -105,11 +105,22 @@ async def async_check_url(session, url):
     except Exception as e:
         return {"link": url, "statusCode": None, "errorType": repr(e)}
 
-async def check_all_urls(urls, concurrency=5):
+async def check_all_urls(urls, concurrency=5, user_agent=None):
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
-    async with aiohttp.ClientSession(timeout=timeout, connector=connector, headers=user_agent) as session:
-        tasks = [async_check_url(session, url) for url in urls]
+    headers = user_agent or {"User-Agent": "MyBot/1.0"}
+
+    semaphore = asyncio.Semaphore(concurrency)
+
+    async def limited_check(session, url):
+        async with semaphore:
+            try:
+                return await async_check_url(session, url)
+            except Exception as e:
+                return {"url": url, "error": str(e)}
+
+    async with aiohttp.ClientSession(timeout=timeout, connector=connector, headers=headers) as session:
+        tasks = [limited_check(session, url) for url in urls]
         return await asyncio.gather(*tasks)
 
 async def check_links_for_errors(links_to_check):
