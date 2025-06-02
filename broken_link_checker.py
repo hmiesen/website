@@ -98,6 +98,8 @@ def filter_unique_http_links(all_extracted_links):
     for _, link, _ in all_extracted_links:
         if not link.startswith("http") or is_skipped_for_reporting(link):
             continue
+        if "linkedin.com/company" in link:
+            continue
         if any(bad in link for bad in ["linkedin.com/sharing", "twitter.com/intent", "facebook.com/sharer", "mailto:", "javascript:"]):
             continue
         if link not in seen:
@@ -106,15 +108,24 @@ def filter_unique_http_links(all_extracted_links):
     print(f"✅ Filtered links: {len(unique_http_links_to_check)}")
 
 async def async_check_url(session, url, headers):
+    domain = urlparse(url).netloc.lower()
+
     try:
         await asyncio.sleep(0.5)
 
-        try:
-            async with session.head(url, allow_redirects=True, timeout=8, headers=headers) as response:
-                return {"link": url, "statusCode": response.status, "errorType": None}
-        except:
-            async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as response:
-                return {"link": url, "statusCode": response.status, "errorType": None}
+        # For domains known to block HEAD (like LinkedIn), skip straight to GET
+        use_head = not any(bad in domain for bad in ["linkedin.com", "akamai.net"])
+
+        if use_head:
+            try:
+                async with session.head(url, allow_redirects=True, timeout=8, headers=headers) as response:
+                    return {"link": url, "statusCode": response.status, "errorType": None}
+            except:
+                pass  # fallback to GET
+
+        async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as response:
+            return {"link": url, "statusCode": response.status, "errorType": None}
+
     except Exception as e:
         return {"link": url, "statusCode": None, "errorType": repr(e)}
 
@@ -168,6 +179,10 @@ async def check_links_for_errors(links_to_check):
                 print(f"❌ External [{status}] {link}")
                 broken_links_dict['link'].append(link)
                 broken_links_dict['statusCode'].append(status)
+
+            elif status == 999 and is_external:
+               print(f"⏭️ Skipping external 999 (bot protection): {link}")
+               continue
 
             else:
                 print(f"✅ [{status}] {link}")
