@@ -13,8 +13,9 @@ aliases:
 
 This example illustrates how to create a Shiny app which allows you to interactively explore Google’s COVID-19 Community Mobility Reports of the Netherlands through an intuitive visual interface (see the live version [here](https://royklaassebos.shinyapps.io/dPrep_Demo_Google_Mobility/)).
 
-![Shiny app](../images/demo_app.png)
-
+<p align = "center">
+<img src = "../images/demo_app.png" width="200">
+</p>
 
 ## How to create it
 

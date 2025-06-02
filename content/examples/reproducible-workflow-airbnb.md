@@ -29,12 +29,12 @@ We've crafted this project to run:
 
 ### Dependencies
 
-- Install [Python](/get/python/).
+- Install [Python](/topics/Computer-Setup/software-installation/Python/python/).
   - Anaconda is recommended. [Download Anaconda](https://www.anaconda.com/download).
   - check availability: type `anaconda --version` in the command line.
 - Install Kaggle package.
   - [Kaggle API](https://github.com/Kaggle/kaggle-api) instruction for installation and setup.
-- Install [Automation tools](/get/make/).
+- Install [Automation tools](/topics/Automation/automation-tools/Makefiles/make/).
   - GNU make: already installed in Mac and Linux OS. [Download Make](http://gnuwin32.sourceforge.net/packages/make.htm) for Windows OS and install.
   - Windows OS users only: make `Make` available via the command line.
     - Right Click on `Computer`
@@ -42,15 +42,15 @@ We've crafted this project to run:
     - Choose `Environment Variables`, and choose `Path` under the system variables, click `edit`
     - Add the bin of `Make`
   - check availability: type `make --version` in the command line.
-- Install [Stata](/get/stata/).
-  - making Stata available via the command line. [Instruction](/get/stata/) for adding Stata to path.
+- Install [Stata](/topics/Computer-Setup/software-installation/stata/stata/).
+  - making Stata available via the command line. [Instruction](/topics/Computer-Setup/software-installation/stata/stata/) for adding Stata to path.
   - check availability: type `$STATA_BIN --version` in the command line.
-- Install [Perl](/get/perl/).
+- Install [Perl](/topics/Computer-Setup/software-installation/perl/perl/).
   - Perl is already installed in Mac and Linux OS. [Download Perl](https://www.perl.org/get.html) for Windows OS.
   - Make sure Perl available via the command line.
   - check availability: type `perl -v` in the command line.
-- Install [LyX](/get/latex/).
-  - LyX is an open source document processor based on the LaTeX. [Download LyX](https://www.lyx.org/Download).
+- Install [LyX](/topics/Computer-Setup/software-installation/document-creation/latex/).
+  - LyX is an open source document processor based on the LaTeX. [Download LyX](https://www.latex-project.org/get/).
   - make sure LyX available via the command line.
   - check availability: type `$LYX_BIN` in the command line.
 

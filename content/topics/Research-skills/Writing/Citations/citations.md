@@ -39,14 +39,14 @@ The basic command to add citation in text is `\cite{label}`. However, you may no
 Natbib is a widely used, and very reliable package as it relies on the `bibtex` environment. To employ it, type in `\usepackage{natbib}` in the preamble of your document. The table below describes some examples of additional citation commands that come with the Natbib package:
 
 <center>
-
+{{%table%}}
 | Command       |               Description                |         Example |
 | ------------- | :--------------------------------------: | --------------: |
 | \citet{}      |             Textual citation             |  Jon Doe (2021) |
 | \citep{}      |          Parenthetical citation          | (Jon Doe, 2021) |
 | \citeauthor{} |  Prints only the name of the authors(s)  |         Jon Doe |
 | \citeyear{}   | Prints only the year of the publication. |            2021 |
-
+{{%/table%}
 </center>
 
 You can find more information on how to employ Natbib [here](https://gking.harvard.edu/files/natnotes2.pdf).
@@ -91,12 +91,14 @@ Where there are many more predetermined _stylename_ options than for Natbib. You
 
 Biblatex is especially good at non-standard citation styles, which are usually journal-specific. For instance, among others, it includes the following commonly used citation styles:
 
+{{%table%}}
 | Citation style | biblatex "stylename" |
 | -------------- | :------------------: |
 | Nature         |        nature        |
 | Chicago        |  chicago-authordate  |
 | MLA            |         mla          |
 | APA            |         apa          |
+{{%/table%}}
 
 ### Print your formatted references
 
@@ -153,13 +155,13 @@ Not comfortable with LaTeX and using Word? Well, though not as easy as in LaTeX,
 
 - Go to Word and click on "References". If correctly installed, the following should appear in the top right-hand corner of Word:
 <p align = "center">
-<img src = "../images/mendeley_cite.PNG" width="100">
+<img src = "../images/mendeley_cite.PNG" width="200">
 </p>
 
 - To cite your references, click on the plug-in, select your citation and click on insert citation. Go to "Citation Style" if you wish to choose from the available citation style options.
 
 <p align = "center">
-<img src = "../images/bib_word.png " width="300">
+<img src = "../images/bib_word.png" width="300">
 </p>
 
 - To print your bibliography go to "insert bibliography"
