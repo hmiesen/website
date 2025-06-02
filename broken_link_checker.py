@@ -28,11 +28,24 @@ skipped_prefixes = {
 }
 
 token = os.environ['GIT_TOKEN']
-headers = {
-    "Authorization": f"Bearer {token}",
-    "Accept": "application/vnd.github+json",
-    "Content-Type": "application/json"
-}
+def get_headers(url):
+    if "api.github.com" in url:
+        return {
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github+json",
+            "Content-Type": "application/json"
+        }
+    else:
+        return {
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/114.0.0.0 Safari/537.36"
+            ),
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Connection": "keep-alive",
+        }
 
 username = 'hmiesen'
 repository_name = 'website'
@@ -92,15 +105,15 @@ def filter_unique_http_links(all_extracted_links):
             seen.add(link)
     print(f"✅ Filtered links: {len(unique_http_links_to_check)}")
 
-async def async_check_url(session, url):
+async def async_check_url(session, url, headers):
     try:
         await asyncio.sleep(0.5)
 
         try:
-            async with session.head(url, allow_redirects=True, timeout=8) as response:
+            async with session.head(url, allow_redirects=True, timeout=8, headers=headers) as response:
                 return {"link": url, "statusCode": response.status, "errorType": None}
         except:
-            async with session.get(url, allow_redirects=True, timeout=8) as response:
+            async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as response:
                 return {"link": url, "statusCode": response.status, "errorType": None}
     except Exception as e:
         return {"link": url, "statusCode": None, "errorType": repr(e)}
@@ -115,11 +128,12 @@ async def check_all_urls(urls, concurrency=5, user_agent=None):
     async def limited_check(session, url):
         async with semaphore:
             try:
-                return await async_check_url(session, url)
+                headers = get_headers(url)
+                return await async_check_url(session, url, headers=headers)
             except Exception as e:
-                return {"url": url, "error": str(e)}
+                return {"link": url, "statusCode": None, "errorType": str(e)}
 
-    async with aiohttp.ClientSession(timeout=timeout, connector=connector, headers=headers) as session:
+    async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
         tasks = [limited_check(session, url) for url in urls]
         return await asyncio.gather(*tasks)
 
@@ -183,7 +197,7 @@ async def push_issue_git_batched(df_internal, df_external, batch_size=500, max_i
 
     total_batches = min((len(df_combined) - 1) // batch_size + 1, max_issues)
 
-    async with aiohttp.ClientSession(headers=headers) as session:
+    async with aiohttp.ClientSession(headers=get_headers(url)) as session:
         for batch_num in range(total_batches):
             df_batch = df_combined.iloc[batch_num * batch_size:(batch_num + 1) * batch_size]
             dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
