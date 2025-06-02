@@ -551,66 +551,66 @@ for md_file_name in os.listdir(blog_root_folder):
 conn.commit()
 conn.close()
 
-# # Define the image directory
-# img_directory = os.path.join(script_directory, "static/img")
+# Define the image directory
+img_directory = os.path.join(script_directory, "static/img")
 
-# # Define valid image extensions
-# image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.mov']
+# Define valid image extensions
+image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.mov']
 
-# # Create image directory if it does not exist
-# if not os.path.exists(img_directory):
-#     os.makedirs(img_directory)
+# Create image directory if it does not exist
+if not os.path.exists(img_directory):
+    os.makedirs(img_directory)
 
-# # Loop through the content directory and convert/copy images to the image directory
-# for root, _, files in os.walk(content_directory):
-#     for filename in files:
-#         src_filepath = os.path.join(root, filename)
+# Loop through the content directory and convert/copy images to the image directory
+for root, _, files in os.walk(content_directory):
+    for filename in files:
+        src_filepath = os.path.join(root, filename)
         
-#         if is_image(filename):
-#             try:
-#                 # Define the destination filepath with .webp extension
-#                 dst_filename = os.path.splitext(filename)[0] + '.webp'
-#                 dst_filepath = os.path.join(img_directory, dst_filename)
+        if is_image(filename):
+            try:
+                # Define the destination filepath with .webp extension
+                dst_filename = os.path.splitext(filename)[0] + '.webp'
+                dst_filepath = os.path.join(img_directory, dst_filename)
                 
-#                 # Open and convert the image to webp
-#                 with Image.open(src_filepath) as img:
-#                     img.save(dst_filepath, 'webp')
+                # Open and convert the image to webp
+                with Image.open(src_filepath) as img:
+                    img.save(dst_filepath, 'webp')
 
-#                 print(f"Converted {src_filepath} to {dst_filepath}")
+                print(f"Converted {src_filepath} to {dst_filepath}")
 
-#             except UnidentifiedImageError:
-#                 print(f"UnidentifiedImageError: Cannot identify image file {src_filepath}")
-#             except Exception as e:
-#                 print(f"Error processing {src_filepath}: {e}")
+            except UnidentifiedImageError:
+                print(f"UnidentifiedImageError: Cannot identify image file {src_filepath}")
+            except Exception as e:
+                print(f"Error processing {src_filepath}: {e}")
 
-# # Define the directory for other files
-# files_directory = os.path.join(script_directory, "static/files")
+# Define the directory for other files
+files_directory = os.path.join(script_directory, "static/files")
 
-# # Create files directory if it does not exist
-# if not os.path.exists(files_directory):
-#     os.makedirs(files_directory)
+# Create files directory if it does not exist
+if not os.path.exists(files_directory):
+    os.makedirs(files_directory)
 
-# # Initialize a set to keep track of unique file extensions
-# unique_extensions = set()
+# Initialize a set to keep track of unique file extensions
+unique_extensions = set()
 
-# # Loop through the content directory and copy non-image, non-Markdown files
-# for root, _, files in os.walk(content_directory):
-#     for filename in files:
-#         if is_not_image_or_md(filename):
-#             src_filepath = os.path.join(root, filename)
-#             dst_filepath = os.path.join(files_directory, filename)
+# Loop through the content directory and copy non-image, non-Markdown files
+for root, _, files in os.walk(content_directory):
+    for filename in files:
+        if is_not_image_or_md(filename):
+            src_filepath = os.path.join(root, filename)
+            dst_filepath = os.path.join(files_directory, filename)
             
-#             os.makedirs(os.path.dirname(dst_filepath), exist_ok=True)
+            os.makedirs(os.path.dirname(dst_filepath), exist_ok=True)
             
-#             # Check if the destination file already exists
-#             if os.path.exists(dst_filepath):
-#                 continue
-#             else:
-#                 shutil.copy(src_filepath, dst_filepath)
-#                 print(f"Bestand gekopieerd: {dst_filepath}")
-#                 # Add the file extension to the set of unique extensions
-#                 unique_extensions.add(os.path.splitext(filename)[1].lower())
+            # Check if the destination file already exists
+            if os.path.exists(dst_filepath):
+                continue
+            else:
+                shutil.copy(src_filepath, dst_filepath)
+                print(f"Bestand gekopieerd: {dst_filepath}")
+                # Add the file extension to the set of unique extensions
+                unique_extensions.add(os.path.splitext(filename)[1].lower())
 
-# # Convert the set of unique extensions to a list for output
-# unique_extensions_list = list(unique_extensions)
-# print(f"Unieke bestandsextensies van gekopieerde bestanden: {unique_extensions_list}")
+# Convert the set of unique extensions to a list for output
+unique_extensions_list = list(unique_extensions)
+print(f"Unieke bestandsextensies van gekopieerde bestanden: {unique_extensions_list}")
