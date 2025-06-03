@@ -276,7 +276,7 @@ async def push_issue_git_batched(internal_links, external_links, batch_size=500,
             await asyncio.sleep(1)  # respect rate limit
 
 async def main_async_scraper():
-    get_pages_from_sitemap(full_domain, max_pages="all")
+    get_pages_from_sitemap(full_domain, max_pages="10")
     get_list_unique_pages()
 
     timeout = ClientTimeout(total=8)
