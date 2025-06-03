@@ -30,7 +30,7 @@ skipped_prefixes = {
 }
 
 token = os.environ['GIT_TOKEN']
-def get_headers(url):
+def get_headers(url, user_agent_override=None):
     if "api.github.com" in url:
         return {
             "Authorization": f"Bearer {token}",
@@ -38,8 +38,8 @@ def get_headers(url):
             "Content-Type": "application/json"
         }
     else:
-        return {
-            "User-Agent": (
+        headers = {
+            "User-Agent": user_agent_override or (
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
                 "Chrome/114.0.0.0 Safari/537.36"
@@ -48,6 +48,7 @@ def get_headers(url):
             "Accept-Language": "en-US,en;q=0.5",
             "Connection": "keep-alive",
         }
+        return headers
 
 username = 'hmiesen'
 repository_name = 'website'
@@ -113,7 +114,7 @@ async def async_check_url(session, url, headers):
     domain = urlparse(url).netloc.lower()
 
     try:
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(0.1)
 
         # For domains known to block HEAD (like LinkedIn), skip straight to GET
         use_head = not any(bad in domain for bad in ["linkedin.com", "akamai.net"])
@@ -123,7 +124,7 @@ async def async_check_url(session, url, headers):
                 async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as response:
                     if response.status >= 500:
                         await asyncio.sleep(1)
-                        async with session.get(url, ...) as retry_response:
+                        async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as retry_response:
                             return {"link": url, "statusCode": retry_response.status, "errorType": None}
             except:
                 pass  # fallback to GET
@@ -146,7 +147,7 @@ async def check_all_urls(urls, concurrency=10, user_agent=None):
     async def limited_check(session, url):
         async with semaphore:
             try:
-                headers = get_headers(url)
+                headers = get_headers(url, user_agent_override=user_agent)
                 return await async_check_url(session, url, headers=headers)
             except Exception as e:
                 return {"link": url, "statusCode": None, "errorType": str(e)}
