@@ -135,7 +135,6 @@ async def async_check_url(session, url, headers):
         return {"link": url, "statusCode": None, "errorType": repr(e)}
 
 async def check_all_urls(urls, concurrency=10, user_agent=None):
-    # Set timeout and connection limits
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
     headers = user_agent or {"User-Agent": "MyBot/1.0"}
@@ -149,11 +148,9 @@ async def check_all_urls(urls, concurrency=10, user_agent=None):
             try:
                 headers = get_headers(url)
                 return await async_check_url(session, url, headers=headers)
-            # Capture any error to avoid crashing the run
             except Exception as e:
                 return {"link": url, "statusCode": None, "errorType": str(e)}
 
-    # Create async session and run all URL checks concurrently
     async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
         tasks = [limited_check(session, url) for url in urls]
         return await asyncio.gather(*tasks)
@@ -162,9 +159,8 @@ async def check_links_for_errors(links_to_check):
     print(f"🚀 Checking {len(links_to_check)} URLs...")
 
      # First pass: check all URLs concurrently
-    initial_results = await check_all_urls(links_to_check, concurrency=4)
+    initial_results = await check_all_urls(links_to_check, concurrency=5)
 
-    # Identify links that failed for unclear reasons (bot protection, timeout, etc.)
     retry_candidates = [
         r["link"] for r in initial_results
         if r["statusCode"] in [403, 429, 999] or r["statusCode"] is None
@@ -176,14 +172,12 @@ async def check_links_for_errors(links_to_check):
         # Second pass: recheck problematic links one by one (concurrency = 1)
         retry_results = await check_all_urls(retry_candidates, concurrency=1)
 
-    # Merge results, where retry results overwrite initial results if present
     results_map = {r["link"]: r for r in initial_results}
     results_map.update({r["link"]: r for r in retry_results})
     results = list(results_map.values())
 
     own_domain = urlparse(full_domain).netloc.replace("www.", "")
 
-    # Process and classify results
     for result in results:
         link = result["link"]
         status = result["statusCode"]
@@ -195,7 +189,6 @@ async def check_links_for_errors(links_to_check):
         is_internal = own_domain in urlparse(link).netloc
         is_external = not is_internal
 
-        # Skip known bot protection codes
         if isinstance(status, int):
             if status == 403 and is_external:
                 print(f"⏭️ Skipping external 403 (likely bot protection): {link}")
@@ -249,12 +242,16 @@ async def push_issue_git_batched(internal_links, external_links, batch_size=500,
             dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             title = f'Broken Links (Batch {batch_num + 1}) - {dt_string}'
 
-            def build_table(title, entries):
-                table = f"\n### {title}\n| Page URL | Broken Link URL | Anchor Text | Status Code |\n|---|---|---|---|\n"
+            def build_table(title, entries): 
+                lines = [
+                    f"\n### {title}",
+                    "| Page URL | Broken Link URL | Anchor Text | Status Code |",
+                    "|---|---|---|---|"
+                ]
                 for entry in entries:
                     anchortext = entry.anchor_text.replace("\n", ' ') if isinstance(entry.anchor_text, str) else ''
-                    table += f"| {entry.page_url} | {entry.broken_url} | {anchortext} | {entry.status_code} |\n"
-                return table
+                    lines.append(f"| {entry.page_url} | {entry.broken_url} | {anchortext} | {entry.status_code} |")
+                return "\n".join(lines)
 
             internal_batch = [entry for entry in batch if urlparse(entry.broken_url).netloc.endswith("tilburgsciencehub.com")]
             external_batch = [entry for entry in batch if not urlparse(entry.broken_url).netloc.endswith("tilburgsciencehub.com")]
@@ -270,7 +267,7 @@ async def push_issue_git_batched(internal_links, external_links, batch_size=500,
             try:
                 async with session.post(url, json=data) as response:
                     if response.status == 201:
-                        print(f"✅ Issue created for batch {batch_num + 1}")
+                        print(f"✅ Issue created for batch {batch_num + 1}", flush=True)
                     else:
                         print(f"❌ Failed to create issue {batch_num + 1}: {response.status} - {await response.text()}")
             except Exception as e:
