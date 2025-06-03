@@ -11,7 +11,6 @@ import time
 from collections import namedtuple
 from urllib.parse import urlparse
 
-
 # Domain
 full_domain = 'https://tilburgsciencehub.com/'
 
@@ -231,11 +230,6 @@ def match_broken_links(external_links_list_raw):
     df_external = [entry for entry in matched_broken if own_domain not in urlparse(entry.broken_url).netloc]
     
     return df_internal, df_external
-
-import asyncio
-from datetime import datetime
-from urllib.parse import urlparse
-import aiohttp
 
 def chunk_list(lst, chunk_size):
     """Helper to split list into chunks."""
