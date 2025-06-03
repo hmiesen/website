@@ -50,7 +50,7 @@ def get_headers(url, user_agent_override=None):
         }
         return headers
 
-username = 'hmiesen'
+username = 'tilburgsciencehub'
 repository_name = 'website'
 url = f"https://api.github.com/repos/{username}/{repository_name}/issues"
 
@@ -94,6 +94,12 @@ async def async_extract_all_http_links(list_pages, full_domain, session):
                 all_extracted_links.append([url, 'Same destination as page', text])
             else:
                 all_extracted_links.append([url, absolute_url, text])
+
+def split_internal_external(links, base_domain):
+    own_domain = urlparse(base_domain).netloc.replace("www.", "")
+    internal = [link for link in links if own_domain in urlparse(link).netloc]
+    external = [link for link in links if own_domain not in urlparse(link).netloc]
+    return internal, external
 
 def filter_unique_http_links(all_extracted_links):
     unique_http_links_to_check.clear()
@@ -159,23 +165,32 @@ async def check_all_urls(urls, concurrency=10, user_agent=None):
 async def check_links_for_errors(links_to_check):
     print(f"🚀 Checking {len(links_to_check)} URLs...")
 
-     # First pass: check all URLs concurrently
-    initial_results = await check_all_urls(links_to_check, concurrency=5)
+    # Split links by internal vs external
+    internal_links, external_links = split_internal_external(links_to_check, full_domain)
 
+    # Check internal links aggressively
+    print(f"⚡ Checking {len(internal_links)} internal links with concurrency=10...")
+    internal_results = await check_all_urls(internal_links, concurrency=10)
+
+    # Check external links carefully
+    print(f"🐢 Checking {len(external_links)} external links with concurrency=1...")
+    external_results = await check_all_urls(external_links, concurrency=1)
+
+    # Merge and retry failed external links
     retry_candidates = [
-        r["link"] for r in initial_results
+        r["link"] for r in external_results
         if r["statusCode"] in [403, 429, 999] or r["statusCode"] is None
     ]
-
     retry_results = []
     if retry_candidates:
-        print(f"🔁 Retrying {len(retry_candidates)} links serially to reduce false positives...")
-        # Second pass: recheck problematic links one by one (concurrency = 1)
+        print(f"🔁 Retrying {len(retry_candidates)} external failures serially...")
         retry_results = await check_all_urls(retry_candidates, concurrency=1)
 
-    results_map = {r["link"]: r for r in initial_results}
-    results_map.update({r["link"]: r for r in retry_results})
-    results = list(results_map.values())
+    # Combine all results, with retries overwriting previous
+    all_results = internal_results + external_results
+    all_results_map = {r["link"]: r for r in all_results}
+    all_results_map.update({r["link"]: r for r in retry_results})
+    results = list(all_results_map.values())
 
     own_domain = urlparse(full_domain).netloc.replace("www.", "")
 
@@ -276,7 +291,7 @@ async def push_issue_git_batched(internal_links, external_links, batch_size=500,
             await asyncio.sleep(1)  # respect rate limit
 
 async def main_async_scraper():
-    get_pages_from_sitemap(full_domain, max_pages=10)
+    get_pages_from_sitemap(full_domain, max_pages="all")
     get_list_unique_pages()
 
     timeout = ClientTimeout(total=8)
