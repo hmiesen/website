@@ -3,11 +3,9 @@ from bs4 import BeautifulSoup
 import os
 from datetime import datetime
 from urllib.parse import urljoin, urlparse
-import traceback
 import asyncio
 import aiohttp
 from aiohttp import ClientTimeout
-import time
 from collections import namedtuple
 from urllib.parse import urlparse
 
@@ -50,7 +48,7 @@ def get_headers(url, user_agent_override=None):
         }
         return headers
 
-username = 'tilburgsciencehub'
+username = 'hmiesen'
 repository_name = 'website'
 url = f"https://api.github.com/repos/{username}/{repository_name}/issues"
 
@@ -144,7 +142,6 @@ async def async_check_url(session, url, headers):
 async def check_all_urls(urls, concurrency=10, user_agent=None):
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
-    headers = user_agent or {"User-Agent": "MyBot/1.0"}
 
     # Semaphore limits concurrent tasks
     semaphore = asyncio.Semaphore(concurrency)
