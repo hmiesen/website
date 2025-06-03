@@ -135,7 +135,7 @@ async def async_check_url(session, url, headers):
     except Exception as e:
         return {"link": url, "statusCode": None, "errorType": repr(e)}
 
-async def check_all_urls(urls, concurrency=1, user_agent=None):
+async def check_all_urls(urls, concurrency=10, user_agent=None):
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
     headers = user_agent or {"User-Agent": "MyBot/1.0"}
@@ -156,7 +156,23 @@ async def check_all_urls(urls, concurrency=1, user_agent=None):
 
 async def check_links_for_errors(links_to_check):
     print(f"🚀 Checking {len(links_to_check)} URLs...")
-    results = await check_all_urls(links_to_check, concurrency=50)
+    initial_results = await check_all_urls(links_to_check, concurrency=10)
+
+    # Links die mogelijk onterecht als 'broken' worden gemeld
+    retry_candidates = [
+        r["link"] for r in initial_results
+        if r["statusCode"] in [403, 429, 999] or r["statusCode"] is None
+    ]
+
+    retry_results = []
+    if retry_candidates:
+        print(f"🔁 Retrying {len(retry_candidates)} links serially to reduce false positives...")
+        retry_results = await check_all_urls(retry_candidates, concurrency=1)
+
+    # Combineer resultaten: retries overschrijven eerdere
+    results_map = {r["link"]: r for r in initial_results}
+    results_map.update({r["link"]: r for r in retry_results})
+    results = list(results_map.values())
 
     own_domain = urlparse(full_domain).netloc.replace("www.", "")
 
@@ -175,11 +191,9 @@ async def check_links_for_errors(links_to_check):
             if status == 403 and is_external:
                 print(f"⏭️ Skipping external 403 (likely bot protection): {link}")
                 continue
-
             if is_external and status == 999:
                 print(f"⏭️ Skipping external 999 (bot protection): {link}")
                 continue
-
             if is_internal and 400 <= status <= 599:
                 print(f"❌ Internal [{status}] {link}")
                 broken_links_dict['link'].append(link)
