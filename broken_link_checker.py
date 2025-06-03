@@ -9,6 +9,9 @@ import asyncio
 import aiohttp
 from aiohttp import ClientTimeout
 import time
+from collections import namedtuple
+from urllib.parse import urlparse
+
 
 # Domain
 full_domain = 'https://tilburgsciencehub.com/'
@@ -19,6 +22,8 @@ list_pages = []
 all_extracted_links = []
 unique_http_links_to_check = []
 broken_links_dict = {'link': [], 'statusCode': []}
+broken_link_tuple = namedtuple("broken_link_tuple", ["page_url", "broken_url", "anchor_text", "status_code"])
+
 
 # Configs
 user_agent = {'User-Agent': 'Mozilla/5.0'}
@@ -189,50 +194,59 @@ async def check_links_for_errors(links_to_check):
 
 def match_broken_links(external_links_list_raw):
     matched_broken = [
-        [source, link, anchor, status]
+        broken_link_tuple(source, link, anchor, broken_links_dict['statusCode'][i])
         for source, link, anchor in external_links_list_raw
         for i, b in enumerate(broken_links_dict['link'])
-        if link == b and (status := broken_links_dict['statusCode'][i])
+        if link == b
     ]
-    df_all = pd.DataFrame(matched_broken, columns=["Page URL", "Broken Link URL", "Anchor Text", "statusCode"])
+    
     own_domain = urlparse(full_domain).netloc.replace("www.", "")
-    df_internal = df_all[df_all["Broken Link URL"].apply(lambda x: own_domain in urlparse(x).netloc)]
-    df_external = df_all[df_all["Broken Link URL"].apply(lambda x: own_domain not in urlparse(x).netloc)]
+    
+    df_internal = [entry for entry in matched_broken if own_domain in urlparse(entry.broken_url).netloc]
+    df_external = [entry for entry in matched_broken if own_domain not in urlparse(entry.broken_url).netloc]
+    
     return df_internal, df_external
 
-async def push_issue_git_batched(df_internal, df_external, batch_size=500, max_issues=10):
-    if df_internal.empty and df_external.empty:
+import asyncio
+from datetime import datetime
+from urllib.parse import urlparse
+import aiohttp
+
+def chunk_list(lst, chunk_size):
+    """Helper to split list into chunks."""
+    for i in range(0, len(lst), chunk_size):
+        yield lst[i:i + chunk_size]
+
+async def push_issue_git_batched(internal_links, external_links, batch_size=500, max_issues=10):
+    if not internal_links and not external_links:
         print("✅ No broken links found.")
         return
 
-    df_combined = pd.concat([df_internal, df_external], ignore_index=True).drop_duplicates()
-    df_combined['statusCode'] = df_combined['statusCode'].astype(str)
-
-    total_batches = min((len(df_combined) - 1) // batch_size + 1, max_issues)
+    combined = list({(link.page_url, link.broken_url, link.anchor_text, link.status_code): link for link in (internal_links + external_links)}.values())
+    total_batches = min((len(combined) - 1) // batch_size + 1, max_issues)
 
     async with aiohttp.ClientSession(headers=get_headers(url)) as session:
-        for batch_num in range(total_batches):
-            df_batch = df_combined.iloc[batch_num * batch_size:(batch_num + 1) * batch_size]
+        for batch_num, batch in enumerate(chunk_list(combined, batch_size)):
             dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             title = f'Broken Links (Batch {batch_num + 1}) - {dt_string}'
 
-            def build_table(title, df):
+            def build_table(title, entries):
                 table = f"\n### {title}\n| Page URL | Broken Link URL | Anchor Text | Status Code |\n|---|---|---|---|\n"
-                for _, row in df.iterrows():
-                    anchortext = row['Anchor Text'].replace("\n", ' ') if isinstance(row['Anchor Text'], str) else ''
-                    table += f"| {row['Page URL']} | {row['Broken Link URL']} | {anchortext} | {row['statusCode']} |\n"
+                for entry in entries:
+                    anchortext = entry.anchor_text.replace("\n", ' ') if isinstance(entry.anchor_text, str) else ''
+                    table += f"| {entry.page_url} | {entry.broken_url} | {anchortext} | {entry.status_code} |\n"
                 return table
 
-            df_internal_batch = df_batch[df_batch["Broken Link URL"].apply(lambda x: urlparse(x).netloc.endswith("tilburgsciencehub.com"))]
-            df_external_batch = df_batch[df_batch["Broken Link URL"].apply(lambda x: not urlparse(x).netloc.endswith("tilburgsciencehub.com"))]
+            internal_batch = [entry for entry in batch if urlparse(entry.broken_url).netloc.endswith("tilburgsciencehub.com")]
+            external_batch = [entry for entry in batch if not urlparse(entry.broken_url).netloc.endswith("tilburgsciencehub.com")]
 
-            issue_body = f"Batch {batch_num + 1}: {len(df_batch)} broken links found.\n"
-            if not df_internal_batch.empty:
-                issue_body += build_table("🔁 Internal Broken Links", df_internal_batch)
-            if not df_external_batch.empty:
-                issue_body += build_table("🌍 External Broken Links", df_external_batch)
+            issue_body = f"Batch {batch_num + 1}: {len(batch)} broken links found.\n"
+            if internal_batch:
+                issue_body += build_table("🔁 Internal Broken Links", internal_batch)
+            if external_batch:
+                issue_body += build_table("🌍 External Broken Links", external_batch)
 
-            data = {"title": title, "body": issue_body[:65000]}  # truncate if needed
+            data = {"title": title, "body": issue_body[:65000]}
 
             try:
                 async with session.post(url, json=data) as response:
@@ -242,7 +256,7 @@ async def push_issue_git_batched(df_internal, df_external, batch_size=500, max_i
                         print(f"❌ Failed to create issue {batch_num + 1}: {response.status} - {await response.text()}")
             except Exception as e:
                 print(f"❌ Error creating issue for batch {batch_num + 1}: {str(e)}")
-            await asyncio.sleep(1)  # respectful pause
+            await asyncio.sleep(1)  # respect rate limit
 
 async def main_async_scraper():
     get_pages_from_sitemap(full_domain, max_pages="all")
