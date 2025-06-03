@@ -162,7 +162,7 @@ async def check_links_for_errors(links_to_check):
     print(f"🚀 Checking {len(links_to_check)} URLs...")
 
      # First pass: check all URLs concurrently
-    initial_results = await check_all_urls(links_to_check, concurrency=10)
+    initial_results = await check_all_urls(links_to_check, concurrency=4)
 
     # Identify links that failed for unclear reasons (bot protection, timeout, etc.)
     retry_candidates = [
