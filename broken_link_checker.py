@@ -1,6 +1,5 @@
 from usp.tree import sitemap_tree_for_homepage
 from bs4 import BeautifulSoup
-import pandas as pd
 import os
 from datetime import datetime
 from urllib.parse import urljoin, urlparse
@@ -23,7 +22,6 @@ all_extracted_links = []
 unique_http_links_to_check = []
 broken_links_dict = {'link': [], 'statusCode': []}
 broken_link_tuple = namedtuple("broken_link_tuple", ["page_url", "broken_url", "anchor_text", "status_code"])
-
 
 # Configs
 user_agent = {'User-Agent': 'Mozilla/5.0'}
@@ -123,8 +121,11 @@ async def async_check_url(session, url, headers):
 
         if use_head:
             try:
-                async with session.head(url, allow_redirects=True, timeout=8, headers=headers) as response:
-                    return {"link": url, "statusCode": response.status, "errorType": None}
+                async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as response:
+                    if response.status >= 500:
+                        await asyncio.sleep(1)
+                        async with session.get(url, ...) as retry_response:
+                            return {"link": url, "statusCode": retry_response.status, "errorType": None}
             except:
                 pass  # fallback to GET
 
@@ -134,7 +135,7 @@ async def async_check_url(session, url, headers):
     except Exception as e:
         return {"link": url, "statusCode": None, "errorType": repr(e)}
 
-async def check_all_urls(urls, concurrency=5, user_agent=None):
+async def check_all_urls(urls, concurrency=1, user_agent=None):
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
     headers = user_agent or {"User-Agent": "MyBot/1.0"}
