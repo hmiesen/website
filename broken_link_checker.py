@@ -82,23 +82,29 @@ class LinkExtractor:
         return internal, external
 
 
+from collections import defaultdict
+
 class LinkChecker:
     def __init__(self):
         self.broken = []
+        self.domain_last_call = defaultdict(float)
 
-    def _headers(self, url):
-        if "api.github.com" in url:
-            return {
-                "Authorization": f"Bearer {TOKEN}",
-                "Accept": "application/vnd.github+json",
-                "Content-Type": "application/json"
-            }
-        return USER_AGENT
+    async def _throttle(self, domain, min_interval=1.5):
+        now = asyncio.get_event_loop().time()
+        wait_time = self.domain_last_call[domain] + min_interval - now
+        if wait_time > 0:
+            await asyncio.sleep(wait_time)
+        self.domain_last_call[domain] = asyncio.get_event_loop().time()
 
     async def check_url(self, session, url, retries=1):
         headers = self._headers(url)
+        domain = urlparse(url).netloc
+
         for attempt in range(retries + 1):
             try:
+                if DOMAIN not in domain:
+                    await self._throttle(domain)
+
                 async with session.get(url, headers=headers, timeout=ClientTimeout(total=8)) as response:
                     return url, response.status
             except Exception as e:
@@ -108,22 +114,6 @@ class LinkChecker:
                 else:
                     print(f"⚠️ Error fetching {url}: {error}")
                     return url, None
-
-    async def check_all(self, urls, concurrency=10):
-        semaphore = asyncio.Semaphore(concurrency)
-        connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
-        results = []
-
-        async with aiohttp.ClientSession(connector=connector) as session:
-            async def bound_check(url):
-                async with semaphore:
-                    return await self.check_url(session, url)
-
-            tasks = [bound_check(url) for url in urls]
-            for result in await asyncio.gather(*tasks):
-                results.append(result)
-
-        return results
 
 
 class Reporter:
