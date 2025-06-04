@@ -5,7 +5,7 @@ from aiohttp import ClientTimeout
 from bs4 import BeautifulSoup
 from datetime import datetime
 from urllib.parse import urljoin, urlparse
-from collections import namedtuple
+from collections import namedtuple, defaultdict
 from usp.tree import sitemap_tree_for_homepage
 
 # Configuration constants
@@ -82,12 +82,19 @@ class LinkExtractor:
         return internal, external
 
 
-from collections import defaultdict
-
 class LinkChecker:
     def __init__(self):
         self.broken = []
         self.domain_last_call = defaultdict(float)
+
+    def _headers(self, url):
+        if "api.github.com" in url:
+            return {
+                "Authorization": f"Bearer {TOKEN}",
+                "Accept": "application/vnd.github+json",
+                "Content-Type": "application/json"
+            }
+        return USER_AGENT
 
     async def _throttle(self, domain, min_interval=1.5):
         now = asyncio.get_event_loop().time()
@@ -114,6 +121,22 @@ class LinkChecker:
                 else:
                     print(f"⚠️ Error fetching {url}: {error}")
                     return url, None
+
+    async def check_all(self, urls, concurrency=10):
+        semaphore = asyncio.Semaphore(concurrency)
+        connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
+        results = []
+
+        async with aiohttp.ClientSession(connector=connector) as session:
+            async def bound_check(url):
+                async with semaphore:
+                    return await self.check_url(session, url)
+
+            tasks = [bound_check(url) for url in urls]
+            for result in await asyncio.gather(*tasks):
+                results.append(result)
+
+        return results
 
 
 class Reporter:
@@ -173,8 +196,8 @@ async def main():
     print(f"⚡ Checking {len(internal_links)} internal links with concurrency=10...")
     internal_results = await checker.check_all(internal_links, concurrency=10)
 
-    print(f"🐢 Checking {len(external_links)} external links with concurrency=1...")
-    external_results = await checker.check_all(external_links, concurrency=1)
+    print(f"🐢 Checking {len(external_links)} external links with concurrency=3...")
+    external_results = await checker.check_all(external_links, concurrency=3)
 
     all_results = internal_results + external_results
     broken_links = []
