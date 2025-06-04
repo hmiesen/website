@@ -75,6 +75,12 @@ class LinkExtractor:
         print(f"✅ Filtered {len(valid_links)} valid HTTP links")
         return valid_links
 
+    def split_links_by_domain(self, links):
+        own_domain = urlparse(self.domain).netloc.replace("www.", "")
+        internal = [url for url in links if own_domain in urlparse(url).netloc]
+        external = [url for url in links if own_domain not in urlparse(url).netloc]
+        return internal, external
+
 
 class LinkChecker:
     def __init__(self):
@@ -89,12 +95,19 @@ class LinkChecker:
             }
         return USER_AGENT
 
-    async def check_url(self, session, url):
-        try:
-            async with session.get(url, headers=self._headers(url), timeout=ClientTimeout(total=8)) as response:
-                return url, response.status
-        except Exception as e:
-            return url, None
+    async def check_url(self, session, url, retries=1):
+        headers = self._headers(url)
+        for attempt in range(retries + 1):
+            try:
+                async with session.get(url, headers=headers, timeout=ClientTimeout(total=8)) as response:
+                    return url, response.status
+            except Exception as e:
+                error = str(e)
+                if attempt < retries:
+                    await asyncio.sleep(1)
+                else:
+                    print(f"⚠️ Error fetching {url}: {error}")
+                    return url, None
 
     async def check_all(self, urls, concurrency=10):
         semaphore = asyncio.Semaphore(concurrency)
@@ -125,9 +138,21 @@ class Reporter:
         dt = datetime.now().strftime("%Y-%m-%d %H:%M")
         title = f"Broken Links Report - {dt}"
 
-        body = "| Page URL | Broken URL | Anchor Text | Status Code |\n|---|---|---|---|\n"
-        for link in broken_links:
-            body += f"| {link.page_url} | {link.broken_url} | {link.anchor_text} | {link.status_code} |\n"
+        own_domain = urlparse(DOMAIN).netloc.replace("www.", "")
+        internal = [link for link in broken_links if own_domain in urlparse(link.broken_url).netloc]
+        external = [link for link in broken_links if own_domain not in urlparse(link.broken_url).netloc]
+
+        def format_table(links):
+            rows = ["| Page URL | Broken URL | Anchor Text | Status Code |", "|---|---|---|---|"]
+            for link in links:
+                rows.append(f"| {link.page_url} | {link.broken_url} | {link.anchor_text} | {link.status_code} |")
+            return "\n".join(rows)
+
+        body = ""
+        if internal:
+            body += "### 🔁 Internal Broken Links\n" + format_table(internal) + "\n\n"
+        if external:
+            body += "### 🌍 External Broken Links\n" + format_table(external) + "\n"
 
         data = {"title": title, "body": body[:65000]}
         headers = {
@@ -151,12 +176,19 @@ async def main():
     await extractor.extract_links(sitemap.pages)
     http_links = extractor.get_http_links()
 
-    checker = LinkChecker()
-    results = await checker.check_all(http_links, concurrency=5)
+    internal_links, external_links = extractor.split_links_by_domain(http_links)
 
+    checker = LinkChecker()
+    print(f"⚡ Checking {len(internal_links)} internal links with concurrency=10...")
+    internal_results = await checker.check_all(internal_links, concurrency=10)
+
+    print(f"🐢 Checking {len(external_links)} external links with concurrency=1...")
+    external_results = await checker.check_all(external_links, concurrency=1)
+
+    all_results = internal_results + external_results
     broken_links = []
     for page_url, broken_url, anchor_text in extractor.all_links:
-        for url, status in results:
+        for url, status in all_results:
             if broken_url == url and (status is None or status >= 400):
                 broken_links.append(BROKEN_LINK(page_url, broken_url, anchor_text, status))
                 break
