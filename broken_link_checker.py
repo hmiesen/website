@@ -65,6 +65,7 @@ class LinkExtractor:
         for _, link, _ in self.all_links:
             if not link.startswith("http"):
                 continue
+            link = link.replace("http://tilburgsciencehub.com", "https://tilburgsciencehub.com")
             if any(link.startswith(prefix) for prefix in SKIPPED_PREFIXES):
                 continue
             if any(bad in link for bad in ["mailto:", "javascript:", "linkedin.com/sharing", "twitter.com/intent"]):
