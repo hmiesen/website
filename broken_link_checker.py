@@ -36,15 +36,40 @@ class LinkExtractor:
         self.domain = domain
         self.all_links = []
 
+    def get_http_links(self):
+            seen = set()
+            valid_links = []
+            for _, link, _ in self.all_links:
+                if not link.startswith("http"):
+                    continue
+                if any(link.startswith(prefix) for prefix in SKIPPED_PREFIXES):
+                    continue
+                if any(bad in link for bad in ["mailto:", "javascript:", "linkedin.com/sharing", "twitter.com/intent"]):
+                    continue
+                link = link.replace("http://tilburgsciencehub.com", "https://tilburgsciencehub.com")
+                if link not in seen:
+                    seen.add(link)
+                    valid_links.append(link)
+            print(f"✅ Filtered {len(valid_links)} valid HTTP links")
+            return valid_links
+
     async def extract_links(self, pages):
         self.all_links.clear()
         timeout = ClientTimeout(total=8)
-        connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
+        connector = aiohttp.TCPConnector(limit_per_host=10, ssl=True)  # Enable SSL verification
+
+        user_agent_headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/114.0.0.0 Safari/537.36"
+            )
+        }
 
         async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
             for page_url in pages:
                 try:
-                    async with session.get(page_url, headers=USER_AGENT) as response:
+                    async with session.get(page_url, headers=user_agent_headers) as response:
                         html = await response.text()
                         soup = BeautifulSoup(html, "html.parser")
                         links = soup.find_all("a")
@@ -59,28 +84,14 @@ class LinkExtractor:
                 except Exception as e:
                     print(f"⚠️ Failed to fetch {page_url}: {e}")
 
-    def get_http_links(self):
-        seen = set()
-        valid_links = []
-        for _, link, _ in self.all_links:
-            if not link.startswith("http"):
-                continue
-            if any(link.startswith(prefix) for prefix in SKIPPED_PREFIXES):
-                continue
-            if any(bad in link for bad in ["mailto:", "javascript:", "linkedin.com/sharing", "twitter.com/intent"]):
-                continue
-            link = link.replace("http://tilburgsciencehub.com", "https://tilburgsciencehub.com")
-            if link not in seen:
-                seen.add(link)
-                valid_links.append(link)
-        print(f"✅ Filtered {len(valid_links)} valid HTTP links")
-        return valid_links
-
-    def split_links_by_domain(self, links):
-        own_domain = urlparse(self.domain).netloc.replace("www.", "")
-        internal = [url for url in links if own_domain in urlparse(url).netloc]
-        external = [url for url in links if own_domain not in urlparse(url).netloc]
-        return internal, external
+    def filter_broken_links(self, results):
+        broken = []
+        for page_url, link, anchor_text in self.all_links:
+            for checked_url, status in results:
+                if link == checked_url and isinstance(status, int) and status >= 400:
+                    broken.append(BROKEN_LINK(page_url, link, anchor_text, status))
+                    break
+        return broken
 
 
 class LinkChecker:
