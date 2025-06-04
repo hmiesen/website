@@ -36,22 +36,22 @@ class LinkExtractor:
         self.domain = domain
         self.all_links = []
 
-def get_http_links(self):
-        seen = set()
-        valid_links = []
-        for _, link, _ in self.all_links:
-            if not link.startswith("http"):
-                continue
-            if any(link.startswith(prefix) for prefix in SKIPPED_PREFIXES):
-                continue
-            if any(bad in link for bad in ["mailto:", "javascript:", "linkedin.com/sharing", "twitter.com/intent"]):
-                continue
-            link = link.replace("http://tilburgsciencehub.com", "https://tilburgsciencehub.com")
-            if link not in seen:
-                seen.add(link)
-                valid_links.append(link)
-        print(f"✅ Filtered {len(valid_links)} valid HTTP links")
-        return valid_links
+    def get_http_links(self):
+            seen = set()
+            valid_links = []
+            for _, link, _ in self.all_links:
+                if not link.startswith("http"):
+                    continue
+                if any(link.startswith(prefix) for prefix in SKIPPED_PREFIXES):
+                    continue
+                if any(bad in link for bad in ["mailto:", "javascript:", "linkedin.com/sharing", "twitter.com/intent"]):
+                    continue
+                link = link.replace("http://tilburgsciencehub.com", "https://tilburgsciencehub.com")
+                if link not in seen:
+                    seen.add(link)
+                    valid_links.append(link)
+            print(f"✅ Filtered {len(valid_links)} valid HTTP links")
+            return valid_links
 
     async def extract_links(self, pages):
         self.all_links.clear()
