@@ -36,7 +36,7 @@ class LinkExtractor:
         self.domain = domain
         self.all_links = []
 
-    def get_http_links(self):
+def get_http_links(self):
         seen = set()
         valid_links = []
         for _, link, _ in self.all_links:
@@ -93,22 +93,18 @@ class LinkExtractor:
     def filter_broken_links(self, results):
         broken = []
         seen = set()
-        # Create a map of URL → status
-        status_map = {url.rstrip('/'): status for url, status in results if isinstance(status, int) and status >= 400}
+        own_domain = urlparse(self.domain).netloc.replace("www.", "")
 
         for page_url, link, anchor_text in self.all_links:
-            normalized = link.rstrip('/')
-            if link == checked_url and isinstance(status, int) and status >= 400:
-                is_internal = own_domain in urlparse(link).netloc
-            if not is_internal and status == 403:
-                continue  # Skip external 403s
-            if (page_url, link) not in seen:
-                broken.append(BROKEN_LINK(page_url, link, anchor_text, status))
-                seen.add((page_url, link))
-            if normalized in status_map and (page_url, normalized) not in seen:
-                broken.append(BROKEN_LINK(page_url, link, anchor_text, status_map[normalized]))
-                seen.add((page_url, normalized))
-
+            for checked_url, status in results:
+                if link == checked_url and isinstance(status, int) and status >= 400:
+                    is_internal = own_domain in urlparse(link).netloc
+                    if not is_internal and status == 403:
+                        continue  # Skip external 403s
+                    if (page_url, link) not in seen:
+                        broken.append(BROKEN_LINK(page_url, link, anchor_text, status))
+                        seen.add((page_url, link))
+                        break
         print(f"❌ Found {len(broken)} broken links")
         return broken
 
