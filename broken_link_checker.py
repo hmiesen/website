@@ -52,7 +52,7 @@ class LinkExtractor:
                             href = tag.get("href", "")
                             if not href or href.startswith("#"):
                                 continue
-                            absolute = urljoin(page_url, href)
+                            absolute = urljoin(page_url, href).replace("http://tilburgsciencehub.com", "https://tilburgsciencehub.com")
                             text = tag.get_text(strip=True)
                             if absolute != page_url:
                                 self.all_links.append([page_url, absolute, text])
@@ -65,7 +65,6 @@ class LinkExtractor:
         for _, link, _ in self.all_links:
             if not link.startswith("http"):
                 continue
-            link = link.replace("http://tilburgsciencehub.com", "https://tilburgsciencehub.com")
             if any(link.startswith(prefix) for prefix in SKIPPED_PREFIXES):
                 continue
             if any(bad in link for bad in ["mailto:", "javascript:", "linkedin.com/sharing", "twitter.com/intent"]):
