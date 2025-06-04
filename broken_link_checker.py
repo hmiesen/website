@@ -209,7 +209,7 @@ class Reporter:
 
 async def main():
     sitemap = SitemapLoader(DOMAIN)
-    sitemap.load(max_pages=10)
+    sitemap.load(max_pages="all")
 
     extractor = LinkExtractor(DOMAIN)
     await extractor.extract_links(sitemap.pages)
