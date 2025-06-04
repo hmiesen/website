@@ -98,6 +98,13 @@ class LinkExtractor:
 
         for page_url, link, anchor_text in self.all_links:
             normalized = link.rstrip('/')
+            if link == checked_url and isinstance(status, int) and status >= 400:
+                is_internal = own_domain in urlparse(link).netloc
+            if not is_internal and status == 403:
+                continue  # Skip external 403s
+            if (page_url, link) not in seen:
+                broken.append(BROKEN_LINK(page_url, link, anchor_text, status))
+                seen.add((page_url, link))
             if normalized in status_map and (page_url, normalized) not in seen:
                 broken.append(BROKEN_LINK(page_url, link, anchor_text, status_map[normalized]))
                 seen.add((page_url, normalized))
