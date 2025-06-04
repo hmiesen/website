@@ -69,6 +69,7 @@ class LinkExtractor:
                 continue
             if any(bad in link for bad in ["mailto:", "javascript:", "linkedin.com/sharing", "twitter.com/intent"]):
                 continue
+            link = link.replace("http://tilburgsciencehub.com", "https://tilburgsciencehub.com")
             if link not in seen:
                 seen.add(link)
                 valid_links.append(link)
