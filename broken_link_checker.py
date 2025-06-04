@@ -93,23 +93,21 @@ class LinkExtractor:
     def filter_broken_links(self, results):
         broken = []
         seen = set()
+        # Create a map of URL → status
+        status_map = {url.rstrip('/'): status for url, status in results if isinstance(status, int) and status >= 400}
+
         for page_url, link, anchor_text in self.all_links:
-            for checked_url, status in results:
-                if (
-                    link == checked_url and
-                    isinstance(status, int) and
-                    status >= 400 and
-                    (page_url, link) not in seen
-                ):
-                    broken.append(BROKEN_LINK(page_url, link, anchor_text, status))
-                    seen.add((page_url, link))
-                    break
+            normalized = link.rstrip('/')
+            if normalized in status_map and (page_url, normalized) not in seen:
+                broken.append(BROKEN_LINK(page_url, link, anchor_text, status_map[normalized]))
+                seen.add((page_url, normalized))
+
+        print(f"❌ Found {len(broken)} broken links")
         return broken
 
 
 class LinkChecker:
     def __init__(self):
-        self.broken = []
         self.domain_last_call = defaultdict(float)
 
     def _headers(self, url):
@@ -183,8 +181,7 @@ class Reporter:
         def format_table(links):
             rows = ["| Page URL | Broken URL | Anchor Text | Status Code |", "|---|---|---|---|"]
             for link in links:
-                if link.status_code is not None:
-                    rows.append(f"| {link.page_url} | {link.broken_url} | {link.anchor_text} | {link.status_code} |")
+                rows.append(f"| {link.page_url} | {link.broken_url} | {link.anchor_text} | {link.status_code} |")
             return "\n".join(rows)
 
         body = ""
@@ -209,12 +206,11 @@ class Reporter:
 
 async def main():
     sitemap = SitemapLoader(DOMAIN)
-    sitemap.load(max_pages="all")
+    sitemap.load(max_pages=10)
 
     extractor = LinkExtractor(DOMAIN)
     await extractor.extract_links(sitemap.pages)
     http_links = extractor.get_http_links()
-
     internal_links, external_links = extractor.split_links_by_domain(http_links)
 
     checker = LinkChecker()
@@ -225,16 +221,10 @@ async def main():
     external_results = await checker.check_all(external_links, concurrency=3)
 
     all_results = internal_results + external_results
-    broken_links = []
-    for page_url, broken_url, anchor_text in extractor.all_links:
-        for url, status in all_results:
-            if broken_url == url and isinstance(status, int) and status >= 400:
-                broken_links.append(BROKEN_LINK(page_url, broken_url, anchor_text, status))
-                break
+    broken_links = extractor.filter_broken_links(all_results)
 
     reporter = Reporter(f"https://api.github.com/repos/{GITHUB_REPO}/issues")
     await reporter.create_issue(broken_links)
-
 
 if __name__ == "__main__":
     asyncio.run(main())
