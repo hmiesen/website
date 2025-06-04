@@ -145,7 +145,8 @@ class Reporter:
         def format_table(links):
             rows = ["| Page URL | Broken URL | Anchor Text | Status Code |", "|---|---|---|---|"]
             for link in links:
-                rows.append(f"| {link.page_url} | {link.broken_url} | {link.anchor_text} | {link.status_code} |")
+                if link.status_code is not None:
+                    rows.append(f"| {link.page_url} | {link.broken_url} | {link.anchor_text} | {link.status_code} |")
             return "\n".join(rows)
 
         body = ""
@@ -189,7 +190,7 @@ async def main():
     broken_links = []
     for page_url, broken_url, anchor_text in extractor.all_links:
         for url, status in all_results:
-            if broken_url == url and (status is None or status >= 400):
+            if broken_url == url and isinstance(status, int) and status >= 400:
                 broken_links.append(BROKEN_LINK(page_url, broken_url, anchor_text, status))
                 break
 
