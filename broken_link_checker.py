@@ -165,7 +165,7 @@ async def check_links_for_errors(links_to_check):
     print(f"🚀 Checking {len(links_to_check)} URLs...")
 
     # Split links by internal vs external
-    internal_links, external_links = split_internal_external(links_to_check, full_domain)
+    internal_links, external_links = split_internal_external(links_to_check, DOMAIN)
 
     # Check internal links aggressively
     print(f"⚡ Checking {len(internal_links)} internal links with concurrency=10...")
@@ -191,7 +191,7 @@ async def check_links_for_errors(links_to_check):
     all_results_map.update({r["link"]: r for r in retry_results})
     results = list(all_results_map.values())
 
-    own_domain = urlparse(full_domain).netloc.replace("www.", "")
+    own_domain = urlparse(DOMAIN).netloc.replace("www.", "")
 
     for result in results:
         link = result["link"]
