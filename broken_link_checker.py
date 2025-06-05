@@ -62,70 +62,76 @@ class SitemapLoader:
         self.pages = sorted(set(page.url for page in raw_pages))
         print(f"🔍 Loaded {len(self.pages)} unique pages from sitemap (limit = {max_pages})")
 
+async def async_extract_all_http_links(list_pages, full_domain, session):
+    all_extracted_links.clear()
+    for url in list_pages:
+        try:
+            async with session.get(url, headers=USER_AGENT, allow_redirects=False) as response:
+                html = await response.text()
+                soup = BeautifulSoup(html, 'html.parser')
+                links = soup.find_all("a")
+        except Exception as e:
+            print(f"⚠️ Failed to fetch {url}: {e}")
+            continue
 
-class LinkExtractor:
-    def __init__(self, domain):
-        self.domain = domain
-        self.all_extracted_links = []
-        self.unique_http_links_to_check = []
+        for link in links:
+            href = link.get("href", "")
+            text = link.get_text(strip=True)
+            if not href or href.startswith("#") or ('.py' in href and 'http' not in href):
+                continue
+            absolute_url = urljoin(url, href)
+            if "github.com" in absolute_url and "/issues/new" in absolute_url:
+                continue
+            if absolute_url == url:
+                all_extracted_links.append([url, 'Same destination as page', text])
+            else:
+                all_extracted_links.append([url, absolute_url, text])
 
-    async def extract_all_http_links(self, list_pages, session):
-        self.all_extracted_links.clear()
-        for url in list_pages:
+def split_internal_external(links, base_domain):
+    own_domain = urlparse(base_domain).netloc.replace("www.", "")
+    internal = [link for link in links if own_domain in urlparse(link).netloc]
+    external = [link for link in links if own_domain not in urlparse(link).netloc]
+    return internal, external
+
+def filter_unique_http_links(all_extracted_links):
+    unique_http_links_to_check.clear()
+    seen = set()
+    for _, link, _ in all_extracted_links:
+        if not link.startswith("http") or is_skipped_for_reporting(link):
+            continue
+        if "linkedin.com/company" in link:
+            continue
+        if any(bad in link for bad in ["linkedin.com/sharing", "twitter.com/intent", "facebook.com/sharer", "mailto:", "javascript:"]):
+            continue
+        if link not in seen:
+            unique_http_links_to_check.append(link)
+            seen.add(link)
+    print(f"✅ Filtered links: {len(unique_http_links_to_check)}")
+
+async def async_check_url(session, url, headers):
+    domain = urlparse(url).netloc.lower()
+
+    try:
+        await asyncio.sleep(0.1)
+
+        # For domains known to block HEAD (like LinkedIn), skip straight to GET
+        use_head = not any(bad in domain for bad in ["linkedin.com", "akamai.net"])
+
+        if use_head:
             try:
-                async with session.get(url, headers=USER_AGENT, allow_redirects=False) as response:
-                    html = await response.text()
-                    soup = BeautifulSoup(html, 'html.parser')
-                    links = soup.find_all("a")
-            except Exception as e:
-                print(f"⚠️ Failed to fetch {url}: {e}")
-                continue
+                async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as response:
+                    if response.status >= 500:
+                        await asyncio.sleep(1)
+                        async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as retry_response:
+                            return {"link": url, "statusCode": retry_response.status, "errorType": None}
+            except:
+                pass  # fallback to GET
 
-            for link in links:
-                href = link.get("href", "")
-                text = link.get_text(strip=True)
-                if not href or href.startswith("#") or ('.py' in href and 'http' not in href):
-                    continue
-                absolute_url = urljoin(url, href)
-                if "github.com" in absolute_url and "/issues/new" in absolute_url:
-                    continue
-                if absolute_url == url:
-                    self.all_extracted_links.append([url, 'Same destination as page', text])
-                else:
-                    self.all_extracted_links.append([url, absolute_url, text])
+        async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as response:
+            return {"link": url, "statusCode": response.status, "errorType": None}
 
-    def filter_unique_http_links(self):
-        self.unique_http_links_to_check.clear()
-        seen = set()
-        for _, link, _ in self.all_extracted_links:
-            if not link.startswith("http") or is_skipped_for_reporting(link):
-                continue
-            if "linkedin.com/company" in link:
-                continue
-            if any(bad in link for bad in ["linkedin.com/sharing", "twitter.com/intent", "facebook.com/sharer", "mailto:", "javascript:"]):
-                continue
-            if link not in seen:
-                self.unique_http_links_to_check.append(link)
-                seen.add(link)
-        print(f"✅ Filtered links: {len(self.unique_http_links_to_check)}")
-
-    def split_internal_external(self, links):
-        own_domain = urlparse(self.domain).netloc.replace("www.", "")
-        internal = [link for link in links if own_domain in urlparse(link).netloc]
-        external = [link for link in links if own_domain not in urlparse(link).netloc]
-        return internal, external
-
-    def match_broken_links(self, broken_links_dict):
-        matches = []
-        for page_url, broken_url, anchor_text in self.all_extracted_links:
-            if broken_url in broken_links_dict['link']:
-                idx = broken_links_dict['link'].index(broken_url)
-                status = broken_links_dict['statusCode'][idx]
-                matches.append(broken_link_tuple(page_url, broken_url, anchor_text, status))
-        internal = [m for m in matches if "tilburgsciencehub.com" in urlparse(m.broken_url).netloc]
-        external = [m for m in matches if "tilburgsciencehub.com" not in urlparse(m.broken_url).netloc]
-        return internal, external
-
+    except Exception as e:
+        return {"link": url, "statusCode": None, "errorType": repr(e)}
 
 class LinkErrorChecker:
     def __init__(self, domain, is_skipped_func, broken_links_dict):
@@ -136,7 +142,7 @@ class LinkErrorChecker:
     async def check_links_for_errors(self, links_to_check):
         print(f"🚀 Checking {len(links_to_check)} URLs...")
 
-        internal_links, external_links = LinkExtractor.split_internal_external(links_to_check, self.domain)
+        internal_links, external_links = split_internal_external(links_to_check, self.domain)
 
         print(f"⚡ Checking {len(internal_links)} internal links with concurrency=10...")
         internal_results = await self._check_all_urls(internal_links, concurrency=10)
@@ -200,7 +206,7 @@ class LinkErrorChecker:
             async with semaphore:
                 try:
                     headers = get_headers(url)
-                    return await self._check_url(session, url, headers=headers)
+                    return await async_check_url(session, url, headers=headers)
                 except Exception as e:
                     return {"link": url, "statusCode": None, "errorType": str(e)}
 
@@ -208,30 +214,20 @@ class LinkErrorChecker:
             tasks = [limited_check(session, url) for url in urls]
             return await asyncio.gather(*tasks)
 
-    async def _check_url(self, session, url, headers):
-        domain = urlparse(url).netloc.lower()
-        await asyncio.sleep(0.1)
-
-        use_head = not any(bad in domain for bad in ["linkedin.com", "akamai.net"])
-
-        try:
-            if use_head:
-                try:
-                    async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as response:
-                        if response.status >= 500:
-                            await asyncio.sleep(1)
-                            async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as retry_response:
-                                return {"link": url, "statusCode": retry_response.status, "errorType": None}
-                        return {"link": url, "statusCode": response.status, "errorType": None}
-                except:
-                    pass  # fallback
-
-            async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as response:
-                return {"link": url, "statusCode": response.status, "errorType": None}
-
-        except Exception as e:
-            return {"link": url, "statusCode": None, "errorType": repr(e)}
-
+def match_broken_links(external_links_list_raw):
+    matched_broken = [
+        broken_link_tuple(source, link, anchor, broken_links_dict['statusCode'][i])
+        for source, link, anchor in external_links_list_raw
+        for i, b in enumerate(broken_links_dict['link'])
+        if link == b
+    ]
+    
+    own_domain = urlparse(DOMAIN).netloc.replace("www.", "")
+    
+    df_internal = [entry for entry in matched_broken if own_domain in urlparse(entry.broken_url).netloc]
+    df_external = [entry for entry in matched_broken if own_domain not in urlparse(entry.broken_url).netloc]
+    
+    return df_internal, df_external
 
 class Reporter:
     def __init__(self, github_repo_url, token):
@@ -300,27 +296,16 @@ async def main_async_scraper():
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
 
-    extractor = LinkExtractor(DOMAIN)
-
     async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
-        await extractor.extract_all_http_links(sitemap.pages, session)
+        await async_extract_all_http_links(sitemap.pages, DOMAIN, session)
 
-    extractor.filter_unique_http_links()
-
+    filter_unique_http_links(all_extracted_links)
     checker = LinkErrorChecker(DOMAIN, is_skipped_for_reporting, broken_links_dict)
-    await checker.check_links_for_errors(extractor.unique_http_links_to_check)
-
-    internal_links, external_links = extractor.match_broken_links(broken_links_dict)
-
+    await checker.check_links_for_errors(unique_http_links_to_check)
     reporter = Reporter(f"https://api.github.com/repos/{GITHUB_REPO}/issues", TOKEN)
+    internal_links, external_links = match_broken_links(all_extracted_links)
     await reporter.push_issue_git_batched(internal_links, external_links)
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main_async_scraper())
-    except Exception as e:
-        print(f"❌ Uncaught error in scraper: {e}")
-        import sys
-        sys.exit(1)
-
+    asyncio.run(main_async_scraper())
 
