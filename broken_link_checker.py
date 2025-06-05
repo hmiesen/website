@@ -11,6 +11,13 @@ from urllib.parse import urlparse
 
 # Configuration constants
 DOMAIN = 'https://tilburgsciencehub.com/'
+USER_AGENT = {'User-Agent': 'Mozilla/5.0'}
+SKIPPED_PREFIXES = {
+    "https://tilburgsciencehub.com/tour",
+    "https://tilburgsciencehub.com/researcher-tour",
+}
+USER_AGENT = {'User-Agent': 'Mozilla/5.0'}
+TOKEN = os.environ.get('GIT_TOKEN')
 
 # Data containers
 list_pages_raw = []
@@ -20,21 +27,10 @@ unique_http_links_to_check = []
 broken_links_dict = {'link': [], 'statusCode': []}
 broken_link_tuple = namedtuple("broken_link_tuple", ["page_url", "broken_url", "anchor_text", "status_code"])
 
-# Configs
-user_agent = {'User-Agent': 'Mozilla/5.0'}
-skipped_prefixes = {
-    "https://tilburgsciencehub.com/tour",
-    "https://tilburgsciencehub.com/researcher-tour",
-}
-
-token = os.environ['GIT_TOKEN']
-if not token:
-    raise EnvironmentError("⚠️ GIT_TOKEN not set in environment variables")
-
 def get_headers(url, user_agent_override=None):
     if "api.github.com" in url:
         return {
-            "Authorization": f"Bearer {token}",
+            "Authorization": f"Bearer {TOKEN}",
             "Accept": "application/vnd.github+json",
             "Content-Type": "application/json"
         }
@@ -57,7 +53,7 @@ github_repo = "hmiesen/website"
 github_repo_url = f"https://api.github.com/repos/{github_repo}/issues"
 
 def is_skipped_for_reporting(link):
-    return any(link.startswith(prefix) for prefix in skipped_prefixes)
+    return any(link.startswith(prefix) for prefix in SKIPPED_PREFIXES)
 
 class SitemapLoader:
     def __init__(self, domain):
@@ -74,7 +70,7 @@ async def async_extract_all_http_links(list_pages, full_domain, session):
     all_extracted_links.clear()
     for url in list_pages:
         try:
-            async with session.get(url, headers=user_agent, allow_redirects=False) as response:
+            async with session.get(url, headers=USER_AGENT, allow_redirects=False) as response:
                 html = await response.text()
                 soup = BeautifulSoup(html, 'html.parser')
                 links = soup.find_all("a")
@@ -314,7 +310,7 @@ async def main_async_scraper():
 
     filter_unique_http_links(all_extracted_links)
     await check_links_for_errors(unique_http_links_to_check)
-    reporter = Reporter(github_repo_url, token)
+    reporter = Reporter(github_repo_url, TOKEN)
     internal_links, external_links = match_broken_links(all_extracted_links)
     await reporter.push_issue_git_batched(internal_links, external_links)
 
