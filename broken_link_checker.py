@@ -322,7 +322,6 @@ async def main_async_scraper():
     reporter = Reporter(f"https://api.github.com/repos/{GITHUB_REPO}/issues", TOKEN)
     await reporter.push_issue_git_batched(internal_links, external_links)
 
-
 if __name__ == "__main__":
     try:
         asyncio.run(main_async_scraper())
