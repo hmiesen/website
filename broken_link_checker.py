@@ -232,7 +232,7 @@ def match_broken_links(external_links_list_raw):
         if link == b
     ]
     
-    own_domain = urlparse(full_domain).netloc.replace("www.", "")
+    own_domain = urlparse(DOMAIN).netloc.replace("www.", "")
     
     df_internal = [entry for entry in matched_broken if own_domain in urlparse(entry.broken_url).netloc]
     df_external = [entry for entry in matched_broken if own_domain not in urlparse(entry.broken_url).netloc]
