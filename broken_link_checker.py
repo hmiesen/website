@@ -108,6 +108,17 @@ def filter_unique_http_links(all_extracted_links):
             seen.add(link)
     print(f"✅ Filtered links: {len(unique_http_links_to_check)}")
 
+def match_broken_links(extracted_links):
+    matches = []
+    for page_url, broken_url, anchor_text in extracted_links:
+        if broken_url in broken_links_dict['link']:
+            idx = broken_links_dict['link'].index(broken_url)
+            status = broken_links_dict['statusCode'][idx]
+            matches.append(broken_link_tuple(page_url, broken_url, anchor_text, status))
+    internal = [m for m in matches if "tilburgsciencehub.com" in urlparse(m.broken_url).netloc]
+    external = [m for m in matches if "tilburgsciencehub.com" not in urlparse(m.broken_url).netloc]
+    return internal, external
+
 class LinkErrorChecker:
     def __init__(self, domain, is_skipped_func, broken_links_dict):
         self.domain = domain
