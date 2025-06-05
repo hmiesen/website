@@ -292,5 +292,11 @@ async def main_async_scraper():
     await reporter.push_issue_git_batched(internal_links, external_links)
 
 if __name__ == "__main__":
-    asyncio.run(main_async_scraper())
+    try:
+        asyncio.run(main_async_scraper())
+    except Exception as e:
+        print(f"❌ Uncaught error in scraper: {e}")
+        import sys
+        sys.exit(1)
+
 
