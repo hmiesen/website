@@ -208,8 +208,8 @@ class LinkErrorChecker:
         except Exception as e:
             return {"link": url, "statusCode": None, "errorType": repr(e)}
         
-    def split_internal_external(links, base_domain):
-        own_domain = urlparse(base_domain).netloc.replace("www.", "")
+    def split_internal_external(self, links):
+        own_domain = urlparse(self.domain).netloc.replace("www.", "")
         internal = [link for link in links if own_domain in urlparse(link).netloc]
         external = [link for link in links if own_domain not in urlparse(link).netloc]
         return internal, external
@@ -282,15 +282,21 @@ async def main_async_scraper():
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
 
-    async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
-        await async_extract_all_http_links(sitemap.pages, DOMAIN, session)
+    extractor = LinkExtractor(DOMAIN)
 
-    filter_unique_http_links(all_extracted_links)
+    async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
+        await extractor.extract_all_http_links(sitemap.pages, session)
+
+    extractor.filter_unique_http_links()
+
     checker = LinkErrorChecker(DOMAIN, is_skipped_for_reporting, broken_links_dict)
-    await checker.check_links_for_errors(unique_http_links_to_check)
+    await checker.check_links_for_errors(extractor.unique_http_links_to_check)
+
+    internal_links, external_links = extractor.match_broken_links(broken_links_dict)
+
     reporter = Reporter(f"https://api.github.com/repos/{GITHUB_REPO}/issues", TOKEN)
-    internal_links, external_links = match_broken_links(all_extracted_links)
     await reporter.push_issue_git_batched(internal_links, external_links)
+
 
 if __name__ == "__main__":
     try:
