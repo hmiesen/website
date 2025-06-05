@@ -309,15 +309,15 @@ async def main_async_scraper():
     get_list_unique_pages()
 
     timeout = ClientTimeout(total=8)
-    connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
+    connector = aiohttp.TCPConnector(limit_per_host=20, ssl=False)
 
     async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
         await async_extract_all_http_links(list_pages, full_domain, session)
 
     filter_unique_http_links(all_extracted_links)
     await check_links_for_errors(unique_http_links_to_check)
-    internal_links, external_links = match_broken_links(all_extracted_links)
     reporter = Reporter(github_repo_url, token)
+    internal_links, external_links = match_broken_links(all_extracted_links)
     await reporter.push_issue_git_batched(internal_links, external_links)
 
 if __name__ == "__main__":
