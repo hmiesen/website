@@ -247,7 +247,7 @@ class Reporter:
         for i in range(0, len(lst), chunk_size):
             yield lst[i:i + chunk_size]
 
-    async def push_issue_git_batched(repo_url, internal_links, external_links, batch_size=500, max_issues=10):
+    async def push_issue_git_batched(internal_links, external_links, batch_size=500, max_issues=10):
         if not internal_links and not external_links:
             print("✅ No broken links found.")
             return
