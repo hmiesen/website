@@ -133,26 +133,6 @@ async def async_check_url(session, url, headers):
     except Exception as e:
         return {"link": url, "statusCode": None, "errorType": repr(e)}
 
-async def check_all_urls(urls, concurrency=10, user_agent=None):
-    timeout = ClientTimeout(total=8)
-    connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
-
-    # Semaphore limits concurrent tasks
-    semaphore = asyncio.Semaphore(concurrency)
-
-    # Inner function to wrap each request with semaphore
-    async def limited_check(session, url):
-        async with semaphore:
-            try:
-                headers = get_headers(url, user_agent_override=user_agent)
-                return await async_check_url(session, url, headers=headers)
-            except Exception as e:
-                return {"link": url, "statusCode": None, "errorType": str(e)}
-
-    async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
-        tasks = [limited_check(session, url) for url in urls]
-        return await asyncio.gather(*tasks)
-
 class LinkErrorChecker:
     def __init__(self, domain, is_skipped_func, broken_links_dict):
         self.domain = domain
@@ -165,10 +145,10 @@ class LinkErrorChecker:
         internal_links, external_links = split_internal_external(links_to_check, self.domain)
 
         print(f"⚡ Checking {len(internal_links)} internal links with concurrency=10...")
-        internal_results = await check_all_urls(internal_links, concurrency=10)
+        internal_results = await self._check_all_urls(internal_links, concurrency=10)
 
         print(f"🐢 Checking {len(external_links)} external links with concurrency=1...")
-        external_results = await check_all_urls(external_links, concurrency=1)
+        external_results = await self._check_all_urls(external_links, concurrency=1)
 
         retry_candidates = [
             r["link"] for r in external_results
@@ -177,7 +157,7 @@ class LinkErrorChecker:
         retry_results = []
         if retry_candidates:
             print(f"🔁 Retrying {len(retry_candidates)} external failures serially...")
-            retry_results = await check_all_urls(retry_candidates, concurrency=1)
+            retry_results = await self._check_all_urls(retry_candidates, concurrency=1)
 
         all_results = internal_results + external_results
         all_results_map = {r["link"]: r for r in all_results}
@@ -216,6 +196,23 @@ class LinkErrorChecker:
                     print(f"✅ [{status}] {link}")
             elif error:
                 print(f"⚠️ Skipped (non-HTTP): {link} → {error}")
+
+    async def _check_all_urls(self, urls, concurrency=10):
+        timeout = ClientTimeout(total=8)
+        connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
+        semaphore = asyncio.Semaphore(concurrency)
+
+        async def limited_check(session, url):
+            async with semaphore:
+                try:
+                    headers = get_headers(url)
+                    return await async_check_url(session, url, headers=headers)
+                except Exception as e:
+                    return {"link": url, "statusCode": None, "errorType": str(e)}
+
+        async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
+            tasks = [limited_check(session, url) for url in urls]
+            return await asyncio.gather(*tasks)
 
 def match_broken_links(external_links_list_raw):
     matched_broken = [
