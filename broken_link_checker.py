@@ -28,6 +28,9 @@ skipped_prefixes = {
 }
 
 token = os.environ['GIT_TOKEN']
+if not token:
+    raise EnvironmentError("⚠️ GIT_TOKEN not set in environment variables")
+
 def get_headers(url, user_agent_override=None):
     if "api.github.com" in url:
         return {
@@ -239,8 +242,9 @@ def match_broken_links(external_links_list_raw):
     return df_internal, df_external
 
 class Reporter:
-    def __init__(self, github_repo_url):
+    def __init__(self, github_repo_url, token):
         self.github_repo_url = github_repo_url
+        self.token = token
 
     def chunk_list(self, lst, chunk_size):
         for i in range(0, len(lst), chunk_size):
@@ -259,7 +263,7 @@ class Reporter:
         total_batches = min((len(combined) - 1) // batch_size + 1, max_issues)
 
         headers = {
-            "Authorization": f"Bearer {TOKEN}",
+            "Authorization": f"Bearer {self.token}",
             "Accept": "application/vnd.github+json"
         }
 
@@ -312,9 +316,10 @@ async def main_async_scraper():
 
     filter_unique_http_links(all_extracted_links)
     await check_links_for_errors(unique_http_links_to_check)
-    df_internal, df_external = match_broken_links(all_extracted_links)
-    reporter = Reporter(github_repo_url)
-    await reporter.push_issue_git_batched(df_internal, df_external)
+    internal_links, external_links = match_broken_links(all_extracted_links)
+    reporter = Reporter(github_repo_url, token)
+    await reporter.push_issue_git_batched(internal_links, external_links)
 
 if __name__ == "__main__":
     asyncio.run(main_async_scraper())
+
