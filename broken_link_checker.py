@@ -9,8 +9,8 @@ from aiohttp import ClientTimeout
 from collections import namedtuple
 from urllib.parse import urlparse
 
-# Domain
-full_domain = 'https://tilburgsciencehub.com/'
+# Configuration constants
+DOMAIN = 'https://tilburgsciencehub.com/'
 
 # Data containers
 list_pages_raw = []
@@ -59,18 +59,16 @@ github_repo_url = f"https://api.github.com/repos/{github_repo}/issues"
 def is_skipped_for_reporting(link):
     return any(link.startswith(prefix) for prefix in skipped_prefixes)
 
-def get_pages_from_sitemap(full_domain, max_pages=10):
-    list_pages_raw.clear()
-    tree = sitemap_tree_for_homepage(full_domain)
-    pages = tree.all_pages() if max_pages == "all" else list(tree.all_pages())[:max_pages]
-    for page in pages:
-        list_pages_raw.append(page.url)
-    print(f"🔍 Loaded {len(list_pages_raw)} pages from sitemap (limit = {max_pages})")
+class SitemapLoader:
+    def __init__(self, domain):
+        self.domain = domain
+        self.pages = []
 
-def get_list_unique_pages():
-    list_pages.clear()
-    list_pages.extend(sorted(set(list_pages_raw)))
-    print(f"🔍 Unique pages: {len(list_pages)}")
+    def load(self, max_pages="all"):
+        tree = sitemap_tree_for_homepage(self.domain)
+        raw_pages = list(tree.all_pages()) if max_pages == "all" else list(tree.all_pages())[:max_pages]
+        self.pages = sorted(set(page.url for page in raw_pages))
+        print(f"🔍 Loaded {len(self.pages)} unique pages from sitemap (limit = {max_pages})")
 
 async def async_extract_all_http_links(list_pages, full_domain, session):
     all_extracted_links.clear()
@@ -305,14 +303,14 @@ class Reporter:
                 await asyncio.sleep(1)
 
 async def main_async_scraper():
-    get_pages_from_sitemap(full_domain, max_pages=20)
-    get_list_unique_pages()
+    sitemap = SitemapLoader(DOMAIN)
+    sitemap.load(max_pages=20)
 
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
 
     async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
-        await async_extract_all_http_links(list_pages, full_domain, session)
+        await async_extract_all_http_links(sitemap.pages, DOMAIN, session)
 
     filter_unique_http_links(all_extracted_links)
     await check_links_for_errors(unique_http_links_to_check)
