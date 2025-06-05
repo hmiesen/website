@@ -305,11 +305,11 @@ class Reporter:
                 await asyncio.sleep(1)
 
 async def main_async_scraper():
-    get_pages_from_sitemap(full_domain, max_pages=10)
+    get_pages_from_sitemap(full_domain, max_pages=20)
     get_list_unique_pages()
 
     timeout = ClientTimeout(total=8)
-    connector = aiohttp.TCPConnector(limit_per_host=20, ssl=False)
+    connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
 
     async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
         await async_extract_all_http_links(list_pages, full_domain, session)
