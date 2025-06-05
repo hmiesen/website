@@ -240,20 +240,16 @@ class Reporter:
         self.github_repo_url = github_repo_url
         self.token = token
 
-    def chunk_list(self, lst, chunk_size):
-        for i in range(0, len(lst), chunk_size):
-            yield lst[i:i + chunk_size]
-
     async def push_issue_git_batched(self, internal_links, external_links, batch_size=500, max_issues=10):
-        if not internal_links and not external_links:
+        all_links = internal_links + external_links
+        if not all_links:
             print("✅ No broken links found.")
             return
 
         combined = list({
             (link.page_url, link.broken_url, link.anchor_text, link.status_code): link
-            for link in (internal_links + external_links)
+            for link in all_links
         }.values())
-
         total_batches = min((len(combined) - 1) // batch_size + 1, max_issues)
 
         headers = {
@@ -262,41 +258,42 @@ class Reporter:
         }
 
         async with aiohttp.ClientSession(headers=headers) as session:
-            for batch_num, batch in enumerate(self.chunk_list(combined, batch_size)):
+            for i in range(total_batches):
+                batch = combined[i * batch_size:(i + 1) * batch_size]
                 dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-                title = f'Broken Links (Batch {batch_num + 1}) - {dt_string}'
+                title = f"Broken Links (Batch {i + 1}) - {dt_string}"
 
-                def build_table(title, entries): 
-                    lines = [
-                        f"\n### {title}",
-                        "| Page URL | Broken Link URL | Anchor Text | Status Code |",
-                        "|---|---|---|---|"
-                    ]
-                    for entry in entries:
-                        anchor = entry.anchor_text.replace("\n", ' ') if isinstance(entry.anchor_text, str) else ''
-                        lines.append(f"| {entry.page_url} | {entry.broken_url} | {anchor} | {entry.status_code} |")
-                    return "\n".join(lines)
+                internal = [link for link in batch if "tilburgsciencehub.com" in urlparse(link.broken_url).netloc]
+                external = [link for link in batch if "tilburgsciencehub.com" not in urlparse(link.broken_url).netloc]
 
-                internal_batch = [entry for entry in batch if urlparse(entry.broken_url).netloc.endswith("tilburgsciencehub.com")]
-                external_batch = [entry for entry in batch if not urlparse(entry.broken_url).netloc.endswith("tilburgsciencehub.com")]
-
-                body = f"Batch {batch_num + 1}: {len(batch)} broken links found.\n"
-                if internal_batch:
-                    body += build_table("🔁 Internal Broken Links", internal_batch)
-                if external_batch:
-                    body += build_table("🌍 External Broken Links", external_batch)
+                body = f"Batch {i + 1}: {len(batch)} broken links found.\n"
+                if internal:
+                    body += self._build_table("🔁 Internal Broken Links", internal)
+                if external:
+                    body += self._build_table("🌍 External Broken Links", external)
 
                 data = {"title": title, "body": body[:65000]}
 
                 try:
-                    async with session.post(self.github_repo_url, json=data) as response:
-                        if response.status == 201:
-                            print(f"✅ Issue created for batch {batch_num + 1}")
+                    async with session.post(self.github_repo_url, json=data) as resp:
+                        if resp.status == 201:
+                            print(f"✅ Issue created for batch {i + 1}")
                         else:
-                            print(f"❌ Failed to create issue {batch_num + 1}: {response.status} - {await response.text()}")
+                            print(f"❌ Failed to create issue {i + 1}: {resp.status} - {await resp.text()}")
                 except Exception as e:
-                    print(f"❌ Error creating issue for batch {batch_num + 1}: {str(e)}")
+                    print(f"❌ Error creating issue for batch {i + 1}: {str(e)}")
                 await asyncio.sleep(1)
+
+    def _build_table(self, title, entries):
+        lines = [
+            f"\n### {title}",
+            "| Page URL | Broken Link URL | Anchor Text | Status Code |",
+            "|---|---|---|---|"
+        ]
+        for e in entries:
+            anchor = e.anchor_text.replace("\n", " ") if isinstance(e.anchor_text, str) else ""
+            lines.append(f"| {e.page_url} | {e.broken_url} | {anchor} | {e.status_code} |")
+        return "\n".join(lines) + "\n"
 
 async def main_async_scraper():
     sitemap = SitemapLoader(DOMAIN)
