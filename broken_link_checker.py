@@ -51,6 +51,12 @@ def get_headers(url, user_agent_override=None):
 def is_skipped_for_reporting(link):
     return any(link.startswith(prefix) for prefix in SKIPPED_PREFIXES)
 
+def split_internal_external(links, domain):
+    own_domain = urlparse(domain).netloc.replace("www.", "")
+    internal = [link for link in links if own_domain in urlparse(link).netloc]
+    external = [link for link in links if own_domain not in urlparse(link).netloc]
+    return internal, external
+
 class SitemapLoader:
     def __init__(self, domain):
         self.domain = domain
@@ -116,9 +122,10 @@ class LinkExtractor:
                 idx = broken_links_dict['link'].index(broken_url)
                 status = broken_links_dict['statusCode'][idx]
                 matches.append(broken_link_tuple(page_url, broken_url, anchor_text, status))
-        internal = [m for m in matches if "tilburgsciencehub.com" in urlparse(m.broken_url).netloc]
-        external = [m for m in matches if "tilburgsciencehub.com" not in urlparse(m.broken_url).netloc]
-        return internal, external
+        internal, external = split_internal_external([m.broken_url for m in matches], self.domain)
+        internal_matches = [m for m in matches if m.broken_url in internal]
+        external_matches = [m for m in matches if m.broken_url in external]
+        return internal_matches, external_matches
 
 
 class LinkErrorChecker:
@@ -130,7 +137,7 @@ class LinkErrorChecker:
     async def check_links_for_errors(self, links_to_check):
         print(f"🚀 Checking {len(links_to_check)} URLs...")
 
-        internal_links, external_links = self.split_internal_external(links_to_check, self.domain)
+        internal_links, external_links = split_internal_external(links_to_check, self.domain)
 
         print(f"⚡ Checking {len(internal_links)} internal links with concurrency=10...")
         internal_results = await self._check_all_urls(internal_links, concurrency=10)
@@ -225,12 +232,6 @@ class LinkErrorChecker:
 
         except Exception as e:
             return {"link": url, "statusCode": None, "errorType": repr(e)}
-        
-    def split_internal_external(self, links):
-        own_domain = urlparse(self.domain).netloc.replace("www.", "")
-        internal = [link for link in links if own_domain in urlparse(link).netloc]
-        external = [link for link in links if own_domain not in urlparse(link).netloc]
-        return internal, external
 
 
 class Reporter:
