@@ -153,68 +153,69 @@ async def check_all_urls(urls, concurrency=10, user_agent=None):
         tasks = [limited_check(session, url) for url in urls]
         return await asyncio.gather(*tasks)
 
-async def check_links_for_errors(links_to_check):
-    print(f"🚀 Checking {len(links_to_check)} URLs...")
+class LinkErrorChecker:
+    def __init__(self, domain, is_skipped_func, broken_links_dict):
+        self.domain = domain
+        self.is_skipped = is_skipped_func
+        self.broken_links_dict = broken_links_dict
 
-    # Split links by internal vs external
-    internal_links, external_links = split_internal_external(links_to_check, DOMAIN)
+    async def check_links_for_errors(self, links_to_check):
+        print(f"🚀 Checking {len(links_to_check)} URLs...")
 
-    # Check internal links aggressively
-    print(f"⚡ Checking {len(internal_links)} internal links with concurrency=10...")
-    internal_results = await check_all_urls(internal_links, concurrency=10)
+        internal_links, external_links = split_internal_external(links_to_check, self.domain)
 
-    # Check external links carefully
-    print(f"🐢 Checking {len(external_links)} external links with concurrency=1...")
-    external_results = await check_all_urls(external_links, concurrency=1)
+        print(f"⚡ Checking {len(internal_links)} internal links with concurrency=10...")
+        internal_results = await check_all_urls(internal_links, concurrency=10)
 
-    # Merge and retry failed external links
-    retry_candidates = [
-        r["link"] for r in external_results
-        if r["statusCode"] in [403, 429, 999] or r["statusCode"] is None
-    ]
-    retry_results = []
-    if retry_candidates:
-        print(f"🔁 Retrying {len(retry_candidates)} external failures serially...")
-        retry_results = await check_all_urls(retry_candidates, concurrency=1)
+        print(f"🐢 Checking {len(external_links)} external links with concurrency=1...")
+        external_results = await check_all_urls(external_links, concurrency=1)
 
-    # Combine all results, with retries overwriting previous
-    all_results = internal_results + external_results
-    all_results_map = {r["link"]: r for r in all_results}
-    all_results_map.update({r["link"]: r for r in retry_results})
-    results = list(all_results_map.values())
+        retry_candidates = [
+            r["link"] for r in external_results
+            if r["statusCode"] in [403, 429, 999] or r["statusCode"] is None
+        ]
+        retry_results = []
+        if retry_candidates:
+            print(f"🔁 Retrying {len(retry_candidates)} external failures serially...")
+            retry_results = await check_all_urls(retry_candidates, concurrency=1)
 
-    own_domain = urlparse(DOMAIN).netloc.replace("www.", "")
+        all_results = internal_results + external_results
+        all_results_map = {r["link"]: r for r in all_results}
+        all_results_map.update({r["link"]: r for r in retry_results})
+        results = list(all_results_map.values())
 
-    for result in results:
-        link = result["link"]
-        status = result["statusCode"]
-        error = result["errorType"]
+        own_domain = urlparse(self.domain).netloc.replace("www.", "")
 
-        if is_skipped_for_reporting(link):
-            continue
+        for result in results:
+            link = result["link"]
+            status = result["statusCode"]
+            error = result["errorType"]
 
-        is_internal = own_domain in urlparse(link).netloc
-        is_external = not is_internal
-
-        if isinstance(status, int):
-            if status == 403 and is_external:
-                print(f"⏭️ Skipping external 403 (likely bot protection): {link}")
+            if self.is_skipped(link):
                 continue
-            if is_external and status == 999:
-                print(f"⏭️ Skipping external 999 (bot protection): {link}")
-                continue
-            if is_internal and 400 <= status <= 599:
-                print(f"❌ Internal [{status}] {link}")
-                broken_links_dict['link'].append(link)
-                broken_links_dict['statusCode'].append(status)
-            elif is_external and (status in [404, 410] or status >= 500):
-                print(f"❌ External [{status}] {link}")
-                broken_links_dict['link'].append(link)
-                broken_links_dict['statusCode'].append(status)
-            else:
-                print(f"✅ [{status}] {link}")
-        elif error:
-            print(f"⚠️ Skipped (non-HTTP): {link} → {error}")
+
+            is_internal = own_domain in urlparse(link).netloc
+            is_external = not is_internal
+
+            if isinstance(status, int):
+                if status == 403 and is_external:
+                    print(f"⏭️ Skipping external 403 (likely bot protection): {link}")
+                    continue
+                if is_external and status == 999:
+                    print(f"⏭️ Skipping external 999 (bot protection): {link}")
+                    continue
+                if is_internal and 400 <= status <= 599:
+                    print(f"❌ Internal [{status}] {link}")
+                    self.broken_links_dict['link'].append(link)
+                    self.broken_links_dict['statusCode'].append(status)
+                elif is_external and (status in [404, 410] or status >= 500):
+                    print(f"❌ External [{status}] {link}")
+                    self.broken_links_dict['link'].append(link)
+                    self.broken_links_dict['statusCode'].append(status)
+                else:
+                    print(f"✅ [{status}] {link}")
+            elif error:
+                print(f"⚠️ Skipped (non-HTTP): {link} → {error}")
 
 def match_broken_links(external_links_list_raw):
     matched_broken = [
@@ -302,7 +303,8 @@ async def main_async_scraper():
         await async_extract_all_http_links(sitemap.pages, DOMAIN, session)
 
     filter_unique_http_links(all_extracted_links)
-    await check_links_for_errors(unique_http_links_to_check)
+    check_links_for_errors = LinkErrorChecker(unique_http_links_to_check)
+    await check_links_for_errors()
     reporter = Reporter(f"https://api.github.com/repos/{GITHUB_REPO}/issues", TOKEN)
     internal_links, external_links = match_broken_links(all_extracted_links)
     await reporter.push_issue_git_batched(internal_links, external_links)
