@@ -239,24 +239,32 @@ def match_broken_links(external_links_list_raw):
     return df_internal, df_external
 
 class Reporter:
-    def __init__(self, repo_url):
-        self.repo_url = repo_url
+    def __init__(self, github_repo_url):
+        self.github_repo_url = github_repo_url
 
-    def chunk_list(lst, chunk_size):
-        """Helper to split list into chunks."""
+    def chunk_list(self, lst, chunk_size):
         for i in range(0, len(lst), chunk_size):
             yield lst[i:i + chunk_size]
 
-    async def push_issue_git_batched(internal_links, external_links, batch_size=500, max_issues=10):
+    async def push_issue_git_batched(self, internal_links, external_links, batch_size=500, max_issues=10):
         if not internal_links and not external_links:
             print("✅ No broken links found.")
             return
 
-        combined = list({(link.page_url, link.broken_url, link.anchor_text, link.status_code): link for link in (self.internal_links + self.external_links)}.values())
+        combined = list({
+            (link.page_url, link.broken_url, link.anchor_text, link.status_code): link
+            for link in (internal_links + external_links)
+        }.values())
+
         total_batches = min((len(combined) - 1) // batch_size + 1, max_issues)
 
-        async with aiohttp.ClientSession(headers=get_headers(url)) as session:
-            for batch_num, batch in enumerate(chunk_list(combined, batch_size)):
+        headers = {
+            "Authorization": f"Bearer {TOKEN}",
+            "Accept": "application/vnd.github+json"
+        }
+
+        async with aiohttp.ClientSession(headers=headers) as session:
+            for batch_num, batch in enumerate(self.chunk_list(combined, batch_size)):
                 dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
                 title = f'Broken Links (Batch {batch_num + 1}) - {dt_string}'
 
@@ -267,30 +275,30 @@ class Reporter:
                         "|---|---|---|---|"
                     ]
                     for entry in entries:
-                        anchortext = entry.anchor_text.replace("\n", ' ') if isinstance(entry.anchor_text, str) else ''
-                        lines.append(f"| {entry.page_url} | {entry.broken_url} | {anchortext} | {entry.status_code} |")
+                        anchor = entry.anchor_text.replace("\n", ' ') if isinstance(entry.anchor_text, str) else ''
+                        lines.append(f"| {entry.page_url} | {entry.broken_url} | {anchor} | {entry.status_code} |")
                     return "\n".join(lines)
 
                 internal_batch = [entry for entry in batch if urlparse(entry.broken_url).netloc.endswith("tilburgsciencehub.com")]
                 external_batch = [entry for entry in batch if not urlparse(entry.broken_url).netloc.endswith("tilburgsciencehub.com")]
 
-                issue_body = f"Batch {batch_num + 1}: {len(batch)} broken links found.\n"
+                body = f"Batch {batch_num + 1}: {len(batch)} broken links found.\n"
                 if internal_batch:
-                    issue_body += build_table("🔁 Internal Broken Links", internal_batch)
+                    body += build_table("🔁 Internal Broken Links", internal_batch)
                 if external_batch:
-                    issue_body += build_table("🌍 External Broken Links", external_batch)
+                    body += build_table("🌍 External Broken Links", external_batch)
 
-                data = {"title": title, "body": issue_body[:65000]}
+                data = {"title": title, "body": body[:65000]}
 
                 try:
-                    async with session.post(repo_url, json=data) as response:
+                    async with session.post(self.github_repo_url, json=data) as response:
                         if response.status == 201:
-                            print(f"✅ Issue created for batch {batch_num + 1}", flush=True)
+                            print(f"✅ Issue created for batch {batch_num + 1}")
                         else:
                             print(f"❌ Failed to create issue {batch_num + 1}: {response.status} - {await response.text()}")
                 except Exception as e:
                     print(f"❌ Error creating issue for batch {batch_num + 1}: {str(e)}")
-                await asyncio.sleep(1)  # respect rate limit
+                await asyncio.sleep(1)
 
 async def main_async_scraper():
     get_pages_from_sitemap(full_domain, max_pages=10)
