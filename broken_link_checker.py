@@ -303,8 +303,8 @@ async def main_async_scraper():
         await async_extract_all_http_links(sitemap.pages, DOMAIN, session)
 
     filter_unique_http_links(all_extracted_links)
-    check_links_for_errors = LinkErrorChecker(unique_http_links_to_check)
-    await check_links_for_errors()
+    link_error_checker = LinkErrorChecker(unique_http_links_to_check)
+    await link_error_checker.check_links_for_errors()
     reporter = Reporter(f"https://api.github.com/repos/{GITHUB_REPO}/issues", TOKEN)
     internal_links, external_links = match_broken_links(all_extracted_links)
     await reporter.push_issue_git_batched(internal_links, external_links)
