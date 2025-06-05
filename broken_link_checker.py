@@ -18,6 +18,7 @@ SKIPPED_PREFIXES = {
 }
 USER_AGENT = {'User-Agent': 'Mozilla/5.0'}
 TOKEN = os.environ.get('GIT_TOKEN')
+GITHUB_REPO = "hmiesen/website"
 
 # Data containers
 list_pages_raw = []
@@ -46,11 +47,6 @@ def get_headers(url, user_agent_override=None):
             "Connection": "keep-alive",
         }
         return headers
-
-username = 'hmiesen'
-repository_name = 'website'
-github_repo = "hmiesen/website"
-github_repo_url = f"https://api.github.com/repos/{github_repo}/issues"
 
 def is_skipped_for_reporting(link):
     return any(link.startswith(prefix) for prefix in SKIPPED_PREFIXES)
@@ -307,7 +303,7 @@ async def main_async_scraper():
 
     filter_unique_http_links(all_extracted_links)
     await check_links_for_errors(unique_http_links_to_check)
-    reporter = Reporter(github_repo_url, TOKEN)
+    reporter = Reporter(f"https://api.github.com/repos/{GITHUB_REPO}/issues", TOKEN)
     internal_links, external_links = match_broken_links(all_extracted_links)
     await reporter.push_issue_git_batched(internal_links, external_links)
 
