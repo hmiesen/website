@@ -116,15 +116,21 @@ class LinkExtractor:
         print(f"✅ Filtered links: {len(self.unique_http_links_to_check)}")
 
     def match_broken_links(self, broken_links_dict):
-        matches = []
+        internal_matches = []
+        external_matches = []
+        own_domain = urlparse(self.domain).netloc.replace("www.", "")
+
         for page_url, broken_url, anchor_text in self.all_extracted_links:
             if broken_url in broken_links_dict['link']:
                 idx = broken_links_dict['link'].index(broken_url)
                 status = broken_links_dict['statusCode'][idx]
-                matches.append(broken_link_tuple(page_url, broken_url, anchor_text, status))
-        internal, external = split_internal_external([m.broken_url for m in matches], self.domain)
-        internal_matches = [m for m in matches if m.broken_url in internal]
-        external_matches = [m for m in matches if m.broken_url in external]
+                match = broken_link_tuple(page_url, broken_url, anchor_text, status)
+
+                if own_domain in urlparse(broken_url).netloc:
+                    internal_matches.append(match)
+                else:
+                    external_matches.append(match)
+
         return internal_matches, external_matches
 
 
