@@ -239,10 +239,8 @@ def match_broken_links(external_links_list_raw):
     return df_internal, df_external
 
 class Reporter:
-    def __init__(self, repo_url, internal_links, external_links):
+    def __init__(self, repo_url):
         self.repo_url = repo_url
-        self.internal_links = internal_links
-        self.external_links = external_links
 
     def chunk_list(lst, chunk_size):
         """Helper to split list into chunks."""
@@ -307,8 +305,8 @@ async def main_async_scraper():
     filter_unique_http_links(all_extracted_links)
     await check_links_for_errors(unique_http_links_to_check)
     df_internal, df_external = match_broken_links(all_extracted_links)
-    reporter = Reporter(github_repo_url, df_internal, df_external)
-    await reporter.push_issue_git_batched()
+    reporter = Reporter(github_repo_url)
+    await reporter.push_issue_git_batched(df_internal, df_external)
 
 if __name__ == "__main__":
     asyncio.run(main_async_scraper())
