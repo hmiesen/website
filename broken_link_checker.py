@@ -249,8 +249,8 @@ class Reporter:
         for i in range(0, len(lst), chunk_size):
             yield lst[i:i + chunk_size]
 
-    async def push_issue_git_batched(self.repo_url, self.internal_links, self.external_links, batch_size=500, max_issues=10):
-        if not self.internal_links and not self.external_links:
+    async def push_issue_git_batched(repo_url, internal_links, external_links, batch_size=500, max_issues=10):
+        if not internal_links and not external_links:
             print("✅ No broken links found.")
             return
 
@@ -285,7 +285,7 @@ class Reporter:
                 data = {"title": title, "body": issue_body[:65000]}
 
                 try:
-                    async with session.post(self.repo_url, json=data) as response:
+                    async with session.post(repo_url, json=data) as response:
                         if response.status == 201:
                             print(f"✅ Issue created for batch {batch_num + 1}", flush=True)
                         else:
