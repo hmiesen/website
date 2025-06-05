@@ -302,7 +302,7 @@ class Reporter:
 
 async def main_async_scraper():
     sitemap = SitemapLoader(DOMAIN)
-    sitemap.load(max_pages=20)
+    sitemap.load(max_pages="all")
 
     timeout = ClientTimeout(total=8)
     connector = aiohttp.TCPConnector(limit_per_host=10, ssl=False)
