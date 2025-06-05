@@ -136,7 +136,7 @@ class LinkErrorChecker:
     async def check_links_for_errors(self, links_to_check):
         print(f"🚀 Checking {len(links_to_check)} URLs...")
 
-        internal_links, external_links = split_internal_external(links_to_check, self.domain)
+        internal_links, external_links = LinkExtractor.split_internal_external(links_to_check, self.domain)
 
         print(f"⚡ Checking {len(internal_links)} internal links with concurrency=10...")
         internal_results = await self._check_all_urls(internal_links, concurrency=10)
