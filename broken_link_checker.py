@@ -10,7 +10,7 @@ from collections import namedtuple
 
 # Domain
 FULL_DOMAIN = 'https://tilburgsciencehub.com/'
-GITHUB_API_URL = "https://api.github.com/repos/tilburgsciencehub/website/issues"
+GITHUB_API_URL = "https://api.github.com/repos/hmiesen/website/issues"
 USER_AGENT_HEADER = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                   "AppleWebKit/537.36 (KHTML, like Gecko) "
