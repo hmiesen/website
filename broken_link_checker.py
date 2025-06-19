@@ -103,12 +103,10 @@ async def async_extract_all_http_links(pages, domain, session):
     all_extracted_links.clear()
     for url in pages:
         try:
-            # Attempt to fetch the page content
             async with session.get(url, headers=USER_AGENT_HEADER, allow_redirects=False) as response:
                 soup = BeautifulSoup(await response.text(), 'html.parser')
                 links = soup.find_all("a")
         except Exception as e:
-            # Log and skip pages that failed to load
             print(f"⚠️ Failed to fetch {url}: {e}")
             continue
 
@@ -116,18 +114,17 @@ async def async_extract_all_http_links(pages, domain, session):
             href = link.get("href", "")
             text = link.get_text(strip=True)
 
-            # Skip empty links, anchor links, or relative .py files
+            # Skip links that don't lead to meaningful external content
             if not href or href.startswith("#") or ('.py' in href and 'http' not in href):
                 continue
 
-            # Convert relative URLs to absolute
             absolute_url = urljoin(url, href)
 
-            # Skip GitHub issue links for new issues
+            # Exclude GitHub "new issue" pages since they are forms, not actual issue content
             if "github.com" in absolute_url and "/issues/new" in absolute_url:
                 continue
 
-            # If the link points to the same page, note it; otherwise, save the actual link
+           # Treat self-links differently to identify internal navigation (e.g., menus or redundant links)
             if absolute_url == url:
                 all_extracted_links.append([url, 'Same destination as page', text])
             else:
@@ -146,9 +143,12 @@ def split_internal_external(links, base_domain):
             - internal (list): URLs that match the base domain.
             - external (list): URLs that do not match the base domain.
     """
-    # Extract the domain part from the base URL (e.g., 'tilburgsciencehub.com')
+    # Identify the base domain to distinguish between internal and external links
     domain = urlparse(base_domain).netloc.replace("www.", "")
-    # Classify links based on whether their domain matches the base domain
+
+    # Separate links by origin:
+    # - internal links point to the same domain and are often key for navigation or crawling
+    # - external links lead elsewhere and may be less relevant or require different handling
     internal = [link for link in links if domain in urlparse(link).netloc]
     external = [link for link in links if domain not in urlparse(link).netloc]
     return internal, external
@@ -167,15 +167,15 @@ def filter_unique_http_links(links):
     unique_http_links_to_check.clear()
     seen = set()
     for _, link, _ in links:
-        # Skip non-HTTP links or those that should not be reported
+        # Only consider valid HTTP(S) links that are relevant for link checking or reporting
         if not link.startswith("http") or is_skipped_for_reporting(link):
             continue
 
-        # Exclude common social media share and mailto/javascript links
+        # Skip social media share links — they don’t lead to actual content and can clutter analysis or trigger false positives in link checks
         if any(x in link for x in ["linkedin.com/company", "linkedin.com/sharing", "twitter.com/intent", "facebook.com/sharer", "mailto:", "javascript:"]):
             continue
 
-        # Add to results only if the link hasn't been seen yet
+        # Avoid duplicate link checks — only add unseen, valid links
         if link not in seen:
             unique_http_links_to_check.append(link)
             seen.add(link)
@@ -197,14 +197,16 @@ async def async_check_url(session, url, headers):
             - 'errorType' (str or None): A string representation of the exception if an error occurred.
     """
     try:
-        # Throttle requests slightly to avoid rate-limiting or server overload
+       # Pause briefly between requests to reduce the risk of rate-limiting or overloading the server
         await asyncio.sleep(0.1)
 
-        # Make an HTTP GET request with redirect handling and timeout
+        # Perform a GET request with:
+        # - redirect support (many links redirect to final destinations)
+        # - a timeout to avoid hanging on slow or unresponsive URLs
+        # - custom headers (e.g., to mimic a real browser or pass user-agent info)
         async with session.get(url, allow_redirects=True, timeout=8, headers=headers) as response:
             return {"link": url, "statusCode": response.status, "errorType": None}
         
-    # Return exception info if the request fails
     except Exception as e:
         return {"link": url, "statusCode": None, "errorType": repr(e)}
 
@@ -223,23 +225,26 @@ async def check_all_urls(urls, concurrency=10, user_agent=None):
             - 'statusCode': The HTTP status code if successful, or None.
             - 'errorType': The error description if the request failed.
     """
-    # Set global timeout for each request
+    # Set a total timeout to avoid hanging on slow or unresponsive requests
     timeout = ClientTimeout(total=8)
 
-    # Limit concurrent connections per host; disable SSL verification for flexibility
+    # Limit concurrent connections per host to reduce server load and avoid rate-limiting
+    # Disable SSL verification to handle misconfigured or self-signed certificates more flexibly
     connector = aiohttp.TCPConnector(limit_per_host=concurrency, ssl=False)
 
-    # Semaphore to control total concurrency
+    # Use a semaphore to cap total number of concurrent checks globally
     semaphore = asyncio.Semaphore(concurrency)
 
     async def limited_check(session, url):
-        # Limit the number of concurrent checks using the semaphore
+        # Use semaphore to throttle overall concurrency, not just per host
         async with semaphore:
+            # Prepare headers (e.g., custom User-Agent) to mimic real browsers and reduce blocks
             headers = get_headers(url, user_agent_override=user_agent)
             return await async_check_url(session, url, headers)
 
-    # Create a shared session and run all limited checks concurrently
+    # Reuse a single session to efficiently manage connections and cookies across all requests
     async with aiohttp.ClientSession(timeout=timeout, connector=connector) as session:
+        # Launch all URL checks concurrently, respecting concurrency limits
         return await asyncio.gather(*(limited_check(session, url) for url in urls))
 
 async def check_links_for_errors(links_to_check):
@@ -258,31 +263,32 @@ async def check_links_for_errors(links_to_check):
     """
     print(f"🚀 Checking {len(links_to_check)} URLs...")
 
-    # Separate internal and external links based on the FULL_DOMAIN
+    # Split links by domain so we can handle internal and external links differently
     internal, external = split_internal_external(links_to_check, FULL_DOMAIN)
 
-    # Internal links are usually more stable → higher concurrency
+    # Internal links are expected to be stable and fast → safe to check in parallel
     print(f"⚡ Checking {len(internal)} internal links with concurrency=10...")
     internal_results = await check_all_urls(internal, concurrency=10)
 
-    # External links are more fragile / bot-protected → lower concurrency
+    # External links are more likely to rate-limit, block, or throttle bots → check slowly
     print(f"🐢 Checking {len(external)} external links with concurrency=1...")
     external_results = await check_all_urls(external, concurrency=1)
 
-    # Retry logic for known bot protection or failed checks
+    # Retry external links that failed or returned bot-protection codes
+    # These often recover after a delay or may respond to different IPs/user agents
     retry_candidates = [
         r["link"] for r in external_results
         if r["statusCode"] in [403, 429, 999] or r["statusCode"] is None
     ]
     retry_results = await check_all_urls(retry_candidates, concurrency=1) if retry_candidates else []
 
-    # Combine all results in a dictionary keyed by URL for easy lookup
+    # Merge all results for easy lookup and reporting
     all_results_map = {r["link"]: r for r in internal_results + external_results}
     all_results_map.update({r["link"]: r for r in retry_results})
 
     domain = urlparse(FULL_DOMAIN).netloc.replace("www.", "")
 
-    # Evaluate results
+    # Review and classify all results
     for result in all_results_map.values():
         link, status, error = result["link"], result["statusCode"], result["errorType"]
 
@@ -293,12 +299,14 @@ async def check_links_for_errors(links_to_check):
         is_external = not is_internal
 
         if isinstance(status, int):
-            # Skip some external links that are likely bot-protected
+            # Bot protection: skip external links that are deliberately inaccessible (403, 999)
             if is_external and status in [403, 999]:
                 print(f"⏭️ Skipping external bot-protected: {link}")
                 continue
 
-            # Flag as broken if internal (4xx–5xx) or external (404/410/5xx)
+            # Mark links as broken based on severity and context:
+            # - Internal: any 4xx or 5xx is unexpected → broken
+            # - External: only 404, 410, or 5xx considered broken (client errors may be intended)
             if (is_internal and 400 <= status < 600) or (is_external and status in [404, 410] or status >= 500):
                 print(f"❌ [{status}] {link}")
                 broken_links_dict['link'].append(link)
@@ -306,6 +314,7 @@ async def check_links_for_errors(links_to_check):
             else:
                 print(f"✅ [{status}] {link}")
         elif error:
+            # Handle non-HTTP failures (e.g., DNS error, timeout, SSL failure)
             print(f"⚠️ Skipped (non-HTTP): {link} → {error}")
 
 def match_broken_links(raw_links):
@@ -321,14 +330,16 @@ def match_broken_links(raw_links):
             - internal (list): Named tuples of broken internal links.
             - external (list): Named tuples of broken external links.
     """
-    # Match each broken link to its original (source, link, anchor) tuple
+    # For each broken link, find the original source (page + anchor) it came from
+    # This allows us to report where the broken link was found, not just that it exists
     matched = [
         broken_link_tuple(src, link, anchor, broken_links_dict['statusCode'][i])
         for src, link, anchor in raw_links
         for i, b in enumerate(broken_links_dict['link']) if link == b
     ]
 
-    # Split matched links into internal and external based on FULL_DOMAIN
+    # Separate matched links into internal and external
+    # Useful for reporting, since internal broken links are often more actionable
     domain = urlparse(FULL_DOMAIN).netloc.replace("www.", "")
     internal = [m for m in matched if domain in urlparse(m.broken_url).netloc]
     external = [m for m in matched if domain not in urlparse(m.broken_url).netloc]
@@ -346,7 +357,6 @@ def chunk_list(lst, size):
         list: A sublist of at most `size` elements from the original list.
     """
     for i in range(0, len(lst), size):
-        # Yield a slice of the list from index i to i + size
         yield lst[i:i + size]
 
 async def push_issue_git_batched(internal_links, external_links, batch_size=500, max_issues=10):
@@ -363,23 +373,23 @@ async def push_issue_git_batched(internal_links, external_links, batch_size=500,
         - Creates GitHub issues via the GitHub API.
         - Logs success or failure to the console.
     """
-    # Remove duplicates by converting to dict and back to list
+    # Deduplicate all link reports to avoid redundant issue entries
     combined = list({(l.page_url, l.broken_url, l.anchor_text, l.status_code): l for l in internal_links + external_links}.values())
     if not combined:
         print("✅ No broken links found.")
         return
 
-    # Determine how many batches (limited by max_issues)
+    # Limit number of batches to avoid spamming the GitHub repo
     total_batches = min((len(combined) - 1) // batch_size + 1, max_issues)
 
-    # Open a GitHub API session
+    # Use a persistent session for efficient API calls
     async with aiohttp.ClientSession(headers=get_headers(GITHUB_API_URL)) as session:
         for batch_num, batch in enumerate(chunk_list(combined, batch_size)):
             dt = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             title = f"Broken Links (Batch {batch_num + 1}) - {dt}"
 
 
-            # Helper function: builds a markdown table for GitHub issue body
+            # Helper: formats broken link data as markdown table for readability in GitHub
             def build_table(title, entries):
                 lines = [f"\n### {title}", "| Page URL | Broken Link URL | Anchor Text | Status Code |", "|---|---|---|---|"]
                 for e in entries:
@@ -387,18 +397,18 @@ async def push_issue_git_batched(internal_links, external_links, batch_size=500,
                     lines.append(f"| {e.page_url} | {e.broken_url} | {anchortext} | {e.status_code} |")
                 return "\n".join(lines)
 
-            # Separate current batch into internal vs external for clearer reporting
+            # Split into internal/external to help stakeholders prioritize actionable issues
             internal_batch = [e for e in batch if urlparse(e.broken_url).netloc.endswith("tilburgsciencehub.com")]
             external_batch = [e for e in batch if not urlparse(e.broken_url).netloc.endswith("tilburgsciencehub.com")]
 
-            # Build issue body text
+            # Compose the GitHub issue body with separate tables for clarity
             body = f"Batch {batch_num + 1}: {len(batch)} broken links found.\n"
             if internal_batch:
                 body += build_table("🔁 Internal Broken Links", internal_batch)
             if external_batch:
                 body += build_table("🌍 External Broken Links", external_batch)
 
-            # GitHub's API limit for issue body is 65536 characters
+            # Truncate body to stay within GitHub's 65k character limit for issue bodies
             try:
                 async with session.post(GITHUB_API_URL, json={"title": title, "body": body[:65000]}) as response:
                     if response.status == 201:
@@ -408,7 +418,7 @@ async def push_issue_git_batched(internal_links, external_links, batch_size=500,
             except Exception as e:
                 print(f"❌ Error creating issue for batch {batch_num + 1}: {str(e)}")
 
-            # Throttle issue creation to avoid hitting rate limits
+            # Throttle issue creation to avoid hitting GitHub’s rate limits
             await asyncio.sleep(1)
 
 async def main_async_scraper():
