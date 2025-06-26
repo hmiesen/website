@@ -52,7 +52,9 @@ autoplot(
 
 *Output:*
 
-![model-evaluation](./images/model_evaluation.png)
+<p align = "center">
+<img src = "../images/model_evaluation.png" alt="Model evaluation" width="700">
+</p>
 
 ---
 
@@ -110,8 +112,9 @@ stargazer(mdl_cars, mdl_cars_cleaned,
 {{% /codeblock %}}
 
 *Output:*
-
-![stargazer](./images/stargazer.png)
+<p align = "center">
+<img src = "../images/stargazer.png" alt="Stargazer" width="700">
+</p>
 
 ---
 
@@ -137,7 +140,9 @@ ggplot(cars, aes(speed_kmh, dist_m)) +
 
 *Output:*
 
-![stargazer](../images/trend_plots.png)
+<p align = "center">
+<img src = "../images/trend_plots.png" alt="Trend plots" width="700">
+</p>
 
 ---
 

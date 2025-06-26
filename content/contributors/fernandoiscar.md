@@ -9,7 +9,7 @@ skills:
   - Docker
 social:
   - name: LinkedIn
-    link: www.linkedin.com/in/fernando-iscar
+    link: https://www.linkedin.com/in/fernando-iscar
   - name: GitHub
     link: https://github.com/Fernando-Iscar
 

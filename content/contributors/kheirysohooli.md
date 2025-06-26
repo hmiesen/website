@@ -7,7 +7,7 @@ skills:
 - R 
 social:
 - name: LinkedIn
-link: www.linkedin.com/in/kheiry-sohooli
+  link: https://www.linkedin.com/in/kheiry-sohooli
 email: k.sohooli@tilburguniversity.edu
 image: khsohooli.webp
 status: "active" 

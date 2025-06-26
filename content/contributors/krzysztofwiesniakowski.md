@@ -9,7 +9,7 @@ skills:
   - Data Science
 social:
   - name: LinkedIn
-    link: "https://www.linkedin.com/in/krzysztof-wiesniakowski-18260b181/"
+    link: https://www.linkedin.com/in/krzysztof-wiesniakowski-18260b181/
   
 email: k.wiesniakowski@tilburguniversity.edu
 image: "krzysztofwiesniakowski.webp"
