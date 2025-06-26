@@ -8,7 +8,7 @@ skills:
   - Data Science
 social:
   - name: LinkedIn
-    link: www.linkedin.com/in/maliheh-mahlouji-271b12112
+    link: https://www.linkedin.com/in/maliheh-mahlouji-271b12112
 email: m.mahlouji@tilburguniversity.edu 
 image:
 status: "active"
