@@ -32,7 +32,10 @@ After installing TeamViewer, Mac users need to change a few security settings to
 
 Open TeamViewer via the start menu, select **remote control** on the left side of your screen (it's the default), and share **your ID** and **your password** with your team member.
 
-![Screenshot of Teamviewer](../images/teamviewer.png)
+<p align = "center">
+<img src = "../images/teamviewer.png" width="500">
+<figcaption> Screenshot of TeamViewer </figcaption>
+</p>
 
 Also want to talk to your team member? Make sure you have a headset connected to your computer.
 

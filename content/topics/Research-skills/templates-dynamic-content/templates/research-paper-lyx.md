@@ -44,7 +44,10 @@ Begin writing your research paper using our LyX template.
 
 {{% cta-primary "Download the LyX Research Paper Template" "../lyx-research-paper-template.zip" %}}
 
-![Academic paper in LaTeX](../images/research-paper-lyx-template.png)
+<p align = "center">
+<img src = "../images/research-paper-lyx-template.png" width="500">
+<figcaption>Academic paper in Latex</figcaption>
+</p>
 
 - **Our presentation template**
 
@@ -52,4 +55,7 @@ Dive into creating captivating presentation slides with our LyX template.
 
 {{% cta-primary "Download the LyX Slides Template" "../lyx-slides-template.zip" %}}
 
-![Slides presentation in LaTeX](../images/slides-lyx-template.png)
+<p align = "center">
+<img src = "../images/slides-lyx-template.png" width="500">
+<figcaption>Slides presentation in Latex</figcaption>
+</p>

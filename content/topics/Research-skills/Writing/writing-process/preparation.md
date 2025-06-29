@@ -132,11 +132,11 @@ The following resources on the Tilburg Science Hub website and beyond can help y
 - [Learn Python and Julia](/learn/python): A bundle of great resources for getting started with Python and Julia
 
 #### Learn LaTeX
-- [Tutorial on LaTeX](/learn/latex/): LaTex is a typesetting system ideal for academic documents, like your thesis, enabling precise formatting and presentation.
+- [Tutorial on LaTeX](/topics/Research-skills/templates-dynamic-content/write-your-first-latex-document/): LaTex is a typesetting system ideal for academic documents, like your thesis, enabling precise formatting and presentation.
 - [LaTeX Thesis Template](/get/latex-templates): Get started with our ready-to-use LaTeX Thesis Template.
 
 #### Other skills
-- [Use ChatGPT for your research](/tutorials/more-tutorials/chat-gpt-research/chat-gpt-research)
+- [Use ChatGPT for your research](/topics/Automation/AI/Gpt-models/chat-gpt-research/)
 - [Web scraping and API Mining tutorial](/learn/web-scraping-and-api-mining): A tutorial that shows you how to scrape static and dynamic websites and how to extract data from APIs. 
 
 {{% tip %}}

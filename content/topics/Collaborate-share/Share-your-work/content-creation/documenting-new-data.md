@@ -17,7 +17,7 @@ In the following section, we have replicated these pivotal questions. It's advis
 
 You can download a formatted version (`.docx`) of this template using the button below. Alternatively, you can find a plain text version of it for copy & paste below.
 
-{{% cta-primary "Download the template" "../images/Datasheets_for_DataSets.docx" %}}
+{{% cta-primary "Download the template" "/static/files/Datasheets_for_DataSets.docx" %}}
 
 <!-- {{% cta-secondary "Download the template" "../images/Datasheets_for_DataSets.docx" %}} -->
 

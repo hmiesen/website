@@ -48,7 +48,10 @@ RStudio provides an easy-to-use interface for R and should feel familiar to user
 
 Open RStudio from the start menu. You should see the version corresponding to the one chosen on the website.
 
-![Screenshot of R Studio](../images/r.png)
+<p align = "center">
+<img src = "../images/r.png" width="300">
+<figcaption>Screenshot of R Studio</figcaption>
+</p>
 
 ## Installing additional R Packages
 
@@ -75,7 +78,7 @@ If asked whether you want to install packages that need compilation, type `n` fo
 
 Check out these additional resources:
 
-- Discover how to automatically install necessary R packages with this [code snippet](/topics/automation/replicability/package-management/auto-install-r-packages/).
+- Discover how to automatically install necessary R packages with this [code snippet](/topics/Automation/Replicability/package-management/auto-install-R-packages/).
 
 - Learn to efficiently manage your R packages using Packrat with [this guide](/topics/automation/replicability/package-management/packrat/)
 
@@ -193,6 +196,6 @@ If you get an error message, try reinstalling the package using `install.package
 
 {{% summary %}}
 
-Now you have R and RStudio set up, you can continue to [learn to code in R](/topics/computer-setup/software-installation/rstudio/getting-started-with-r-overview/).
+Now you have R and RStudio set up, you can continue to [learn to code in R](/topics/Computer-Setup/software-installation/RStudio/getting-started-with-R-overview/).
 
 {{% /summary %}}

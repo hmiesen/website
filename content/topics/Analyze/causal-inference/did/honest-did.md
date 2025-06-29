@@ -213,7 +213,7 @@ plot_rm
 
 ## Staggered DiD example
 
-This example demonstrates how to use the `HonestDiD` approach with a staggered DiD framework, continuing [the staggered Goodreads example](\staggered-did). 
+This example demonstrates how to use the `HonestDiD` approach with a staggered DiD framework, continuing [the staggered Goodreads example](../staggered-did). 
 
 {{% tip %}}
 The full R code for this example is shared in this [GitHub Gist](https://gist.github.com/valerievossen/7eb07cadac731cfa14ce5cc44a353d4c). 

@@ -110,7 +110,7 @@ After running all the commands above, the directory in which the project was cre
 <figcaption> Our project would look like this</figcaption>
 </p>
 
-
+{{%table%}}
 | File               | Usage                                                  |
 |--------------------|--------------------------------------------------------|
 | `.Rprofile`        | File that activates renv for the new R sessions        |
@@ -118,6 +118,7 @@ After running all the commands above, the directory in which the project was cre
 | `renv/activate.R`  | Activation script run by `.Rprofile`                   |
 | `renv/library`     | Private project library                                |
 | `renv/settings.json`| Project settings                    
+{{%/table%}}
 
 {{% tip %}}
 **Another Project in Rstudio?**
@@ -141,7 +142,7 @@ The R community offers multiple tools to manage dependencies and reproducibility
 
 ### Packrat
 
-[Packrat](/reproduce/packrat) is an earlier solution for managing project-specific R libraries. It helps isolate projects and make them more reproducible by ensuring that each project's library is separate. 
+[Packrat](../../../../../topics/Automation/Replicability/package-management/packrat/) is an earlier solution for managing project-specific R libraries. It helps isolate projects and make them more reproducible by ensuring that each project's library is separate. 
 
 Nonetheless, while `packrat` was widely used, it has some limitations which `renv` has aimed to address. Furthermore, while it is still maintained, there will be no new development for it. This presents `renv` as a better alternative.
 
