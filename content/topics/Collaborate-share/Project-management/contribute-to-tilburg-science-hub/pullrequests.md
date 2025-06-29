@@ -80,7 +80,7 @@ on GitHub, which creates a copy of this project in your own GitHub account).
 
 ### If you want to write new content
 
-1. First, you'll need to prepare the content as Markdown file(s). Follow our templates [below](#contribution-templates) to get started. In case you want to feature your project in the Examples section, please [contact us](/about/#who-maintains-tsh).
+1. First, you'll need to prepare the content as Markdown file(s). Follow our templates [below](#contribution-templates) to get started. In case you want to feature your project in the Examples section, please [contact us](/about#who-maintains-tsh).
 
 2. Fork the originating repository to your GitHub profile (press the "fork" button
 on GitHub, which creates a copy of this project in your own GitHub account).

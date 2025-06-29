@@ -63,7 +63,11 @@ The [GitHub Cheatsheet](/static/files/github_cheatsheet_tsh.pdf) also summarizes
 
 - If you are resolving an issue, you can use the "Create a branch" option under Development on the issue page. This will automatically link the branch to the issue.
 
-  ![Create a branch for an issue.](../images/create-issue-branch.png)
+<p align = "center">
+<img src = "../images/create-issue-branch.png" width="500">
+<figcaption> Create a branch for an issue </figcaption>
+</p>
+
 
 - The issue branch should be named `issueXXX-description`, where `XX` is the GitHub issue number and `description` is a version of the issue title (e.g., `issue123-update-appx-figures`). The description can be more compact than the issue title itself, but should be comprehensive enough that other team members can understand what is being worked on in the branch.
 

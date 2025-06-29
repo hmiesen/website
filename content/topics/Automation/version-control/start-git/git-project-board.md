@@ -25,13 +25,19 @@ This building block will help you navigate the initial steps to establish your p
 
 - On your profile page on GitHub, you can find a tab “Projects” that enables you to view all your current projects board and make a “New Project”, for instance:
 
-  ![Projects](../images/projects.png)
+<p align = "center">
+<img src = "../images/projects.png" width="600">
+<figcaption> New project </figcaption>
+</p>
 
 - Provide a name and a description for your project
 
 - Set “Basic Kanban” as your project board template:
 
-  ![kanban](../images/basicKanban.png)
+<p align = "center">
+<img src = "../images/basicKanban.png" width="500">
+<figcaption> Basic Kanban </figcaption>
+</p>
 
   The “Basic Kanban” template ensures that you have almost all necessary columns to work using the Scrum framework.
 
