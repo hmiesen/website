@@ -35,7 +35,7 @@ Besides our focus on causal inference, we've also explored virtual machines (VMs
 
 - [Import and run a Python environment on Google cloud with Docker](../topics/Automation/Replicability/cloud-computing/google_cloud_docker/): Explore the world of containerization and Docker to import and run Python environments on Google Cloud, enhancing the reproducibility and efficiency of your work.
 
-- [Export a Python environment with Docker and share it through Docker Hub](../topics/Automation/Replicability/Docker/dockerhub/): Learn to export Python environments with Docker and streamline collaboration by sharing them on Docker Hub, ensuring easy access for fellow researchers.
+- [Export a Python environment with Docker and share it through Docker Hub](../topics/Automation/Replicability/Docker//): Learn to export Python environments with Docker and streamline collaboration by sharing them on Docker Hub, ensuring easy access for fellow researchers.
 
 ### **Enhancing Your Research Skills in Causal Inference and Virtual Machines**
 
