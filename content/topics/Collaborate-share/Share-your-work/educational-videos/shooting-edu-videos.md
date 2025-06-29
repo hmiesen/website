@@ -57,27 +57,38 @@ To reduce the contrast in your scene you might need a fill light. No worries if 
 
 Don't forget about the background! Use practical lights from your house to make it more interesting and not leave it too dark.
 
-![One light setup](../img/l-setup-1.png)
+
+<p align = "center">
+<img src = "../img/l-setup-1.png" width="700">
+<figcaption> Lights setup 1 </figcaption>
+</p>
 
 ### Two Light Setup
 
 This setup is very similar to the first one. Use your second light source as a fill light. Having a separate source instead of using a reflector enables you to control how much contrast you want between the bright side and the shadow side of the face, or the [lighting ratio](https://en.wikipedia.org/wiki/Lighting_ratio) between your key light and fill light. This allows you to achieve many different styles and moods.
 
-![Two light setup](../img/l-setup-2.png)
-
+<p align = "center">
+<img src = "../img/l-setup-1.png" width="700">
+<figcaption> Lights setup 2 </figcaption>
+</p>
 ### Three Light Setup
 
 Add a third source as a background light. If you happen to have practicals in your background, remember to use motivated lighting when placing your artificial source. Generally speaking, the background should always be a bit darker than the subject. This helps the audience to concentrate on the speaker. Use practicals such as lamps, bulbs or similar to create a nice bokeh in the background if you use a shallow depth of field.
 
 You can also get creative with your background light. Since it's not illuminating the subject, you could play with colors to set the mood in your scene. Use a RGB light source or a white one with some color gels on it. Usually, you will see some cold colors in the background, like blue or teal. This is done to increase the color contrast in the scene, which makes it visually more balanced and pleasing. Contrasting colors means using complementary colors, those from opposing segments of the color wheel. The foreground will be mostly warm and orange because of the subject's skin tone, so it's a good idea to have a colder background color.
 
-![Three light setup](../img/l-setup-3.png)
-
+<p align = "center">
+<img src = "../img/l-setup-3.png" width="700">
+<figcaption> Lights setup 3 </figcaption>
+</p>
 ### Four Light Setup
 
 Lastly, you could add a fourth source as a rim light to separate the subject from the background. This is meant to light up the subject's hair. It's generally placed above the head, angled down and slightly forward to strike the top of the head and shoulders. Usually, it's on one side but it can also be placed directly behind the subject (you will need a C-stand with a boom arm for this, otherwise you'll see the light stand in your shot).
 
-![Four light setup](../img/l-setup-4.png)
+<p align = "center">
+<img src = "../img/l-setup-4.png" width="700">
+<figcaption> Lights setup 1 </figcaption>
+</p>
 
 ## Camera and Audio Settings
 

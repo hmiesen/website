@@ -70,7 +70,11 @@ Mendeley Web Importer is a browser extension that can be downloaded [here](https
 
 Once added, check that the extension logo appears in your browser toolbar. If it appears, you are now ready to start importing references directly from the web page into your reference manager!
 
-1. **Launch the importer:** Click on ![logo](../images/logo_importer.PNG).
+1. **Launch the importer:** Click on logo.
+<!-- <p align = "center">
+<img src = "../images/logo_importer.PNG" width="500">
+<figcaption>Click on </figcaption>
+</p> -->
 
 2. **Sign in**: Use your existing Mendeley/Elsevier credentials to sign in.
 

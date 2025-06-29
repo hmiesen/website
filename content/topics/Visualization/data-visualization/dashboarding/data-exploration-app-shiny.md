@@ -332,7 +332,7 @@ By integrating both static and interactive visualizations, your `Shiny` app beco
 {{% tip %}}
 **Further Learning with Plotly**
 
-Explore more advanced functionalities of `Plotly` for sophisticated data visualization. Check out our in-depth [article](/Plotly) on `Plotly` to expand your knowledge and skills.
+Explore more advanced functionalities of `Plotly` for sophisticated data visualization. Check out our in-depth [article](/topics/Visualization/data-visualization/dashboarding/shiny-data-storytelling/) on `Plotly` to expand your knowledge and skills.
 
 {{% /tip %}}
 

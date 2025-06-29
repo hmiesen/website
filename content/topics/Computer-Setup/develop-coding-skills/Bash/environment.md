@@ -54,7 +54,10 @@ nano ~/.bash_profile
 
 You should now see something similar to this. It's a text editor within the Terminal. Here you can add your environment variables.
 
-![PATH variables in the Bash profile](../images/bash-profile.png)
+<p align = "center">
+<img src = "../images/bash-profile.png" width="700">
+<figcaption> Bash profile </figcaption>
+<p>
 
 {{% warning %}}
 If .bash_profile did not exist already, you need to create it.

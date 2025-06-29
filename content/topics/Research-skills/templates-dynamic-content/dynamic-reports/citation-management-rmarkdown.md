@@ -17,7 +17,7 @@ aliases:
 
 This article includes a step by step procedure for citation management in Rmarkdown documents. This topic is intended to increase your capabilities to produce well-organized and professionally formatted Rmarkdown documents, further supporting your academic writing process.
 
-Download the article's accompanying files [here](citation-management-rmarkdown.zip) (a .zip archive). Right-click and select "Download file as" to save them to your desired location. Use these files for a hands-on learning experience to improve your conceptual understanding.
+Download the article's accompanying files [here](/static/files/citation-management-rmarkdown.zip) (a .zip archive). Right-click and select "Download file as" to save them to your desired location. Use these files for a hands-on learning experience to improve your conceptual understanding.
 
 {{% tip %}}
 
