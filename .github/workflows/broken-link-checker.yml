@@ -32,15 +32,19 @@ jobs:
           PRIVATE_KEY: ${{ secrets.SECRET_APP_KEY }}
         run: |
           JWT=$(python -c "
-          import os, time, jwt;
-          payload = {
-            'iat': int(time.time()),
-            'exp': int(time.time()) + 600,
-            'iss': os.environ['APP_ID']
-          }
-          private_key = os.environ['PRIVATE_KEY'].replace('\\n', '\n')
-          token = jwt.encode(payload, private_key, algorithm='RS256')
+            import os, time, jwt
+            payload = {
+              'iat': int(time.time()),
+              'exp': int(time.time()) + 600,
+              'iss': os.environ['APP_ID']
+            }
+            private_key = os.environ['PRIVATE_KEY'].replace('\\\\n', '\n')
+            print(jwt.encode(payload, private_key, algorithm='RS256'))
           ")
+          
+          echo "::add-mask::$JWT"
+
+          # Zet JWT als environment variable voor volgende stappen
           echo "JWT=$JWT" >> $GITHUB_ENV
 
       - name: Get Installation Token
