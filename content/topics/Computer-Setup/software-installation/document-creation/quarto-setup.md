@@ -12,10 +12,11 @@ aliases:
 
 ## Overview
 
-[Quarto](https://quarto.org/) is an open-source scientific and technical publishing system that allows you to create and share interactive documents, presentations, dashboards, and reports. It does not provide a standalone graphical user interface, but is built to integrate with tools like [Visual Studio Code](/topics/computer-setup/software-installation/ide/vscode/), [Jupyter](https://jupyter.org/), [RStudio](/topics/computer-setup/software-installation/rstudio/r/), etc. It supports Markdown and executable code blocks in multiple programming languages, such as [R](/topics/computer-setup/software-installation/rstudio/getting-started-with-r-overview/), [Python](/topics/computer-setup/software-installation/python/python/), and [Julia](/topics/computer-setup/software-installation/matlab/julia/).
+[Quarto](https://quarto.org/) is an open-source scientific and technical publishing system that allows you to create and share interactive documents, presentations, dashboards, and reports. It does not provide a standalone graphical user interface, but is built to integrate with tools like [Visual Studio Code](/topics/computer-setup/software-installation/ide/vscode/), [Jupyter](https://jupyter.org/), [RStudio](/topics/computer-setup/software-installation/rstudio/r/), etc. It supports Markdown and executable code blocks in multiple programming languages, such as [R](../../../../../topics/Computer-Setup/software-installation/RStudio/getting-started-with-R-overview/), [Python](/topics/computer-setup/software-installation/python/python/), and [Julia](/topics/computer-setup/software-installation/matlab/julia/).
 
 <p align = "center">
 <img src = "../images/quarto-logo.png" width="300">
+<figcaption>Quarto logo</figcaption>
 </p>
 
 ## Installing Quarto

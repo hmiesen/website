@@ -322,9 +322,13 @@ server <- function(input, output) {
 
 ### An example
 
-The [Shiny app](https://royklaassebos.shinyapps.io/dPrep_Demo_Google_Mobility/) below visualizes Google’s COVID-19 Community Mobility Reports of the Netherlands. A step-by-step tutorial and the source code can be found [here](https://tilburgsciencehub.com/examples/google-covid-shiny-app/).
+The [Shiny app](https://royklaassebos.shinyapps.io/dPrep_Demo_Google_Mobility/) below visualizes Google’s COVID-19 Community Mobility Reports of the Netherlands. A step-by-step tutorial and the source code can be found [here](/examples/google-covid-shiny-app).
 
-![](../images/demo_app.png)
+<p align = "center">
+<img src = "../images/demo_app.png" width="500">
+<figcaption>Demo app</figcaption>
+</p>
+
 
 ### More resources
 

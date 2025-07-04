@@ -108,8 +108,10 @@ Google offers a 90-day trial with a €300 credit to use, but you can keep on us
 
 2. Click on "Create New Project", give it a project name (e.g., `GoogleDriveFiles`), and click on "Create".
 
-![new-project]("../images/new_project.png")
-
+<p align = "center">
+<img src = "../images/new_project.png" width="700">
+<figcaption> New project </figcaption>
+</p>
 
 3. Next, we need to set up a so-called OAuth2 client account which is a widely used protocol for authentication and authorization of API services.
    * From the navigation menu in the left top click on "APIs & Services" > "OAuth consent screen".
@@ -118,7 +120,11 @@ Google offers a 90-day trial with a €300 credit to use, but you can keep on us
    * Click "Save and continue" twice and then "Back to dashboard".
    * Click on "Publish app" and "Confirm".
    * In the left sidebar, click on "Credentials" and then "Create Credentials" > "OAuth client ID". Then, from "application type" menu "Desktop app" and click on "Create". It will show you your client ID and client secret in a pop-up screen. Rather than copying them from here, we will download a JSON file that contains our credentials. Click on "OK" and then on the download symbol:
-![download-credentials](../images/download_credentials.png)
+
+<p align = "center">
+<img src = "../images/download_credentials.png" width="700">
+<figcaption> Download credentials </figcaption>
+</p>
 
    * Rename the file to `client_secret.json` and store it in the same folder as the scripts you'll use to download and upload the files.
 
@@ -155,7 +161,11 @@ service = create_service(CLIENT_SECRET_FILE, API_NAME, API_VERSION, SCOPES)
 {{% /codeblock %}}
 
 The first time a new window may pop up that asks you to authenticate yourself with your Google account. Select the same account that you used to sign in to the Google Cloud platform. Click on "Allow".  
-![authenticate](../images/authenticate_Drive.png)
+
+<p align = "center">
+<img src = "../images/authenticate_Drive.png" width="700">
+<figcaption> Authenticate </figcaption>
+</p>
 
 Depending on whether you'd like to download or upload a file, follow one of two approaches:
 
@@ -193,7 +203,11 @@ df <- read.extension(“<FILE_NAME.extension>”)
 {{% /codeblock %}}
 
 * You can find the `<FILE_ID>`/`<data_id>` by navigating towards the file in your browser and clicking on "share", then "Get link". The URL contains the file ID(data_id) you need. For example, the file ID of `https://drive.google.com/file/d/XXXXXX/view` is `XXXXXX`.  
-![Share](../images/share_link.png)
+
+<p align = "center">
+<img src = "../images/share_link.png" width="700">
+<figcaption> Share link </figcaption>
+</p>
 
 * R may ask *"Is it OK to cache OAuth access credentials in the folder `path/gargle/gargle/Cache between R sessions?`"*.
 

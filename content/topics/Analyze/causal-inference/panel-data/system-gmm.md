@@ -14,9 +14,9 @@ aliases:
 
 ## Overview
 
-[Panel data](\paneldata) tracks observations of individuals over multiple time periods, enabling researchers to uncover dynamic patterns that can't be observed in cross-sectional or time-series data alone. While traditional static panel data models assume that idiosyncratic errors are uncorrelated across time periods, dynamic panel models account for temporal dependencies in the data by including the lagged dependent variable as a regressor, often providing a more accurate representation of economic relationships. For example, current employment and wage levels are likely dependent on their past levels. Or, interest rates are very likely to be influenced by last year's interest rate.  
+[Panel data](../paneldata) tracks observations of individuals over multiple time periods, enabling researchers to uncover dynamic patterns that can't be observed in cross-sectional or time-series data alone. While traditional static panel data models assume that idiosyncratic errors are uncorrelated across time periods, dynamic panel models account for temporal dependencies in the data by including the lagged dependent variable as a regressor, often providing a more accurate representation of economic relationships. For example, current employment and wage levels are likely dependent on their past levels. Or, interest rates are very likely to be influenced by last year's interest rate.  
 
-This topic introduces the dynamic panel model and demonstrates how to estimate it, given that the estimation methods for panel data (e.g. [Fixed Effects](\within)) are likely to produce biased results. After introducing the dynamic panel data model and System-GMM estimation, a simple example of estimation in R is provided.
+This topic introduces the dynamic panel model and demonstrates how to estimate it, given that the estimation methods for panel data (e.g. [Fixed Effects](../within-estimator)) are likely to produce biased results. After introducing the dynamic panel data model and System-GMM estimation, a simple example of estimation in R is provided.
 
 ## Dynamic panel data model
 
@@ -50,7 +50,7 @@ As discovered by [Nickell (1981)](https://www.jstor.org/stable/1911408), includi
 
 $E(v_{it} | Y_{i,t-1}) ≠ 0$. 
 
-As a result, standard panel data estimators like [Fixed Effects](\within), [Random Effects](\random), and [First-Difference](\firstdifference) become biased and inconsistent. The coefficients of the lagged dependent variable ($\beta_1$) and other coefficients of interest ($\beta_2$) are potentially biased. The size of the bias depends on the length of the time period (T) and the persistence of the correlation, making the bias particularly significant in data with a short T and a large number of individuals (N). Increasing N will not decrease the bias. 
+As a result, standard panel data estimators like [Fixed Effects](../within-estimator), [Random Effects](../random-effects), and [First-Difference](../first-difference) become biased and inconsistent. The coefficients of the lagged dependent variable ($\beta_1$) and other coefficients of interest ($\beta_2$) are potentially biased. The size of the bias depends on the length of the time period (T) and the persistence of the correlation, making the bias particularly significant in data with a short T and a large number of individuals (N). Increasing N will not decrease the bias. 
 
 Specifically, the Nickell bias leads to: 
 
@@ -60,7 +60,7 @@ Since the dependent varaible ($Y_{it}$) is a function of the unobserved individu
 
 - *Underestimation with Fixed Effects (FE)*
 
-The [FE estimator](\within) eliminates $\mu_{i}$ through demeaning (within transformation). This transformation introduces a negative correlation between the transformed lagged dependent variable and the error term, resulting in a downward bias. 
+The [FE estimator](../within-estimator) eliminates $\mu_{i}$ through demeaning (within transformation). This transformation introduces a negative correlation between the transformed lagged dependent variable and the error term, resulting in a downward bias. 
 
 {{% tip %}}
 *How does this bias exactly occur?*

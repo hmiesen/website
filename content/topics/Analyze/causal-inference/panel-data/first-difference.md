@@ -21,7 +21,7 @@ The first-difference (FD) estimator is the first method we discuss to control fo
 {{% tip %}}
 __Practical application of FD estimator__
 
-The Fixed Effects (FE) model discussed in the next [topic](/within) is often the preferred choice in practice to address the problem of omitted variables. The FD estimator can be seen as a technical intermediary step between the Pooled OLS and the FE model.
+The Fixed Effects (FE) model discussed in the next [topic](../within-estimator) is often the preferred choice in practice to address the problem of omitted variables. The FD estimator can be seen as a technical intermediary step between the Pooled OLS and the FE model.
 {{% /tip %}}
 
 ## First-difference estimator

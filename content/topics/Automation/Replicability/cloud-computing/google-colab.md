@@ -29,37 +29,59 @@ Once you are in your Colab notebook you can use it just like any offline Jupyter
 
 Type your code in the darker gray box and press the run arrow to run the code. Your output will be placed below the box. To create a new code box, press **+ Code** in the navigation bar.
 
-![A screenshot of Google Colab](../images/googlecolab.jpg)
+<p align = "center">
+<img src = "../images/googlecolab.jpg" width="600">
+<figcaption> A Screenshot of Google Colab </figcaption>
+</p>
 
 
 ### Import packages
 Colab environment already has a number of pre-installed packages such as ``pandas``, ``pytorch``, ``scipy``, ``tensorflow`` and ``numpy``. To check all installed packages use **pip freeze**
+
+{{% codeblock %}}
 ```bash
 !pip freeze
 ```
+{{% /codeblock %}}
+
 If a package is already installed, import these by importing them with **import
 {packages name}**
+{{% codeblock %}}
 ```bash
 import pandas
 ```
+{{% /codeblock %}}
+
 
 If a package is not yet installed, install the package inside the Colab notebook by adding the code **!pip install {package name}**
+{{% codeblock %}}
 ```bash
 !pip install cartopy
 import cartopy
 ```
+{{% /codeblock %}}
+
 
 ## Adding collaborators
-To add other collaborators, go to the right corner and press **Share**. Now choose to either invite people via e-mail or by sending them a link. It is also possible to change the permissions to 'Commenter' or 'Viewer' by pressing ![the gear icon](../images/settings_image.JPG).
+To add other collaborators, go to the right corner and press **Share**. Now choose to either invite people via e-mail or by sending them a link. It is also possible to change the permissions to 'Commenter' or 'Viewer' by pressing the settings icon.
+
+<!-- <p align = "center">
+<img src = "../images/settings_image.JPG" width="200">
+<figcaption> The gear icon </figcaption>
+</p> -->
 
 ### Connect to google drive
 If you want to import a dataset or any other file stored on your pc, the easiest way to do so is by connecting Google Colab to your Google drive. To do so, follow the steps below!
 1. Upload your files to Google drive
 2. Run the following lines in a Colab shell
+
+{{% codeblock %}}
 ```bash
 from google.colab import drive
 drive.mount('/content/drive')
 ```
+{{% /codeblock %}}
+
 3. Press **Connect to Google Drive**
 4. Login to your Google account
 5. Press **Allow**

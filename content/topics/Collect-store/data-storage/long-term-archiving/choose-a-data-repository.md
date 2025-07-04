@@ -27,7 +27,10 @@ Research data archiving is about storing and preserving research data for the lo
 
 Attaching a usage license to your data tells others what they can or cannot do with the data. **[Creative Commons](https://creativecommons.org/licenses/)** licenses are widely used, for example, a CC-BY license lets others distribute, re-use, mix, and build upon your work as long as they give you credit. Adding NC to the license limits the use to non-commercial use only.  Another resource for selecting a license is [choosealicense.com](https://choosealicense.com/).
 
-![Licensing you data.](../images/licensing-data.png)
+<p align = "center">
+<img src = "../images/licensing-data.png" width="700">
+<figcaption> Licensing your data </figcaption>
+</p>
 
 ## Choosing a Data Repository
 

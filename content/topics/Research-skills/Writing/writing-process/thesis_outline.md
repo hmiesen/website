@@ -183,7 +183,7 @@ Present a table of summary statistics of the final dataset, including key metric
 
 
 {{% tip %}}
-The [Data visualization](/data-visualization/theory-best-practices/) building block teaches the best practices.
+The [Data visualization](/topics/Visualization/data-visualization/graphs-charts/theory-best-practices/) building block teaches the best practices.
 {{% /tip %}}
 
 ## Method
@@ -196,7 +196,7 @@ For regression models, there are some good resources at Tilburg Science Hub to h
 
 - [The basics of regression analysis](/analyze/regression): A building block on how to estimate a model with regression analysis and make predictions on the relationship between variables.
 
-- [Regression with panel data](/paneldata/): A series that includes several methods for panel data analysis, and helps you to choose between a fixed and random effects model. 
+- [Regression with panel data](/topics/Analyze/causal-inference/panel-data/system-gmm/): A series that includes several methods for panel data analysis, and helps you to choose between a fixed and random effects model. 
 - [An introduction to Instrumental Variable regression](/iv)
 - [An introduction to Difference-in-Difference analysis](/canonical-DiD)
 - [A series on Regression Discontinuity Design](/regression/discontinuity)

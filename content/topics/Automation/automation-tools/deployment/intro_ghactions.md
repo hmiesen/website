@@ -13,7 +13,7 @@ aliases:
 
 ## Overview
 
-This building block introduces the fundamentals of GitHub Actions and how to integrate it into your project. It complements our previous guide on [data management and directory structure](../../Workflows/Starting/principles-of-project-setup-and-workflow-management/directories/#), which we strongly recommend you to check out if you haven't already!
+This building block introduces the fundamentals of GitHub Actions and how to integrate it into your project. It complements our previous guide on [data management and directory structure](../../../../Workflows/Starting/principles-of-project-setup-and-workflow-management/directories/), which we strongly recommend you to check out if you haven't already!
 
 As a result, you will:
 
@@ -31,7 +31,7 @@ Moreover, GitHub Actions also offers many interesting advantages in terms of rep
 {{% tip %}}
 **Not familiar with Git/GitHub yet?**
 
-Feel free to check out our building blocks on the topic [here](https://tilburgsciencehub.com/search/?q=GitHub). They contain all the information you need to get started!
+Feel free to check out our building blocks on the topic [here](https://tilburgsciencehub.com/topics/Automation/version-control/). They contain all the information you need to get started!
 
 {{% /tip %}}
 
