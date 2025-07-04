@@ -12,7 +12,7 @@ aliases:
 
 ## Overview
 
-We introduce you to [Python]((https://www.python.org/)), starting with the fundamental basics to help you begin experimenting with this cool programming language yourself! Once you understand these essentials, the opportunities of Python are almost infinite. This guide covers: 
+We introduce you to [Python](https://www.python.org/), starting with the fundamental basics to help you begin experimenting with this cool programming language yourself! Once you understand these essentials, the opportunities of Python are almost infinite. This guide covers: 
 
 - Variables
 - Data types
@@ -643,7 +643,7 @@ Output:
 
 With the basics of Python under your belt, you're ready to start experimenting and expanding your skills. Check out these resources to further your learning:
 
-- [Python Coding Style Guidelines](python/style-guides): Discover the importance of coding style with these essential guidelines.
+- [Python Coding Style Guidelines](/topics/Computer-Setup/software-installation/Python/Python-coding-style/): Discover the importance of coding style with these essential guidelines.
 - Learn Python with these great step-by-step tutorials from [Real Python](https://realpython.com).
 - [QuantEcon.org](https://quantecon.org/) offers fantastic resources for you to
 get started using Python.

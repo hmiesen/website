@@ -36,7 +36,7 @@ Let computers repeat and execute tasks.,
 
 - Add all inputs, but no outputs/generated files
     - DO: everything created by humans, small data inputs
-    - DON'T: things created by the computer from your inputs (generated files; those will be [reproduced via a workflow](/topics/project-setup/principles-of-project-setup-and-workflow-management/automation/)). Also [do not version large data inputs](/topics/project-setup/principles-of-project-setup-and-workflow-management/directories/).
+    - DON'T: things created by the computer from your inputs (generated files; those will be [reproduced via a workflow](/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/automation/)). Also [do not version large data inputs](/topics/Automation/Workflows/principles-of-project-setup-and-workflow-management/directories/).
 - Work in small changes
     - Create [snapshots/commits](/topics/share-your-results-and-project/use-github/versioning-using-git/) in small and logical steps. This will allow you to go back in time if necessary, and to understand progression.
 -  Use an issue tracking tool to document problems (e.g., such as the *Issue* tab on GitHub; email is not an issue tracker!)

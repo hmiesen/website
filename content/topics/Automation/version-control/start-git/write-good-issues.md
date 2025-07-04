@@ -13,7 +13,7 @@ aliases:
 
 ## Overview
 
-[Github Issues](https://guides.github.com/features/issues/) can be used to clearly define tasks that either you or your team members will eventually work on. In combination with Kanban-style [GitHub Project boards](/git-project-board/), they become a compelling way of coordinating teamwork. They also help you keep track of what's happening on projects and provide a durable, replicable record of the work for future reference.
+[Github Issues](https://guides.github.com/features/issues/) can be used to clearly define tasks that either you or your team members will eventually work on. In combination with Kanban-style [GitHub Project boards](../git-project-board/), they become a compelling way of coordinating teamwork. They also help you keep track of what's happening on projects and provide a durable, replicable record of the work for future reference.
 
 This building block aims to provide comprehensive guidance on the efficient use of GitHub Issues, teaching you how to write GitHub issues that get the job done! It begins with an introduction to GitHub Issues and subsequently delves into the best practices. 
 
@@ -69,7 +69,7 @@ __Bad issue titles__
 
 Note that you can also *change* the title of an issue to make it more accurately reflect the current task.
 
-{{% / tip %}}
+{{% /tip %}}
 
 ### Set Goals with Clear Descriptions
 
@@ -100,7 +100,7 @@ __Bad description__
 
 *Redoing everything on Research Cloud, including the subsampling. Remember we want to test VM1, not only VM2.*
 
-{{% / tip %}}
+{{% /tip %}}
 
 ### Document Progress through Comments
 

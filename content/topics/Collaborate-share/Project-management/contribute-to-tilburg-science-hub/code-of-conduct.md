@@ -31,7 +31,7 @@ This Code of Conduct is adapted from [the Contributor Covenant](http://contribut
 
 When writing for Tilburg Science Hub, please follow our [communication style and writing guideline](../style-guide).
 
-By contributing, you agree that we may redistribute your work under [our license](/about/). In exchange, we will address your issues and/or assess your change proposal as promptly as we can, and help you become a member of our community.
+By contributing, you agree that we may redistribute your work under [our license](/about). In exchange, we will address your issues and/or assess your change proposal as promptly as we can, and help you become a member of our community.
 
 Everyone involved agrees to abide by our [code of conduct](#code-of-conduct).
 
