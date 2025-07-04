@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install jq (nodig voor token extractie)
+      - name: Install jq (needed for token extraction)
         run: sudo apt-get update && sudo apt-get install -y jq
 
       - name: Checkout repository
