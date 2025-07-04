@@ -21,6 +21,7 @@ Deep learning draws inspiration from the human brain's complex structure. Geoffr
 
 <p align = "center">
 <img src ="../images/neuron-anatomy.png" width="400">
+<figcaption>Neuron atanomy</figcaption>
 </p>
 Picture source: McCullum, N. (2021, 28 april). Deep Learning Neural networks explained in Plain English
 
@@ -34,6 +35,7 @@ In deep learning, neurons gather inputs, compute weighted sums, and pass them th
 
 <p align = "center">
 <img src ="../images/artificial-neuron-representation-math.png" width="400">
+<figcaption>Neuron representation math</figcaption>
 </p> 
 Picture source: McCullum, N. (2021, 28 April). Deep Learning Neural Networks Explained in Plain English.
 
@@ -140,6 +142,7 @@ $y = \beta_{k} th+ \Omega_{k}a[\beta_{k-1} + \Omega_{k-1}a[...\beta_{2} + \Omega
 This is how deep neural network could be presented in the graph:
 <p align = "center">
 <img src ="../images/deep-neural-network-graphics.png" width="400">
+<figcaption>Deep neural network</figcaption>
 </p> 
 
 ## Coding deep neural network

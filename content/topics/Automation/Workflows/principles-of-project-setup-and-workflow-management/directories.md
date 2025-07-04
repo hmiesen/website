@@ -114,7 +114,7 @@ Source code is made available in the `src` folder of your main project: `my_proj
 
 - Source code are all files that are required to execute your project's pipeline.
 
-- In addition, source code consists of a [`makefile`](/get/make/) which makes explicit how the source code needs to be run, and in which order, and
+- In addition, source code consists of a [`makefile`](../../../../../topics/Automation/automation-tools/Makefiles/make/) which makes explicit how the source code needs to be run, and in which order, and
 
 - Scripts which put the `/gen/[pipeline-stage]/output` files from the current pipeline stage to the file exchange (`put_output`), so that other pipeline stages can pull in that data to its `/gen/[pipeline-stage]/input` folder (`get_input`). More about this [here](#4-file-exchange).
 

@@ -45,7 +45,11 @@ Depending on your operating system and whether you chose to launch a Linux or Wi
 
 
 ## Windows instance
-![Connect Windows Instance](../img/connect-windows-instance.gif)
+
+<p align = "center">
+<img src = "/static/img/connect-windows-instance.gif" width="600">
+<figcaption> Connect Windows Instance </figcaption>
+</p>
 
 1. Install Windows Remote Desktop [Windows](https://apps.microsoft.com/store/detail/microsoft-remote-desktop/9WZDNCRFJ3PS) & [Mac](https://apps.apple.com/us/app/microsoft-remote-desktop/id1295203466?mt=12). 
 

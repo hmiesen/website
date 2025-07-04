@@ -28,21 +28,33 @@ It is important to mention that you should not take everything that ChatGPT prod
 First, it is important to feed the chat bot the right information in the right way. The better you are at feeding the information, the higher value you receive in return. To efficiently use ChatGPT for your research projects, it is important to think of ChatGPT as a newborn baby: it does not know anything. It has no context whatsoever for anything you want it to produce. 
 To explain this idea, we will be asking ChatGPT for a travel itinerary in Amsterdam. We want to visit the city for a few days and need some suggestions. Let’s say you want to visit museums. ‘What are museums to visit in Amsterdam’ will generate a very basic list. 
 
-![Basic question ChatGPT.](../images/basic_question_ams.png)
+<p align = "center">
+<img src ="../images/basic_question_ams.png" width="400">
+<figcaption>Basic question ChatGPT</figcaption>
+</p> 
 
 However, if your goal is that ChatGPT will serve as a travel guide, you have to lay out the situation for ChatGPT. Be as clear and precise as you can be and add as many details if you can. This will allow ChatGPT to answer your question with much more detail and much more tailored to your specific situation. 
 
-![Extended question ChatGPT.](../images/extended_question_ams.png)
+<p align = "center">
+<img src ="../images/extended_question_ams.png" width="400">
+<figcaption>Extended question ChatGPT</figcaption>
+</p> 
 
 See, it really generates a way better answer! If you really need more, just ask “Is there anything else I should do?”. It’s that simple! 
 
-![Anything else ChatGPT.](../images/anything_else_ams.png)
+<p align = "center">
+<img src ="../images/anything_else_ams.png" width="400">
+<figcaption>Anything else ChatGPT.</figcaption>
+</p> 
 
 So, for your research project, it is important that you tell ChatGPT which role you would like it to fulfill. Furthermore, thoroughly outline your research question and/or the problem you are running into. Last, you should ask a detailed question, so that ChatGPT knows exactly what to do. 
 
 Right now, we’ve asked ChatGPT some simple questions about Amsterdam from a travel point of view. However, the same principle works for all kinds of research questions. The possibilities are endless! For example, you can help gain inspiration for your thesis topic! 
 
-![Extended question researcher ChatGPT.](../images/researcher_question_ext.png)
+<p align = "center">
+<img src ="../images/researcher_question_ext.png" width="400">
+<figcaption>Extended question researcher ChatGPT.</figcaption>
+</p> 
 
 ## Use cases of ChatGPT in economic research
 

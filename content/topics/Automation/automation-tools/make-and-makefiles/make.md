@@ -105,9 +105,12 @@ Proceed as follows:
 
 Open a terminal by searching for it with spotlight, `cmd + spacebar` then type terminal and press `Return` when it appears. Then, copy and paste the following:
 
+{{% codeblock %}}
 ```bash
 xcode-select --install
 ```
+{{% /codeblock %}}
+
 
 ### For Linux Users
 
@@ -117,13 +120,17 @@ xcode-select --install
 ## Verifying Your Installation
 
 To check that `Make` is installed and working correctly, open a terminal session and type (then hit the return key):
-
+{{% codeblock %}}
 ```bash
 make
 ```
+{{% /codeblock %}}
+
 
 If everything is working correctly, you should get the following output:
-
+{{% codeblock %}}
 ```bash
 make: *** No targets specified or no makefile found. Stop.
 ```
+{{% /codeblock %}}
+

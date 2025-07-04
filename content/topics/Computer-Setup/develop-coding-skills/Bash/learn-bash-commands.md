@@ -47,7 +47,11 @@ Type `cmd` into the search bar and hit enter, it should launch the Windows Comma
 *Mac*  
 To see the full path for your working directory, you can use the `pwd` command, which stands for print working directory.
 
-![terminal_pwd](../images/terminal_pwd.gif)
+<p align = "center">
+<img src = "/static/img/terminal_pwd.gif" width="700">
+<figcaption> Terminal pwd </figcaption>
+<p>
+
 
 *Windows*  
 If you type `pwd` in the Windows Command prompt, it doesn't recognize the command. Instead, type `cd` (or `chdir`) to view the current working directory.
@@ -56,7 +60,10 @@ If you type `pwd` in the Windows Command prompt, it doesn't recognize the comman
 *Mac*  
 Unlike the graphical user interface, you cannot see what other directories or files are present just by being in a particular directory. You have to explicitly tell your computer to list them for you using the `ls` command.
 
-![terminal_ls](../images/terminal_ls.gif)
+<p align = "center">
+<img src = "/static/img/terminal_ls.gif" width="700">
+<figcaption> Terminal ls </figcaption>
+<p>
 
 If you’d like to explore another directory, you need to use ls with a path. For example, `ls ~/Documents` will show you what's inside Documents.
 
@@ -73,7 +80,10 @@ The command `cd` allows you to change directories; it's the equivalent of double
 
 Note that the path in front of `$` indicates your working directory. This helps you keep track of where you're at.
 
-![terminal_cd](../images/terminal_cd.gif)
+<p align = "center">
+<img src = "/static/img/terminal_cd.gif" width="700">
+<figcaption> Terminal cd </figcaption>
+<p>
 
 
 {{% tip %}}

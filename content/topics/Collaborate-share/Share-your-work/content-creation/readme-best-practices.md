@@ -105,7 +105,10 @@ You can always access **[the most recent version of this template here](https://
 {{% cta-primary-center "Download the Markdown version" "https://raw.githubusercontent.com/social-science-data-editors/template_README/releases/README.md" %}}
 {{% cta-secondary-center "Download the Word version" "https://social-science-data-editors.github.io/template_README/templates/README.docx" %}}
 
-![A preview of the README template](../images/preview-readme-template.png)
+<p align = "center">
+<img src = "../images/preview-readme-template.png" width="400">
+<figcaption>A Preview of the README template</figcaption>
+</p>
 
 ## Examples
 

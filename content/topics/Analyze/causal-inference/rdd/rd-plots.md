@@ -15,7 +15,7 @@ aliases:
 
 In the [last topic](/sharp/designs), we provided an introduction to the Regression Discontuinity Design and specifically the sharp RDD. Now, we will focus on RDD plots. We can visualize a graphical representation of a RDD by illustrating the relationship between the outcome and the running variable. 
 
-Plotting RD Designs can be done with a scatter plot of the observed outcome against the score, where each point would represent one observation. However, simply plotting the raw data makes it hard to see discontinuities in the relationship between score and outcome. To illustrate this, we use the example described in [Sharp RD Designs](/sharp/designs) of the Meyersson application. The data is available here: [data-link](regdata0.dta).
+Plotting RD Designs can be done with a scatter plot of the observed outcome against the score, where each point would represent one observation. However, simply plotting the raw data makes it hard to see discontinuities in the relationship between score and outcome. To illustrate this, we use the example described in [Sharp RD Designs](/sharp/designs) of the Meyersson application. The data is available here: [data-link](/static/files/regdata0.dta).
 
 ## A plot with raw data
 
