@@ -2,8 +2,8 @@ name: broken-link-checker
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 18 * * 5"  # Every Friday 18:00 UTC
+  # schedule:
+    # - cron: "0 18 * * 5"  # Every Friday 18:00 UTC
 
 jobs:
   check-links:
