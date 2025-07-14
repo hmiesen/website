@@ -4,7 +4,7 @@ description: "Learn how to build your site with Hugo after installation."
 draft: false
 weight: 5
 date: 2025-07-07
-author: "Your Name"
+author: "Harold Miesen"
 ---
 
 ## Using Hugo: Create and Deploy a Static Site

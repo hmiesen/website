@@ -46,4 +46,4 @@ Hugo Extended is now installed on WSL!
 
 ---
 
-Done installing? Proceed to the [Hugo Usage Guide](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/content.md) or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/index/).
+Done installing? Proceed to the [Hugo Usage Guide](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/content/) or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/index/).

@@ -29,4 +29,4 @@ Please choose your operating system to begin installation:
 - [Install on WSL](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/install-wsl)
 - [Install on Linux](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/install-linux)
 
-Once installed, you’ll continue to the [Using Hugo Guide](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/content.md) for building and deploying your site.
+Once installed, you may continue to the [Using Hugo Guide](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/content/) for building and deploying your site.
