@@ -1,6 +1,7 @@
 ---
 draft: false
-title: "Create Your Own Website in 15 Minutes"
+title: "Hugo Tutorial"
 weight: 2
 type: subcategory
 ---
+
