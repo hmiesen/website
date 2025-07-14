@@ -6,7 +6,7 @@ keywords: ["hugo", "static site", "website generator", "markdown", "tutorial"]
 draft: false
 weight: 1
 date: 2025-07-07
-author: "Your Name"
+author: "Harold Miesen"
 categories: ["Tutorials"]
 tags: ["hugo", "markdown", "deployment", "static site"]
 ---

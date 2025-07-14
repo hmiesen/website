@@ -4,7 +4,7 @@ description: "Install Hugo on a Linux environment via Windows Subsystem for Linu
 draft: false
 weight: 3
 date: 2025-07-07
-author: "Your Name"
+author: "Harold Miesen"
 ---
 
 ## Install Hugo Extended on WSL using snap

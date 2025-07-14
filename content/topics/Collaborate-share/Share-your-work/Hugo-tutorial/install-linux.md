@@ -4,7 +4,7 @@ description: "Install Hugo Extended for native Linux environments using wget."
 draft: false
 weight: 4
 date: 2025-07-07
-author: "Your Name"
+author: "Harold Miesen"
 ---
 
 ## Install Hugo Extended on Linux using wget

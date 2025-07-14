@@ -5,7 +5,7 @@ description: "Instructions for installing Hugo Extended on Windows using winget.
 draft: false
 weight: 2
 date: 2025-07-07
-author: "Your Name"
+author: "Harold Miesen"
 ---
 
 ## Install Hugo Extended on Windows using winget

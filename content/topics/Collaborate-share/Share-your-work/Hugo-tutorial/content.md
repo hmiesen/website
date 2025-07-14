@@ -47,7 +47,7 @@ git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git theme
 
 
 ### Step 3: Configure `hugo.toml`
-Edit hugo.toml in hour favorite editor and set basic site configuration by adding the following lines:
+Edit hugo.toml in your favorite editor and set basic site configuration by adding the following lines:
 
 ```toml
 baseURL = "http://localhost/"
@@ -126,8 +126,8 @@ Markdown supports raw HTML when you need more flexibility than Markdown syntax a
 
 ```html
 <pre>
-  &lt;div class="custom-box"&gt;&lt;
-    h3&gt;Hello from HTML!&lt;/h3&gt;
+  &lt;div class="custom-box"&gt;
+  &lt;h3&gt;Hello from HTML!&lt;/h3&gt;
       &lt;p&gt;This content uses plain HTML inside a Markdown file.&lt;/p&gt;
   &lt;/div&gt;
 </pre>
@@ -151,7 +151,7 @@ Make sure your Hugo project (including content, theme, and config files) is vers
 git init
 git add .
 git commit -m "Initial commit with Hugo source files"
-git remote add origin https://github.com/<username>/my-hugo-site.git
+git remote add origin https://github.com/<your-username>/my-hugo-site.git
 git branch -M main
 git push -u origin main
 ```
@@ -174,7 +174,7 @@ You'll now push only the contents of the `public/` folder to a __**separate bran
 cd public
 git init
 git checkout -b gh-pages
-git remote add origin https://github.com/<username>/my-hugo-site.git
+git remote add origin https://github.com/<your-username>/my-hugo-site.git
 touch .nojekyll
 git add .
 git commit -m "Deploy site to GitHub Pages"
