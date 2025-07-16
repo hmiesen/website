@@ -1,8 +1,8 @@
 ---
 title: "Using Hugo: Create and Deploy a Static Site"
-description: "Learn how to build your site with Hugo after installation."
+description: "Learn how to launch your site with Hugo after installation"
 draft: false
-weight: 5
+weight: 4
 date: 2025-07-07
 author: "Harold Miesen"
 ---
@@ -19,7 +19,17 @@ cd my-hugo-site
 > __**TIP**__: Choose a meaningful name for your project folder. You can manage multiple Hugo sites independently.
 
 
-## Project Directory Structure
+### Step 2: Add a Theme (Ananke)
+Add the [Ananke](https://github.com/theNewDynamic/gohugo-theme-ananke) theme using Git submodules:
+
+```powershell (Windows) or bash (Linux)
+git init
+git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+
+```
+> __**Why Ananke**__? It's a modern, responsive, and accessible theme - great for learning and production alike.
+
+By now, you should have the following directory structure:
 
 ```
 my-hugo-site/
@@ -32,19 +42,6 @@ my-hugo-site/
 ```
 
 > The `public/` folder is regenerated with every `hugo` build. Never edit it manually.
-
----
-
-### Step 2: Add a Theme (Ananke)
-Add the [Ananke](https://github.com/theNewDynamic/gohugo-theme-ananke) theme using Git submodules:
-
-```powershell (Windows) or bash (Linux)
-git init
-git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
-
-```
-> __**Why Ananke**__? It's a modern, responsive, and accessible theme - great for learning and production alike.
-
 
 ### Step 3: Configure `hugo.toml`
 Edit hugo.toml in your favorite editor and set basic site configuration by adding the following lines:
@@ -62,27 +59,31 @@ paginate = 10
 enableRobotsTXT = true
 ```
 
-### Step 4: Add Content
-Create a sample page:
+### Bonus: Set Up a Default Archetype (Optional)
+If you’d like Hugo to automatically add front matter when creating new content, you can define a default archetype.
 
-```powershell (Windows) or bash (Linux)
-hugo new about/hello-world.md
+Create a file at:
+
+```
+archetypes/default.md
 ```
 
-Edit the file `hello-world.md` in the `content/about` folder:
+And at the following content:
 
 ```markdown
 ---
-title: "Hello World"
-date: 2025-07-07
-draft: false
+title: "{{ replace .Name "-" " " | title }}"
+date: {{ .Date }}
+draft: true
 ---
-
-Welcome to my first Hugo site!
 ```
-__**Note**__: Hugo marks new content as drafts by default. Set `draft: false` to make it visible.
 
-### Step 5: Run Local Server
+- When you run a command like hugo new about.md, Hugo will use this template.
+- The title will be auto-generated from the filename (e.g., about becomes About).
+- The date is set to the current timestamp.
+- The page will be created as a draft, which you can later publish by setting draft: false.
+
+### Step 4: Run Local Server
 Start the Hugo development server in __**the root**__ of your project:
 ```powershell (Windows) or bash (Linux)
 hugo server -D
@@ -92,59 +93,9 @@ hugo server -D
 
 > Live reload is enabled - changes are reflected immediately.
 
----
+### Bonus: Deploy to GitHub Pages (Recommended Setup)
 
-## Markdown Basics
-Hugo uses [Markdown](https://www.markdownguide.org/) to write content.
-
-### Headings
-
-```markdown
-# H1
-## H2
-### H3
-```
-
-### Emphasis
-
-```markdown
-*italic* __**bold**__ `inline code`
-```
-
-### Lists & Links
-
-```markdown
-- Unordered item
-1. Ordered item
-[Visit Hugo](https://gohugo.io)
-```
-
-### HTML
-Markdown supports raw HTML when you need more flexibility than Markdown syntax allows.
-
-#### Example 1: Custom Layout
-
-```html
-<pre>
-  &lt;div class="custom-box"&gt;
-  &lt;h3&gt;Hello from HTML!&lt;/h3&gt;
-      &lt;p&gt;This content uses plain HTML inside a Markdown file.&lt;/p&gt;
-  &lt;/div&gt;
-</pre>
-```
-
-> Hugo will render this HTML as-is, even within `.md` files:
-
-> <div class="custom-box">
->   <h3>Hello from HTML!</h3>
->   <p>This content uses plain HTML inside a Markdown file.</p>
-> </div>
-
----
-
-## Bonus: Deploy to GitHub Pages (Recommended Setup)
-
-### 1. Commit your project source to main
+#### 1. Commit your project source to main
 Make sure your Hugo project (including content, theme, and config files) is version-controlled:
 
 ```powershell (Windows) or bash (Linux)
@@ -158,7 +109,7 @@ git push -u origin main
 
 > This keeps your full source code in the `main` branch.
 
-### 2. Build the static site
+#### 2. Build the static site
 Use Hugo to generate the final website:
 
 ```powershell (Windows) or bash (Linux)
@@ -167,7 +118,7 @@ hugo --minify
 
 > The output will be placed in the `public/` directory.
 
-### 3. Deploy the contents of `public` to `gh-pages`
+#### 3. Deploy the contents of `public` to `gh-pages`
 You'll now push only the contents of the `public/` folder to a __**separate branch**__:
 
 ```powershell (Windows) or bash (Linux)
@@ -183,7 +134,7 @@ git push -f origin gh-pages
 
 > `touch .nojekyll` disables Jekyll prcessing on Github Pages, which can interfere with Hugo's folder structure (e.g. `/assets/`).
 
-### 4. Configure GitHub Pages
+#### 4. Configure GitHub Pages
 1. Go to your repository on GitHub
 2. Open __**Settings**__ -> __**Pages**__
 3. Under __**Source**__, choose:
@@ -193,13 +144,7 @@ git push -f origin gh-pages
 
 > Your site will be available at: `https://<username>.githubio/<repo>/`
 
-## Bonus: Automate Deployment
+### Bonus: Automate Deployment
 Instead of manually pushing `public/`, you can automate this with [GitHub Actions](https://github.com/features/actions).
 
-## Resources
-- [Hugo Docs](https://gohugo.io/documentation/)
-- [Markdown Guide](https://www.markdownguide.org/)
-- [Ananke Theme](https://github.com/theNewDynamic/gohugo-theme-ananke)
-
-You're now ready to build and publish static sites with Hugo!
-Go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/index/)
+You're now ready to add content to your static Hugo site and to continue to the [Adding content to your Hugo site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/5-add-content/), or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/index/)

@@ -1,13 +1,13 @@
 ---
-title: "Install Hugo Extended on WSL (Ubuntu) using snap"
-description: "Install Hugo on a Linux environment via Windows Subsystem for Linux using snap."
+title: "Install Hugo Extended on Linux using snap"
+description: "Install Hugo on a Linux environment using snap"
 draft: false
 weight: 3
 date: 2025-07-07
 author: "Harold Miesen"
 ---
 
-## Install Hugo Extended on WSL using snap
+## Install Hugo Extended on Linux using snap
 
 ### Step 1: Update Your System
 
@@ -61,8 +61,8 @@ hugo v0.124.1+extended linux/amd64 BuildDate=...
 ```
 
 Look for `+extended` in the output.
-Hugo Extended is now installed on WSL!
+Hugo Extended is now installed on Linux!
 
 ---
 
-Done installing? Proceed to the [Hugo Usage Guide](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/content/) or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/index/).
+Done installing? Proceed to the [Launch Site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/4-launch-site/) page or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/).
