@@ -13,7 +13,7 @@ aliases:
 
 ## Overview
 
-[Quarto](https://quarto.org/) is an open-source scientific and technical publishing system that enables you to create and share interactive documents, presentations, dashboards, and reports. It doesn't provide a standalone graphical user interface but is built to integrate with tools like [Visual Studio Code](/topics/computer-setup/software-installation/ide/vscode/), [Jupyter](https://jupyter.org/), [RStudio](/topics/computer-setup/software-installation/rstudio/r/). It supports Markdown alongside executable code blocks in multiple programming languages, such as [R](/topics/computer-setup/software-installation/rstudio/getting-started-with-r-overview/), [Python](/topics/computer-setup/software-installation/python/python/), and [Julia](/topics/computer-setup/software-installation/matlab/julia/). This guide will walk you through creating your first document. 
+[Quarto](https://quarto.org/) is an open-source scientific and technical publishing system that enables you to create and share interactive documents, presentations, dashboards, and reports. It doesn't provide a standalone graphical user interface but is built to integrate with tools like [Visual Studio Code](/topics/computer-setup/software-installation/ide/vscode/), [Jupyter](https://jupyter.org/), [RStudio](/topics/computer-setup/software-installation/rstudio/r/). It supports Markdown alongside executable code blocks in multiple programming languages, such as [R](../../../../../topics/Computer-Setup/software-installation/RStudio/getting-started-with-R-overview/), [Python](/topics/computer-setup/software-installation/python/python/), and [Julia](/topics/computer-setup/software-installation/matlab/julia/). This guide will walk you through creating your first document. 
 
 {{% tip %}}
 
@@ -41,7 +41,7 @@ Key advantages of Quarto are:
 1. Install the Quarto VS Code Extension
   - Open the Extensions Marketplace in VS Code, using the shortcut `Ctrl+Shift+X` (`CMD+Shift+X` on Mac), or click the Extensions icon on the left sidebar:
 
-  <p align = "center">
+<p align = "center">
 <img src = "../images/VSCodeExtensions_icon.png" width="200">
 </p>
 

@@ -16,7 +16,7 @@ aliases:
 This building block delves deeper into GitHub Actions by providing a hands-on example. We’ll craft a workflow specifically for Python code formatting and testing. After that, you'll discover how to integrate and track it into your own repository.
 
 {{% tip %}}
-If you are new to GitHub Actions, we suggest you review [this building block](../topics/automation/automation-tools/deployment/intro_ghactions/) first to get familiar with the foundational concepts.
+If you are new to GitHub Actions, we suggest you review [Introduction to github actions building block](../intro_ghactions/) first to get familiar with the foundational concepts.
 
 {{% /tip %}}
 

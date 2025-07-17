@@ -39,7 +39,7 @@ When there are multiple regressors, $X_{it}$ is replaced by $X_{1,it}, X_{2,it},
 
 Now, the assumptions are explained in greater detail.
 
-Examples are given to clarify the assumptions. This is done with the panel data set called `Grunfeld`, which is already used in the [panel data](/paneldata) and [`fixest` topic](topics/analyze/causal-inference/panel-data/fixest/). Please refer to these for further context on the `Grunfeld` data and the regression model.
+Examples are given to clarify the assumptions. This is done with the panel data set called `Grunfeld`, which is already used in the [panel data](/paneldata) and [`fixest` topic](../../../causal-inference/panel-data/fixest/). Please refer to these for further context on the `Grunfeld` data and the regression model.
 
 ## Assumption 1: Zero Conditional Mean
 

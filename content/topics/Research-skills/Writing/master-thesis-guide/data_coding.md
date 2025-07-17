@@ -56,7 +56,7 @@ You might want to analyze data sets for your project that already exist somewher
 - [Download data directly from URLs using R and Python](/store/data)
 - [Import larger datasets into R](/import/large-datsets)
 - [The package `Dask` for processing large datasets in Python](/import/large-datsets-python)
-- [Integrating SPSS data in R](building-blocks/prepare-your-data-for-analysis/data-preparation/spss-files-in-R): useful when your data source is an SPSS file
+- [Integrating SPSS data in R](/topics/Manage-manipulate/Loading/getting-started/spss-files-in-r/): useful when your data source is an SPSS file
 - [Text pre-processing in R](/building-blocks/prepare-your-data-for-analysis/data-preparation/text-preprocessing): useful when working with text data in R
 - [Data sources related to areas of Economics](/research/datasources)
 

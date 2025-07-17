@@ -41,7 +41,7 @@ import seaborn as sns
 
 {{% /codeblock %}}
 
-We are going to use two datasets, the [Iris](https://www.kaggle.com/datasets/uciml/iris) dataset and the [Monthly stocks](stocks-monthly.csv) dataset, containing closing prices of 4 companies over time. Let's load the datasets.
+We are going to use two datasets, the [Iris](https://www.kaggle.com/datasets/uciml/iris) dataset and the [Monthly stocks](/static/files/stocks-monthly.csv) dataset, containing closing prices of 4 companies over time. Let's load the datasets.
 
 {{% codeblock %}}
 

@@ -78,6 +78,6 @@ Together, these 5 considerations can guide your decision-making in terms of (a) 
 
 
 ## See Also
-* If you're unfamiliar with Git, you may first want to take a more comprehensive look at its features to better evaluate the pros and cons. [Here](/get/git) we explain how to install Git and create an account. [This](/use/git) building block illustrates how to get started with Git repositories.  
-* Amazon Simple Storage Service (often referred to as S3) provides an alternative way to store data into buckets. [This](/use/aws-s3) building block summarizes the main commands you need to download and upload files.
+* If you're unfamiliar with Git, you may first want to take a more comprehensive look at its features to better evaluate the pros and cons. [Here](/get/git) we explain how to install Git and create an account. [GIT](/use/git) building block illustrates how to get started with Git repositories.  
+* Amazon Simple Storage Service (often referred to as S3) provides an alternative way to store data into buckets.[AWS3](../../../../../topics/Collect-store/data-storage/commercial-cloud/aws-s3-buckets/) building block summarizes the main commands you need to download and upload files.
 * [This](https://www.youtube.com/watch?v=pd-0G0MigUA) video tutorial shows how to leverage Python SQLite to create a database, table, and run queries on a local SQL database. The same ideas can be applied to cloud databases as well.

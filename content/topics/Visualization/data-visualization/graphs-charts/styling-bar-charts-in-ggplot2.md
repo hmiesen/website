@@ -345,8 +345,7 @@ This article uses `ggplot2` for effective bar chart styling, crucial in academic
 - Advanced customization is achieved using `geom_errorbar() `for error bars and `scale_fill_manual()` for color themes.
 - Showcases how to add p-values inside your `ggplot`.
 
-
-Interested in the source code used in this analysis? Download it [here](source-code-barchart-visualization.R).
+Interested in the source code used in this analysis? Download it [here](/static/files/source-code-barchart-visualization.R).
 
 {{% /summary %}}
 
