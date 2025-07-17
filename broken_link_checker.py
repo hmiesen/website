@@ -9,9 +9,6 @@ from aiohttp import ClientTimeout
 from collections import namedtuple
 
 # Domain
-<<<<<<< HEAD
-fullDomain = 'https://github.com/tilburgsciencehub/website'
-=======
 FULL_DOMAIN = 'https://tilburgsciencehub.com/'
 USERNAME = 'tilburgsciencehub'
 REPOSITORYNAME = 'website'
@@ -21,7 +18,6 @@ USER_AGENT_HEADER = {
                   "AppleWebKit/537.36 (KHTML, like Gecko) "
                   "Chrome/114.0.0.0 Safari/537.36"
 }
->>>>>>> 7f838e46a647e6e773ff3eacbe6b941f65912d2d
 
 # Data containers
 list_pages_raw = []
