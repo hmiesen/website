@@ -9,6 +9,8 @@ author: "Harold Miesen"
 
 ## Using Hugo: Create and Deploy a Static Site
 
+Hugo is a powerful static site generator that transforms plain text and templates into fast, secure, and fully pre-rendered websites. Unlike dynamic sites that rely on databases, static sites are composed of HTML files that can be easily hosted anywhere — from GitHub Pages to cloud providers — with excellent performance and minimal maintenance.
+
 ### Step 1: Create a New Project
 Start a new Hugo site:
 
@@ -29,7 +31,7 @@ git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git theme
 ```
 > __**Why Ananke**__? It's a modern, responsive, and accessible theme - great for learning and production alike.
 
-By now, you should have the following directory structure:
+By now, you should have a directory structure looking something like this:
 
 ```
 my-hugo-site/
@@ -59,7 +61,6 @@ paginate = 10
 enableRobotsTXT = true
 ```
 
-### Bonus: Set Up a Default Archetype (Optional)
 If you’d like Hugo to automatically add front matter when creating new content, you can define a default archetype.
 
 Create a file at:
@@ -68,7 +69,7 @@ Create a file at:
 archetypes/default.md
 ```
 
-And at the following content:
+And add the following content:
 
 ```markdown
 ---
@@ -81,7 +82,7 @@ draft: true
 - When you run a command like hugo new about.md, Hugo will use this template.
 - The title will be auto-generated from the filename (e.g., about becomes About).
 - The date is set to the current timestamp.
-- The page will be created as a draft, which you can later publish by setting draft: false.
+- The page will be created as a draft, which you can later publish by setting `draft: false`.
 
 ### Step 4: Run Local Server
 Start the Hugo development server in __**the root**__ of your project:
@@ -89,9 +90,8 @@ Start the Hugo development server in __**the root**__ of your project:
 hugo server -D
 ```
 
-> Visit [http://localhost:1313](http://localhost:1313) in your browser.
-
-> Live reload is enabled - changes are reflected immediately.
+- Visit [http://localhost:1313](http://localhost:1313) in your browser.
+- Live reload is enabled - changes are reflected immediately.
 
 ### Bonus: Deploy to GitHub Pages (Recommended Setup)
 
@@ -147,4 +147,4 @@ git push -f origin gh-pages
 ### Bonus: Automate Deployment
 Instead of manually pushing `public/`, you can automate this with [GitHub Actions](https://github.com/features/actions).
 
-You're now ready to add content to your static Hugo site and to continue to the [Adding content to your Hugo site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/5-add-content/), or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/index/)
+You're now ready to add content to your static Hugo site and to continue to the [Adding content to your Hugo site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/5-add-content/), or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/)

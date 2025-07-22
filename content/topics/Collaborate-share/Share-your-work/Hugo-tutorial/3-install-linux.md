@@ -9,6 +9,14 @@ author: "Harold Miesen"
 
 ## Install Hugo Extended on Linux using snap
 
+Snap is a universal package manager developed by Canonical (the makers of Ubuntu). It allows you to install software in isolated containers, which include all necessary dependencies — making it easy to run the latest versions of applications across different Linux distributions.
+
+Using snap to install Hugo ensures:
+
+- You get the Extended version by default,
+- Automatic updates,
+- Fewer dependency issues across distros.
+
 ### Step 1: Update Your System
 
 ```bash
