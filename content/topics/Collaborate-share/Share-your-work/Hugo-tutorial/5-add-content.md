@@ -11,6 +11,8 @@ author: "Harold Miesen"
 
 Hugo uses [Markdown](https://www.markdownguide.org/) to write content. Markdown is a lightweight markup language used to format plain text. It's simple to learn and allows you to add formatting like bold, italic, links, lists, and more — all using plain text characters. Markdown is commonly used for writing documentation, README files, and content for websites like GitHub, Reddit, and Hugo because it's easy to write and read, even without special tools.
 
+Markdown comes in different dialects — variations that extend the original syntax with features like tables, footnotes, and syntax highlighting. This Flask app uses the [standard Python-Markdown library](https://python-markdown.github.io/), which follows the original Markdown spec by John Gruber, but can be extended with optional features via extensions. The exact behavior depends on which extensions (if any) are enabled.
+
 #### Headings
 
 ```markdown
@@ -87,7 +89,7 @@ draft: true
 ```
 
 ### Step 2: Add Your Content
-Open `content\about.md` and add your content, for example:
+Open `content/about.md` and add your content, for example:
 
 ```markdown
 ---
@@ -253,7 +255,7 @@ Add the following lines inside the `baseof.html` file. Your file might than look
 Now start your Hugo site:
 
 ``` Powershell or bash
-hugo server
+hugo server -D
 ```
 
 > __**TIP**__: Since static/ maps directly to the root (/) in the output folder, placing your CSS in static/css/ makes it accessible at /css/custom.css.

@@ -90,8 +90,10 @@ Start the Hugo development server in __**the root**__ of your project:
 hugo server -D
 ```
 
-- Visit [http://localhost:1313](http://localhost:1313) in your browser.
-- Live reload is enabled - changes are reflected immediately.
+Visit [http://localhost:1313](http://localhost:1313) in your browser.
+
+> - Live reload is enabled - changes are reflected immediately.
+> - The -D flag in hugo server includes draft content in the local build, which is useful during development but should be avoided in production to prevent publishing unfinished work.
 
 ### Bonus: Deploy to GitHub Pages (Recommended Setup)
 
