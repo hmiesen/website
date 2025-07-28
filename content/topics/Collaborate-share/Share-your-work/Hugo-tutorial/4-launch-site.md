@@ -9,16 +9,20 @@ author: "Harold Miesen"
 
 ## Using Hugo: Create and Deploy a Static Site
 
-Hugo is a powerful static site generator that transforms plain text and templates into fast, secure, and fully pre-rendered websites. Unlike dynamic sites that rely on databases, static sites are composed of HTML files that can be easily hosted anywhere — from GitHub Pages to cloud providers — with excellent performance and minimal maintenance.
+Hugo is a powerful static site generator that transforms plain text and templates into fast,
+secure, and fully pre-rendered websites. Unlike dynamic sites that rely on databases, static
+sites are composed of HTML files that can be easily hosted anywhere — from GitHub Pages to
+cloud providers — with excellent performance and minimal maintenance.
 
 ### Step 1: Create a New Project
-Start a new Hugo site:
+Start a new Hugo site in your project folder of choice:
 
 ```powershell (Windows) or bash (Linux)
 hugo new site my-hugo-site
 cd my-hugo-site
 ```
-> __**TIP**__: Choose a meaningful name for your project folder. You can manage multiple Hugo sites independently.
+> __**TIP**__: Choose a meaningful name for your project folder. You can manage multiple Hugo sites
+independently.
 
 
 ### Step 2: Add a Theme (Ananke)
@@ -29,7 +33,8 @@ git init
 git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
 
 ```
-> __**Why Ananke**__? It's a modern, responsive, and accessible theme - great for learning and production alike.
+> __**Why Ananke**__? It's a modern, responsive, and accessible theme - great for learning and
+production alike.
 
 By now, you should have a directory structure looking something like this:
 
@@ -46,7 +51,8 @@ my-hugo-site/
 > The `public/` folder is regenerated with every `hugo` build. Never edit it manually.
 
 ### Step 3: Configure `hugo.toml`
-Edit hugo.toml in your favorite editor and set basic site configuration by adding the following lines:
+Edit hugo.toml in your favorite editor and set basic site configuration by adding the
+following lines:
 
 ```toml
 baseURL = "http://localhost/"
@@ -61,13 +67,10 @@ paginate = 10
 enableRobotsTXT = true
 ```
 
-If you’d like Hugo to automatically add front matter when creating new content, you can define a default archetype.
+If you’d like Hugo to automatically add front matter when creating new content, you can define
+a default archetype.
 
-Create a file at:
-
-```
-archetypes/default.md
-```
+Create a file at `archetypes/default.md`.
 
 And add the following content:
 
@@ -93,7 +96,8 @@ hugo server -D
 Visit [http://localhost:1313](http://localhost:1313) in your browser.
 
 > - Live reload is enabled - changes are reflected immediately.
-> - The -D flag in hugo server includes draft content in the local build, which is useful during development but should be avoided in production to prevent publishing unfinished work.
+> - The -D flag in hugo server includes draft content in the local build, which is useful during
+development but should be avoided in production to prevent publishing unfinished work.
 
 ### Bonus: Deploy to GitHub Pages (Recommended Setup)
 
@@ -134,7 +138,8 @@ git commit -m "Deploy site to GitHub Pages"
 git push -f origin gh-pages
 ```
 
-> `touch .nojekyll` disables Jekyll prcessing on Github Pages, which can interfere with Hugo's folder structure (e.g. `/assets/`).
+> `touch .nojekyll` disables Jekyll prcessing on Github Pages, which can interfere with Hugo's
+folder structure (e.g. `/assets/`).
 
 #### 4. Configure GitHub Pages
 1. Go to your repository on GitHub
@@ -149,4 +154,6 @@ git push -f origin gh-pages
 ### Bonus: Automate Deployment
 Instead of manually pushing `public/`, you can automate this with [GitHub Actions](https://github.com/features/actions).
 
-You're now ready to add content to your static Hugo site and to continue to the [Adding content to your Hugo site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/5-add-content/), or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/)
+You're now ready to add content to your static Hugo site and to continue to the 
+[Adding content to your Hugo site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/5-add-content/),
+or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/)

@@ -10,7 +10,8 @@ author: "Harold Miesen"
 
 ## Install Hugo Extended on Windows using winget
 
-Use winget to easily install and update the latest system-wide version of Hugo on Windows via the command line.
+Use winget to easily install and update the latest system-wide version of Hugo on Windows
+via the command line.
 
 ### Step 1: Open PowerShell as Administrator
 
@@ -49,7 +50,8 @@ winget install Hugo.Hugo.Extended
 > hugo version
 > ```
 
-> If Hugo has been succesfully removed from your system, you should see the following error message: `hugo : The term 'hugo' is not recognized...`. 
+> If Hugo has been succesfully removed from your system, you should see the following error
+message: `hugo : The term 'hugo' is not recognized...`. 
 
 ### Step 4: Confirm Installation
 
@@ -62,4 +64,7 @@ Hugo Extended is now installed on Windows!
 
 ---
 
-Done installing? Proceed to the [Launch Site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/4-launch-site/) page or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/).
+Done installing? Proceed to the 
+[Launch Site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/4-launch-site/) page
+or go back to
+[Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/).

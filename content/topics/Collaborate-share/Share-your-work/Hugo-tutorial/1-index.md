@@ -28,4 +28,6 @@ Please choose your operating system to begin installation:
 - [Install on Windows](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/2-install-windows)
 - [Install on Linux](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/3-install-linux)
 
-Once installed, you may continue to the [Using Hugo Guide](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/4-launch-site/) for building and deploying your site.
+Once installed, you may continue to the
+[Using Hugo Guide](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/4-launch-site/) for
+building and deploying your site.

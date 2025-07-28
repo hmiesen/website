@@ -9,8 +9,9 @@ author: "Harold Miesen"
 
 ## Install Hugo Extended on Linux using snap
 
-Snap is a universal package manager developed by Canonical (the makers of Ubuntu). It allows you to install software in isolated containers, 
-which include all necessary dependencies — making it easy to run the latest versions of applications across different Linux distributions.
+Snap is a universal package manager developed by Canonical (the makers of Ubuntu). It allows you to
+install software in isolated containers, which include all necessary dependencies — making it easy
+to run the latest versions of applications across different Linux distributions.
 
 Using snap to install Hugo ensures:
 
@@ -48,7 +49,8 @@ sudo snap install hugo --channel=extended --classic
 ```
 
 > The `--channel=extended` flag ensures you get the Hugo Extended version (required for SCSS/SASS).
-> The `--classic` flag gives Hugo permission to access the full system, which is necessary for many real-world use cases.
+> The `--classic` flag gives Hugo permission to access the full system, which is necessary for many
+real-world use cases.
 
 ### Step 4: Verify Installation
 
@@ -67,5 +69,6 @@ Hugo Extended is now installed on Linux!
 
 ---
 
-Done installing? Proceed to the [Launch Site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/4-launch-site/) page or go back
+Done installing? Proceed to the 
+[Launch Site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/4-launch-site/) page or go back
  to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/).

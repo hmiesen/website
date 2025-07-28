@@ -9,9 +9,18 @@ author: "Harold Miesen"
 
 ## Adding content to your site with Hugo using Markdown and HTML
 
-Hugo uses [Markdown](https://www.markdownguide.org/) to write content. Markdown is a lightweight markup language used to format plain text. It's simple to learn and allows you to add formatting like bold, italic, links, lists, and more — all using plain text characters. Markdown is commonly used for writing documentation, README files, and content for websites like GitHub, Reddit, and Hugo because it's easy to write and read, even without special tools.
+Hugo uses [Markdown](https://www.markdownguide.org/) to write content. Markdown is a lightweight
+markup language used to format plain text. It's simple to learn and allows you to add formatting
+like bold, italic, links, lists, and more — all using plain text characters. Markdown is commonly
+used for writing documentation, README files, and content for websites like GitHub, Reddit, and
+Hugo because it's easy to write and read, even without special tools.
 
-Markdown comes in different dialects — variations that extend the original syntax with features like tables, footnotes, and syntax highlighting. This Flask app uses the [standard Python-Markdown library](https://python-markdown.github.io/), which follows the original Markdown spec by John Gruber, but can be extended with optional features via extensions. The exact behavior depends on which extensions (if any) are enabled.
+Markdown comes in different dialects — variations that extend the original syntax with features
+like tables, footnotes, and syntax highlighting. It's a good idea to check which Markdown dialect
+is being used, as this affects how content is rendered and which features are available. The
+[standard Python-Markdown library](https://python-markdown.github.io/) follows the original spec
+by John Gruber, but can be extended via optional features known as extensions. The exact behavior
+depends on which of these extensions are enabled.
 
 #### Headings
 
@@ -57,7 +66,8 @@ Markdown supports raw HTML when you need more flexibility than Markdown syntax a
 ---
 
 ## Session 1: Adding an About Page to your Hugo Site
-For the rest of this tutorial, we’ll assume you’ve launched a working Hugo site as described in the previous steps. We assume that:
+For the rest of this tutorial, we’ll assume you’ve launched a working Hugo site as described 
+in the previous steps. We assume that:
 
 - Hugo and the Ananke theme are installed correctly
 - Your project structure looks something like this:
@@ -78,7 +88,8 @@ Use the Hugo CLI to create a new page called about.md:
 hugo new about.md
 ```
 
-Given that you have defined a default archetype (see the previous tutorial), this will create a file at `content/about.md` with some default front matter:
+Given that you have defined a default archetype (see the previous tutorial), this will create
+a file at `content/about.md` with some default front matter:
 
 ```markdown
 ---
@@ -127,17 +138,20 @@ Start the Hugo development server in __**the root**__ of your project:
 hugo server -D
 ```
 
-Visit `http://localhost:1313` in your browser. You should now see an "About" link in the top menu and the new page accessible.
+Visit `http://localhost:1313` in your browser. You should now see an "About" link in the
+top menu and the new page accessible.
 
 
 ## Session 2: Adding an Image to a Page in Hugo
 
 ### Step 1: Place the Image in Your Project
-Images should go in the `static/` directory of your Hugo site. Files in this folder are served directly at the root URL.
-For example, if you have an image called `profile.jpg`, place it in "my-hugo-site/static/images/profile.jpg".
+Images should go in the `static/` directory of your Hugo site. Files in this folder are
+served directly at the root URL. For example, if you have an image called `profile.jpg`,
+place it in "my-hugo-site/static/images/profile.jpg".
 
 ### Step 2: Reference the Image in Your Markdown File
-Now edit your content file (e.g., `content/about.md`) and use standard Markdown to insert the image: &#91;My Profile Picture&#93;(/images/profile.jpg).
+Now edit your content file (e.g., `content/about.md`) and use standard Markdown to insert
+the image: &#91;My Profile Picture&#93;(/images/profile.jpg).
 
 This will render as an image with the alt-text “My Profile Picture”.
 
@@ -154,7 +168,8 @@ hugo server -D
 Go to `http://localhost:1313/about/` and check if the image appears.
 
 > - All paths to images in static/ are relative to the site root (e.g., `/images/...`).
-> - The Ananke theme doesn’t style images by default, so you may want to add CSS later for alignment or sizing if needed.
+> - The Ananke theme doesn’t style images by default, so you may want to add CSS later 
+for alignment or sizing if needed.
 
 ## Session 3: Adding a Table in Markdown
 Markdown supports simple tables, and they work well in Hugo — even with the Ananke theme.
@@ -204,7 +219,8 @@ Then visit `http://localhost:1313` to see your table rendered in the browser.
 
 ## Session 4: Adding Custom CSS to Your Hugo Site
 
-You can apply custom styles to your Hugo site by adding a CSS file manually and linking it in your layout.
+You can apply custom styles to your Hugo site by adding a CSS file manually and linking it in
+your layout.
 
 ### Step 1: Create a CSS file
 Create a file called `custom.css` in the `static/css/` directory:
@@ -258,7 +274,8 @@ Now start your Hugo site:
 hugo server -D
 ```
 
-> __**TIP**__: Since static/ maps directly to the root (/) in the output folder, placing your CSS in static/css/ makes it accessible at /css/custom.css.
+> __**TIP**__: Since static/ maps directly to the root (/) in the output folder, placing your
+CSS in static/css/ makes it accessible at /css/custom.css.
 
 Visit `http://localhost:1313` and you should see the styles applied.
 
@@ -268,4 +285,5 @@ Visit `http://localhost:1313` and you should see the styles applied.
 - [Ananke Theme](https://github.com/theNewDynamic/gohugo-theme-ananke)
 
 You're now ready to build and publish static sites with Hugo, and add content to it!
-Go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/)
+Go back to
+[Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/)
