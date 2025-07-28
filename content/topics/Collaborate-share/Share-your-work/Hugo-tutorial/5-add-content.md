@@ -16,11 +16,11 @@ used for writing documentation, README files, and content for websites like GitH
 Hugo because it's easy to write and read, even without special tools.
 
 Markdown comes in different dialects — variations that extend the original syntax with features
-like tables, footnotes, and syntax highlighting. It's a good idea to check which Markdown dialect
-is being used, as this affects how content is rendered and which features are available. The
-[standard Python-Markdown library](https://python-markdown.github.io/) follows the original spec
-by John Gruber, but can be extended via optional features known as extensions. The exact behavior
-depends on which of these extensions are enabled.
+like tables, footnotes, and syntax highlighting. Hugo uses __**Goldmark**__ as its default
+Markdown parser, which is a modern implementation of the CommonMark specification. In addition
+to the CommonMark core syntax, Goldmark supports several optional extensions — such as tables,
+strikethrough, task lists, and typographic replacements — which can be enabled or disabled in
+Hugo's configuration.
 
 #### Headings
 
