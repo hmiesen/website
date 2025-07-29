@@ -11,7 +11,8 @@ author: "Harold Miesen"
 ## Install Hugo Extended on Windows using winget
 
 Use winget to easily install and update the latest system-wide version of Hugo on Windows
-via the command line.
+via the command line. __**Winget**__ (Windows Package Manager) is Microsoft’s official
+command-line tool for installing software on Windows, much like brew on macOS or apt on Linux.
 
 ### Step 1: Open PowerShell as Administrator
 
@@ -65,6 +66,6 @@ Hugo Extended is now installed on Windows!
 ---
 
 Done installing? Proceed to the 
-[Launch Site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/4-launch-site/) page
+[Launch Site](../4-launch-site/) page
 or go back to
-[Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/).
+[Hugo Tutorial: Start Here](../1-index/).

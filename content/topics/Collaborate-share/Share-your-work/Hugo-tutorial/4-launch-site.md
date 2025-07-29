@@ -11,19 +11,59 @@ author: "Harold Miesen"
 
 Hugo is a powerful static site generator that transforms plain text and templates into fast,
 secure, and fully pre-rendered websites. Unlike dynamic sites that rely on databases, static
-sites are composed of HTML files that can be easily hosted anywhere — from GitHub Pages to
-cloud providers — with excellent performance and minimal maintenance.
+sites are composed of HTML files that can be easily hosted anywhere—from GitHub Pages to
+cloud providers—with excellent performance and minimal maintenance.
 
 ### Step 1: Create a New Project
-Start a new Hugo site in your project folder of choice:
+Start by opening a terminal window:
+
+- Windows: open __**powershell**__
+- Linux: open the __**terminal**__ application.
+
+> The terminal starts in a default folder, but you can choose where to create your Hugo project.
+
+Use the `cd` command to move into the folder where you'd like to store your Hugo project. For example:
+
+__**Windows powershell**__:
+
+```powershell
+cd ~\Documents\Websites
+```
+__**Linux**__
+
+```bash
+cd ~/Documents/Websites
+```
+
+The tilde (`~`) is a shortcut that represents your __**home directory**__—your personal user folder.
+
+- On __**Windows**__ (powershell): `~` means something like `C:\Users\YourName`
+- On __**Linux**__: `~` means something like `/home/Yourname`
+
+So when you run `cd ~/Documents` you're navigating to the `Documents` folder inside your home directory.
+
+You can also create a new folder first:
+
+```powershell (Windows) or bash (Linux)
+mkdir HugoProjects
+cd HugoProjects
+```
+
+Create a new Hugo site by running the following command in the folder in which you want to create the site:
 
 ```powershell (Windows) or bash (Linux)
 hugo new site my-hugo-site
 cd my-hugo-site
 ```
+
+This creates a new folder called my-hugo-site in your current directory. Hugo will place all the
+starter files inside that folder.
+
+> For example, if you're in `C:\Users\YourName\Documents\HugoProjects`, the new project will be
+created at `C:\Users\YourName\Documents\HugoProjects\my-hugo-site`.
+
 > __**TIP**__: Choose a meaningful name for your project folder. You can manage multiple Hugo sites
 independently.
-
 
 ### Step 2: Add a Theme (Ananke)
 Add the [Ananke](https://github.com/theNewDynamic/gohugo-theme-ananke) theme using Git submodules:
@@ -155,5 +195,5 @@ folder structure (e.g. `/assets/`).
 Instead of manually pushing `public/`, you can automate this with [GitHub Actions](https://github.com/features/actions).
 
 You're now ready to add content to your static Hugo site and to continue to the 
-[Adding content to your Hugo site](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/5-add-content/),
-or go back to [Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/)
+[Adding content to your Hugo site](../5-add-content/),
+or go back to [Hugo Tutorial: Start Here](../1-index/).

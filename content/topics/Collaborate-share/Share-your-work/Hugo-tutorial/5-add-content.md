@@ -11,15 +11,15 @@ author: "Harold Miesen"
 
 Hugo uses [Markdown](https://www.markdownguide.org/) to write content. Markdown is a lightweight
 markup language used to format plain text. It's simple to learn and allows you to add formatting
-like bold, italic, links, lists, and more — all using plain text characters. Markdown is commonly
+like bold, italic, links, lists, and more—all using plain text characters. Markdown is commonly
 used for writing documentation, README files, and content for websites like GitHub, Reddit, and
 Hugo because it's easy to write and read, even without special tools.
 
-Markdown comes in different dialects — variations that extend the original syntax with features
+Markdown comes in different dialects—variations that extend the original syntax with features
 like tables, footnotes, and syntax highlighting. Hugo uses __**Goldmark**__ as its default
 Markdown parser, which is a modern implementation of the CommonMark specification. In addition
-to the CommonMark core syntax, Goldmark supports several optional extensions — such as tables,
-strikethrough, task lists, and typographic replacements — which can be enabled or disabled in
+to the CommonMark core syntax, Goldmark supports several optional extensions—such as tables,
+strikethrough, task lists, and typographic replacements—which can be enabled or disabled in
 Hugo's configuration.
 
 #### Headings
@@ -134,7 +134,7 @@ Open your `config.toml` and add the page to the navigation menu:
 ### Step 4: Preview the Site Locally
 Start the Hugo development server in __**the root**__ of your project:
 
-```Powershell or bash
+```Powershell (Windows) or bash (Linux)
 hugo server -D
 ```
 
@@ -162,17 +162,17 @@ You can also use HTML if you need more control (e.g., setting width):
 
 ### Step 3: Preview Locally
 Run the server again in __**the root**__ of your project to preview the image:
-```Powershell or bash
+```Powershell (Windows) or bash (Linux)
 hugo server -D
 ```
 Go to `http://localhost:1313/about/` and check if the image appears.
 
-> - All paths to images in static/ are relative to the site root (e.g., `/images/...`).
+> - All paths to images in `static/` are relative to the site root (e.g., `/images/...`).
 > - The Ananke theme doesn’t style images by default, so you may want to add CSS later 
 for alignment or sizing if needed.
 
 ## Session 3: Adding a Table in Markdown
-Markdown supports simple tables, and they work well in Hugo — even with the Ananke theme.
+Markdown supports simple tables, and they work well in Hugo—even with the Ananke theme.
 
 ### Step 1: Add a Table to Your Content File
 Open a page like `content/about.md` and add the following Markdown:
@@ -208,7 +208,7 @@ You can control alignment using colons:
 ### Step 2: Preview Your Table
 Run the Hugo server in __**the root**__ of your project:
 
-```Powershell or bash
+```Powershell (Windows) or bash (Linux)
 hugo server -D
 ```
 
@@ -270,20 +270,20 @@ Add the following lines inside the `baseof.html` file. Your file might than look
 ### Step 3: Run your site
 Now start your Hugo site:
 
-``` Powershell or bash
+``` Powershell (Windows) or bash (Linux)
 hugo server -D
 ```
 
 > __**TIP**__: Since static/ maps directly to the root (/) in the output folder, placing your
-CSS in static/css/ makes it accessible at /css/custom.css.
+CSS in `static/css/` makes it accessible at `/css/custom.css`.
 
 Visit `http://localhost:1313` and you should see the styles applied.
+
+You're now ready to build and publish static sites with Hugo, and add content to it!
+Go back to
+[Hugo Tutorial: Start Here](../1-index/).
 
 ## Resources
 - [Hugo Docs](https://gohugo.io/documentation/)
 - [Markdown Guide](https://www.markdownguide.org/)
 - [Ananke Theme](https://github.com/theNewDynamic/gohugo-theme-ananke)
-
-You're now ready to build and publish static sites with Hugo, and add content to it!
-Go back to
-[Hugo Tutorial: Start Here](/topics/Collaborate-share/Share-you-work/Hugo-tutorial/1-index/)
