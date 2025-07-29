@@ -24,7 +24,7 @@ Hugo's configuration.
 
 #### Headings
 
-```markdown
+```
 # H1
 ## H2
 ### H3
@@ -32,13 +32,13 @@ Hugo's configuration.
 
 #### Emphasis
 
-```markdown
+```
 *italic* __**bold**__ `inline code`
 ```
 
 #### Lists & Links
 
-```markdown
+```
 - Unordered item
 1. Ordered item
 "[Visit Hugo (URL)}(https://gohugo.io)"
@@ -47,7 +47,7 @@ Hugo's configuration.
 #### HTML
 Markdown supports raw HTML when you need more flexibility than Markdown syntax allows.
 
-```html
+```
 <pre>
   &lt;div class="custom-box"&gt;
   &lt;h3&gt;Hello from HTML!&lt;/h3&gt;
@@ -84,14 +84,14 @@ my-hugo-site/
 ### Step 1: Create a New Page
 Use the Hugo CLI to create a new page called about.md:
 
-```Powershell or bash
+```
 hugo new about.md
 ```
 
 Given that you have defined a default archetype (see the previous tutorial), this will create
 a file at `content/about.md` with some default front matter:
 
-```markdown
+```
 ---
 title: "About"
 date: 2025-07-16T10:00:00+01:00
@@ -102,7 +102,7 @@ draft: true
 ### Step 2: Add Your Content
 Open `content/about.md` and add your content, for example:
 
-```markdown
+```
 ---
 title: "About"
 date: 2025-07-16T10:00:00+01:00
@@ -122,7 +122,7 @@ This is the About page. Here you can learn more about who I am and what this sit
 ### Step 3: Add the Page to the Menu
 Open your `config.toml` and add the page to the navigation menu:
 
-```toml
+```
 [menu]
   [[menu.main]]
     identifier = "about"
@@ -134,7 +134,7 @@ Open your `config.toml` and add the page to the navigation menu:
 ### Step 4: Preview the Site Locally
 Start the Hugo development server in __**the root**__ of your project:
 
-```Powershell (Windows) or bash (Linux)
+```
 hugo server -D
 ```
 
@@ -156,13 +156,13 @@ the image: &#91;My Profile Picture&#93;(/images/profile.jpg).
 This will render as an image with the alt-text “My Profile Picture”.
 
 You can also use HTML if you need more control (e.g., setting width):
-```html
+```
 &lt;img src="/images/profile.jpg" alt="My Profile Picture" width="300"&gt;
 ```
 
 ### Step 3: Preview Locally
 Run the server again in __**the root**__ of your project to preview the image:
-```Powershell (Windows) or bash (Linux)
+```
 hugo server -D
 ```
 Go to `http://localhost:1313/about/` and check if the image appears.
@@ -177,7 +177,7 @@ Markdown supports simple tables, and they work well in Hugo—even with the Anan
 ### Step 1: Add a Table to Your Content File
 Open a page like `content/about.md` and add the following Markdown:
 
-```markdown
+```
 | Project Title                    | Field              | Status       | Funding Source    |
 |----------------------------------|--------------------|--------------|-------------------|
 | Cognitive Mapping in AI          | Cognitive Science  | Active       | ERC Horizon 2020  |
@@ -194,7 +194,7 @@ How it works:
 __**Optional: Aligning Text in Columns**__
 You can control alignment using colons:
 
-```markdown
+```
 | Left Aligned | Centered   | Right Aligned |
 |:-------------|:----------:|--------------:|
 | Text A       |   Text B   |        Text C |
@@ -208,7 +208,7 @@ You can control alignment using colons:
 ### Step 2: Preview Your Table
 Run the Hugo server in __**the root**__ of your project:
 
-```Powershell (Windows) or bash (Linux)
+```
 hugo server -D
 ```
 
@@ -234,7 +234,7 @@ your-hugo-site/
 
 Add some simple CSS, for example:
 
-```css
+```
 /* static/css/custom.css */
 body {
   background-color: #f0f0f0;
@@ -251,7 +251,7 @@ Edit the <head> section in your default layout file, usually at `layouts/_defaul
 
 Add the following lines inside the `baseof.html` file. Your file might than look like:
 
-```html
+```
 <pre>
   &lt;!DOCTYPE html&gt;
   &lt;html lang="en"&gt;
@@ -270,7 +270,7 @@ Add the following lines inside the `baseof.html` file. Your file might than look
 ### Step 3: Run your site
 Now start your Hugo site:
 
-``` Powershell (Windows) or bash (Linux)
+```
 hugo server -D
 ```
 

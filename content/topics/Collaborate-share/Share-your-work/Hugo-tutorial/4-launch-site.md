@@ -26,12 +26,12 @@ Use the `cd` command to move into the folder where you'd like to store your Hugo
 
 __**Windows powershell**__:
 
-```powershell
+```
 cd ~\Documents\Websites
 ```
 __**Linux**__
 
-```bash
+```
 cd ~/Documents/Websites
 ```
 
@@ -44,14 +44,14 @@ So when you run `cd ~/Documents` you're navigating to the `Documents` folder ins
 
 You can also create a new folder first:
 
-```powershell (Windows) or bash (Linux)
+```
 mkdir HugoProjects
 cd HugoProjects
 ```
 
 Create a new Hugo site by running the following command in the folder in which you want to create the site:
 
-```powershell (Windows) or bash (Linux)
+```
 hugo new site my-hugo-site
 cd my-hugo-site
 ```
@@ -68,7 +68,7 @@ independently.
 ### Step 2: Add a Theme (Ananke)
 Add the [Ananke](https://github.com/theNewDynamic/gohugo-theme-ananke) theme using Git submodules:
 
-```powershell (Windows) or bash (Linux)
+```
 git init
 git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
 
@@ -94,7 +94,7 @@ my-hugo-site/
 Edit hugo.toml in your favorite editor and set basic site configuration by adding the
 following lines:
 
-```toml
+```
 baseURL = "http://localhost/"
 languageCode = "en-us"
 title = "My Hugo Site"
@@ -102,7 +102,7 @@ theme = "ananke"
 ```
 
 __**Additional settings**__ you may want to add:
-```toml
+```
 paginate = 10
 enableRobotsTXT = true
 ```
@@ -114,7 +114,7 @@ Create a file at `archetypes/default.md`.
 
 And add the following content:
 
-```markdown
+```
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
@@ -129,7 +129,7 @@ draft: true
 
 ### Step 4: Run Local Server
 Start the Hugo development server in __**the root**__ of your project:
-```powershell (Windows) or bash (Linux)
+```
 hugo server -D
 ```
 
@@ -144,7 +144,7 @@ development but should be avoided in production to prevent publishing unfinished
 #### 1. Commit your project source to main
 Make sure your Hugo project (including content, theme, and config files) is version-controlled:
 
-```powershell (Windows) or bash (Linux)
+```
 git init
 git add .
 git commit -m "Initial commit with Hugo source files"
@@ -158,7 +158,7 @@ git push -u origin main
 #### 2. Build the static site
 Use Hugo to generate the final website:
 
-```powershell (Windows) or bash (Linux)
+```
 hugo --minify
 ```
 
@@ -167,7 +167,7 @@ hugo --minify
 #### 3. Deploy the contents of `public` to `gh-pages`
 You'll now push only the contents of the `public/` folder to a __**separate branch**__:
 
-```powershell (Windows) or bash (Linux)
+```
 cd public
 git init
 git checkout -b gh-pages

@@ -21,13 +21,13 @@ Using snap to install Hugo ensures:
 
 ### Step 1: Update Your System
 
-```bash
+```
 sudo apt update && sudo apt upgrade
 ```
 
 ### Step 2: Install Required Packages
 
-```bash
+```
 sudo apt install git curl wget tar snapd
 ```
 
@@ -36,7 +36,7 @@ sudo apt install git curl wget tar snapd
 
 ### Step 2.1: Verify Git Installation
 
-```bash
+```
 git --version
 ```
 
@@ -44,7 +44,7 @@ You should see a version number if Git is correctly installed.
 
 ### Step 3: Install Hugo Extended via Snap
 
-```bash
+```
 sudo snap install hugo --channel=extended --classic
 ```
 
@@ -54,13 +54,13 @@ real-world use cases.
 
 ### Step 4: Verify Installation
 
-```bash
+```
 hugo version
 ```
 
 You should see output like:
 
-```bash
+```
 hugo v0.124.1+extended linux/amd64 BuildDate=...
 ```
 
@@ -72,4 +72,3 @@ Hugo Extended is now installed on Linux!
 Done installing? Proceed to the 
 [Launch Site](../4-launch-site/) page or go back
  to [Hugo Tutorial: Start Here](../1-index/).
-

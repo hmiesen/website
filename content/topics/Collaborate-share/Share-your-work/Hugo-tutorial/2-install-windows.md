@@ -20,14 +20,14 @@ Search for __**PowerShell**__, right-click it, and choose __**Run as administrat
 
 ### Step 2: Install Git (if not already installed)
 
-```powershell
+```
 winget install --id Git.Git -e --source winget
 ```
 
 > If `git` is not yet installed, the command above will install it.
 
 Check Git installation:
-```powershell
+```
 git --version
 ```
 
@@ -35,19 +35,19 @@ You should see a version number if Git is correctly installed.
 
 ### Step 3: Install Hugo Extended
 
-```powershell
+```
 winget install Hugo.Hugo.Extended
 ```
 
 > __**Tip**__: Uninstall any previous Hugo version first to avoid conflicts.
 
-> ```powershell
+> ```
 > winget uninstall Hugo.Hugo.Extended
 > ```
 
 > After removal, check:
 
-> ```powershell
+> ```
 > hugo version
 > ```
 
@@ -56,7 +56,7 @@ message: `hugo : The term 'hugo' is not recognized...`.
 
 ### Step 4: Confirm Installation
 
-```powershell
+```
 hugo version
 ```
 
