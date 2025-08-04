@@ -14,9 +14,9 @@ Use winget to easily install and update the latest system-wide version of Hugo o
 via the command line. __**Winget**__ (Windows Package Manager) is Microsoft’s official
 command-line tool for installing software on Windows, much like brew on macOS or apt on Linux.
 
-### Step 1: Open PowerShell as Administrator
+### Step 1: Open PowerShell
 
-Search for __**PowerShell**__, right-click it, and choose __**Run as administrator**__.
+Search for PowerShell in the Start Menu and open it.
 
 ### Step 2: Install Git (if not already installed)
 
@@ -35,30 +35,37 @@ You should see a version number if Git is correctly installed.
 
 ### Step 3: Install Hugo Extended
 
+Uninstall any previous Hugo version first to avoid conflicts.
+
 ```
-winget install Hugo.Hugo.Extended
+winget uninstall Hugo.Hugo.Extended
 ```
 
-> __**Tip**__: Uninstall any previous Hugo version first to avoid conflicts.
-
-> ```
-> winget uninstall Hugo.Hugo.Extended
-> ```
-
-> After removal, check:
-
-> ```
-> hugo version
-> ```
-
-> If Hugo has been succesfully removed from your system, you should see the following error
-message: `hugo : The term 'hugo' is not recognized...`. 
-
-### Step 4: Confirm Installation
+After removal, check:
 
 ```
 hugo version
 ```
+
+If Hugo has been succesfully removed from your system, you should see the following error
+message: `hugo : The term 'hugo' is not recognized...`. 
+
+Next, install Hugo Extended by means of the following command:
+
+```
+winget install Hugo.Hugo.Extended
+```
+### Step 4: Confirm Installation
+
+After install, check:
+
+```
+hugo version
+```
+
+You should see a version number if Hugo is correctly installed.
+E.g., `hugo v0.148.2-40c3d8233d4b123eff74725e5766fc6272f0a84d+extended linux/amd64 
+BuildDate=...
 
 Look for `+extended` in the output.
 Hugo Extended is now installed on Windows!

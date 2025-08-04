@@ -156,7 +156,7 @@ git push -u origin main
 > This keeps your full source code in the `main` branch.
 
 #### 2. Build the static site
-Use Hugo to generate the final website:
+Go to the root of your project and use Hugo to generate the final website:
 
 ```
 hugo --minify
@@ -190,6 +190,78 @@ folder structure (e.g. `/assets/`).
 4. Save
 
 > Your site will be available at: `https://<username>.githubio/<repo>/`
+
+### Bonus: Deploy to Nginx Server (Advanced Alternative Setup)
+
+#### 1. Build the static site
+First, generate your Hugo site from the root of your project:
+
+```
+hugo --minify
+```
+
+Hugo will output the static site to the `public/` directory.
+
+#### 2. Connect to your server
+Use SSH to connect to your server:
+
+```
+ssh	&lt;your-username&gt;@&lt;your-server-ip&gt;
+```
+
+Make sure your server has nginx installed and running. You can check with: `nginx -v`.
+
+> You can find an Install Guide on nginx [here](https://nginx.org/en/docs/install.html).
+> [Here](https://nginx.org/en/docs/beginners_guide.html) is a Beginner's Guide that describes some simple tasks that can be done with it.
+
+#### 3. Upload your site files
+Use `scp` or any file transfer method (like rsync, FTP, etc.) to upload the contents of the `public/` directory to your server.
+
+For example, using `scp`:
+
+```
+scp -r public/* &lt;your-username&gt;&lt;your-server-ip&gt;:/var/www/&lt;your-site&gt;/
+```
+
+Make sure `/var/www/<your-site>/` is the correct path where your nginx site will serve content from.
+
+### 4. Configure Nginx
+Create or edit an nginx configuration file for your site:
+
+```
+sudo nano /etc/nginx/sites-available/&lt;your-site&gt;
+```
+
+Example configuration:
+
+```
+server {
+    listen 80;
+    server_name yourdomain.com;
+
+    root /var/www/&lt;your-site&gt;;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
+Enable the site:
+
+```
+sudo ln -s /etc/nginx/sites-available/&lt;your-site&gt; /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+This tells Nginx to serve your static Hugo site.
+
+### 5. (Optional) Add a domain name
+Make sure your domain's DNS points to your server IP, and update `server_name` in the config accordingly.
+
+Your site should now be live at `http://<yourdomain.com>` or `http://<your-server-ip>`.
 
 ### Bonus: Automate Deployment
 Instead of manually pushing `public/`, you can automate this with [GitHub Actions](https://github.com/features/actions).
