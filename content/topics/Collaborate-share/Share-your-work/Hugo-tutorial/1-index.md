@@ -18,7 +18,7 @@ In this step-by-step tutorial, you'll learn how to:
 - Install __**Hugo Extended**__ on your platform
 - Create and configure a Hugo site
 - Run a local development server
-- Deploy your site to __**GitHub Pages**__ and __**Nginix**__ (bonus)
+- Deploy your static site to a remote server (bonus)
 - Add content to your Hugo site using Markdown and HTML
 
 ### Choose Your Installation Platform

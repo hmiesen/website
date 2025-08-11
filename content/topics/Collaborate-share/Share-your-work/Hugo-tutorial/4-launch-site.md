@@ -139,7 +139,7 @@ Visit [http://localhost:1313](http://localhost:1313) in your browser.
 > - The -D flag in hugo server includes draft content in the local build, which is useful during
 development but should be avoided in production to prevent publishing unfinished work.
 
-### Bonus: Deploy to GitHub Pages (Recommended Setup)
+### Bonus: Deploy your static site to a remote server
 
 #### 1. Commit your project source to main
 Make sure your Hugo project (including content, theme, and config files) is version-controlled:
@@ -159,112 +159,46 @@ git push -u origin main
 Go to the root of your project and use Hugo to generate the final website:
 
 ```
-hugo --minify
+hugo --gc --minify
 ```
 
-> The output will be placed in the `public/` directory.
+> The output will be placed in the `public/` directory. When you build a Hugo site,
+> Hugo outputs all generated HTML, CSS, JS, and other assets into this 
+> `public/` directory.
+>
+> The --gc flag in Hugo enables garbage collection: it removes unused files from the 
+> output (`public/`) directory during a build, so old or orphaned files from previous
+> builds don’t remain.
 
-#### 3. Deploy the contents of `public` to `gh-pages`
-You'll now push only the contents of the `public/` folder to a __**separate branch**__:
+#### 3. Push only the contents of the public/ folder to a separate branch
+You'll now push only the contents of the `public/` folder to a separate branch:
 
 ```
 cd public
 git init
-git checkout -b gh-pages
+git checkout -b deployment
 git remote add origin https://github.com/<your-username>/my-hugo-site.git
-touch .nojekyll
 git add .
-git commit -m "Deploy site to GitHub Pages"
-git push -f origin gh-pages
+git commit -m "Push contents of the public folder to a separate branch"
+git push -f origin deployment
 ```
 
-> `touch .nojekyll` disables Jekyll prcessing on Github Pages, which can interfere with Hugo's
-folder structure (e.g. `/assets/`).
+> __**Force push**__ – -f is intentional here to overwrite the deployment branch,
+> but be aware it will replace its history completely.
 
-#### 4. Configure GitHub Pages
-1. Go to your repository on GitHub
-2. Open __**Settings**__ -> __**Pages**__
-3. Under __**Source**__, choose:
-    - Branch: `gh-pages`
-    - Folder: `/ (root)`
-4. Save
+#### 4. Deploy the static site to a remote server
 
-> Your site will be available at: `https://<username>.githubio/<repo>/`
-
-### Bonus: Deploy to Nginx Server (Advanced Alternative Setup)
-
-#### 1. Build the static site
-First, generate your Hugo site from the root of your project:
-
-```
-hugo --minify
-```
-
-Hugo will output the static site to the `public/` directory.
-
-#### 2. Connect to your server
-Use SSH to connect to your server:
-
-```
-ssh	&lt;your-username&gt;@&lt;your-server-ip&gt;
-```
-
-Make sure your server has nginx installed and running. You can check with: `nginx -v`.
-
-> You can find an Install Guide on nginx [here](https://nginx.org/en/docs/install.html).
-> [Here](https://nginx.org/en/docs/beginners_guide.html) is a Beginner's Guide that describes some simple tasks that can be done with it.
-
-#### 3. Upload your site files
-Use `scp` or any file transfer method (like rsync, FTP, etc.) to upload the contents of the `public/` directory to your server.
-
-For example, using `scp`:
-
-```
-scp -r public/* &lt;your-username&gt;&lt;your-server-ip&gt;:/var/www/&lt;your-site&gt;/
-```
-
-Make sure `/var/www/<your-site>/` is the correct path where your nginx site will serve content from.
-
-### 4. Configure Nginx
-Create or edit an nginx configuration file for your site:
-
-```
-sudo nano /etc/nginx/sites-available/&lt;your-site&gt;
-```
-
-Example configuration:
-
-```
-server {
-    listen 80;
-    server_name yourdomain.com;
-
-    root /var/www/&lt;your-site&gt;;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
-}
-```
-
-Enable the site:
-
-```
-sudo ln -s /etc/nginx/sites-available/&lt;your-site&gt; /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
-```
-
-This tells Nginx to serve your static Hugo site.
-
-### 5. (Optional) Add a domain name
-Make sure your domain's DNS points to your server IP, and update `server_name` in the config accordingly.
-
-Your site should now be live at `http://<yourdomain.com>` or `http://<your-server-ip>`.
+The `public/` directory is your complete static website—you can use its contents
+directly as the static content directory for a web server. For example, if you
+want to serve the site using [Nginx in Docker](https://hub.docker.com/_/nginx),
+simply copy the `public/` directory into the location Nginx uses for static files
+(by default `/usr/share/nginx/html`). For the rest of the setup, follow the
+official [Nginx Docker image and their beginner
+documentation](https://www.docker.com/blog/how-to-use-the-official-nginx-docker-image/).
 
 ### Bonus: Automate Deployment
-Instead of manually pushing `public/`, you can automate this with [GitHub Actions](https://github.com/features/actions).
+Instead of manually pushing `public/`, you can automate this with [GitHub Actions]
+(https://github.com/features/actions).
 
 You're now ready to add content to your static Hugo site and to continue to the 
 [Adding content to your Hugo site](../5-add-content/),
