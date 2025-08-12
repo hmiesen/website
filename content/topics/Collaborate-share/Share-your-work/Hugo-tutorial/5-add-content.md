@@ -247,7 +247,7 @@ h1 {
 ```
 
 ### Step 2: Link the CSS file in your HTML head
-Edit the <head> section in your default layout file, usually at `layouts/_default/baseof.html`.
+Edit the &lt;head&gt; section in your default layout file, usually at `layouts/_default/baseof.html`.
 
 Add the following lines inside the `baseof.html` file. Your file might than look like:
 
