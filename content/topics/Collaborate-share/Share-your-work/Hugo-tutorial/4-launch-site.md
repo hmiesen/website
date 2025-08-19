@@ -80,7 +80,7 @@ By now, you should have a directory structure looking something like this:
 
 ```
 my-hugo-site/
-├── hugo.toml     # Site configuration
+├── hugo.toml       # Site configuration
 ├── content/        # Pages
 ├── themes/         # Downloaded theme
 ├── static/         # Custom assets (images, CSS, JS)

@@ -41,7 +41,7 @@ Hugo's configuration.
 ```
 - Unordered item
 1. Ordered item
-"[Visit Hugo (URL)}(https://gohugo.io)"
+&#91;Visit Hugo (URL)&#93;(https://gohugo.io)
 ```
 
 #### HTML
