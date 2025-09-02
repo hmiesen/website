@@ -1,5 +1,6 @@
 ---
-title: "Using Hugo: Create and Deploy a Static Site"
+type: "hugo-tutorial"
+title: "(Part 3) Using Hugo: Create and Deploy a Static Site"
 description: "Learn how to launch your site with Hugo after installation"
 draft: false
 weight: 4
@@ -7,7 +8,7 @@ date: 2025-07-07
 author: "Harold Miesen"
 ---
 
-## Using Hugo: Create and Deploy a Static Site
+## (Part 3) Using Hugo: Create and Deploy a Static Site
 
 Hugo is a powerful static site generator that transforms plain text and templates into fast,
 secure, and fully pre-rendered websites. Unlike dynamic sites that rely on databases, static

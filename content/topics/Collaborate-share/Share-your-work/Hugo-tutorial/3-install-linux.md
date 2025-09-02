@@ -1,5 +1,6 @@
 ---
-title: "Install Hugo Extended on Linux using snap"
+type: "hugo-tutorial"
+title: "(Part 2) Install Hugo Extended on Linux using snap"
 description: "Install Hugo on a Linux environment using snap"
 draft: false
 weight: 3
@@ -7,7 +8,7 @@ date: 2025-07-07
 author: "Harold Miesen"
 ---
 
-## Install Hugo Extended on Linux using snap
+## (Part 2) Install Hugo Extended on Linux using snap
 
 Snap is a universal package manager developed by Canonical (the makers of Ubuntu). It allows you to
 install software in isolated containers, which include all necessary dependencies—making it easy

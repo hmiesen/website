@@ -1,5 +1,6 @@
 ---
-title: "Using Hugo: Add Content to Your Static Site"
+type: "hugo-tutorial"
+title: "(Part 4) Using Hugo: Add Content to Your Static Site"
 description: "Learn how to add content to your Hugo site using Markdown and HTML"
 draft: false
 weight: 5
@@ -7,7 +8,7 @@ date: 2025-07-07
 author: "Harold Miesen"
 ---
 
-## Adding content to your site with Hugo using Markdown and HTML
+## (Part 4) Adding content to your site with Hugo using Markdown and HTML
 
 Hugo uses [Markdown](https://www.markdownguide.org/) to write content. Markdown is a lightweight
 markup language used to format plain text. It's simple to learn and allows you to add formatting

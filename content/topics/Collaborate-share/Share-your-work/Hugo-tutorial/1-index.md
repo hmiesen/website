@@ -1,6 +1,6 @@
 ---
 type: "hugo-tutorial"
-title: "Hugo Tutorial: Start Here"
+title: "(Part 1) Hugo Tutorial: Start Here"
 description: "Choose your platform to install Hugo and get started"
 keywords: ["hugo", "static site", "website generator", "markdown", "tutorial"]
 draft: false
@@ -11,7 +11,7 @@ categories: ["Tutorials"]
 tags: ["hugo", "markdown", "deployment", "static site"]
 ---
 
-## Welcome to the Hugo Tutorial
+## (Part 1) Welcome to the Hugo Tutorial
 
 In this step-by-step tutorial, you'll learn how to:
 
