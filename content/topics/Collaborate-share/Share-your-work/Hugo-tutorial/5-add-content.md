@@ -178,13 +178,13 @@ Markdown supports simple tables, and they work well in Hugo—even with the Anan
 ### Step 1: Add a Table to Your Content File
 Open a page like `content/about.md` and add the following Markdown:
 
-```
+{{%table%}}
 | Project Title                    | Field              | Status       | Funding Source    |
 |----------------------------------|--------------------|--------------|-------------------|
 | Cognitive Mapping in AI          | Cognitive Science  | Active       | ERC Horizon 2020  |
 | Climate Modeling with HPC        | Environmental Data | Completed    | National Science Fund |
 | Quantum Information Theory       | Physics            | In Progress  | University Grant  |
-```
+{{/%table%}}
 
 How it works:
 
@@ -195,12 +195,12 @@ How it works:
 __**Optional: Aligning Text in Columns**__
 You can control alignment using colons:
 
-```
+{{%table%}}
 | Left Aligned | Centered   | Right Aligned |
 |:-------------|:----------:|--------------:|
 | Text A       |   Text B   |        Text C |
 | More A       |   More B   |        More C |
-```
+{{/%table%}}
 
 - :-- = left aligned
 - :--: = centered
